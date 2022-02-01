@@ -107,7 +107,7 @@ You'll need to create an account onto it, and you'll be able to remix the code e
 
 When you are logged in and have an example open it looks like this :
 
-<img src="assets/glitch2.png" width="800" height="600" /><br>
+<img src="assets/glitch2.png" width="800" height="450" /><br>
 
 You can see two main pannel :
 - the code editor on the left
