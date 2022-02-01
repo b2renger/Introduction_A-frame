@@ -7,7 +7,7 @@ Code for a creative coding class on A-Frame for designers. (AR focused)
 
 
 
-
+---
 ## The tools
 
 We use three tools :
@@ -101,8 +101,25 @@ Try opening this qr code with your phone and show it the hiro marker above.
 
 ### What is Glitch ?
 
+Glitch is the plateform we will use to code and host our project.
 
-## Getting started with glitch
+You'll need to create an account onto it, and you'll be able to remix the code examples seen here.
+
+When you are logged in and have an example open it looks like this :
+
+<img src="assets/glitch2.png" width="800" height="600" /><br>
+
+You can see two main pannel :
+- the code editor on the left
+- the preview on the right
+
+Higlighted you can find :
+- in the upper right corner - the remix button to clone an existing example in your profile
+- in the bottom bar - the preview button to toggle a preview on the right pannel or in a seperate window.
+- on the left - the code (*index.html*) and an asset folder to  store your files.
+
+
+---
 
 ## Several kinds of contents
 ### Basic shapes
@@ -112,12 +129,14 @@ Try opening this qr code with your phone and show it the hiro marker above.
 ### videos
 ### p5js sketches
 
+---
 ## Several kinds of detections
 ### Hiro Kanji
 ### Barcode markers
 ### Custom marker 
 ### Images as marker (mind-arjs)
 
+--- 
 ## QR-markers
 
 
@@ -126,7 +145,7 @@ Try opening this qr code with your phone and show it the hiro marker above.
 
 
 
-
+---
 ## Links and references
 
 https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
