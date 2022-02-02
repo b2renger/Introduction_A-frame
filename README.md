@@ -13,7 +13,7 @@ Code for a creative coding class on A-Frame for designers. (AR focused)
 We use three tools :
 - a library for content : [A-Frame](https://aframe.io/)
 - a library for marker detections in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
-- a webhosting plateform to write our code and host our projects : [Glitch](https://glitch.com/)
+- a webhosting plateform to write our code and host our projects : [Replit](https://replit.com/)
 
 ### What is A-Frame ?
 [A-Frame](https://aframe.io/docs/1.2.0/introduction/) is a free and open-source framework supported by the mozilla foundation aiming at easing the creation of 3D / VR / AR experiences in the browser. 
@@ -64,6 +64,7 @@ To do that several method are use to pin / anchor the content :
 - **image detection** : you can train a specific image of your choice to be a marker. You'll need to take a few steps though to make your program recognize your image; be aware that tracking quality will be dependent on the image you choose.
 - **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet.
 - **gps coordinates** : you can pin some contents to a specific gps position, but this is highly experimental at the moment and tracking is a bit shaky.
+- **face detection** : you can detect the presence of a face in an image and then pin content onto it.
 
 
 ARjs is a javascript library to create AR application, it allows you to track the position of markers / images and even gps coordinates.
@@ -99,35 +100,36 @@ Try opening this qr code with your phone and show it the hiro marker above.
 [**home**](#Contents)
 
 
-### What is Glitch ?
+### What is Replit ?
 
-Glitch is the plateform we will use to code and host our project.
+Replit is the plateform we will use to write code  onlineand host our project.
 
-You'll need to create an account onto it, and you'll be able to remix the code examples seen here.
+You'll need to create an account onto it to code and host your own examples and you'll be able to fork the examples found here.
 
 When you are logged in and have an example open it looks like this :
 
-<img src="assets/glitch2.png" width="800" height="450" /><br>
+<img src="assets/replit.png" width="800" height="450" /><br>
 
-You can see two main pannel :
-- the code editor on the left
-- the preview on the right
+On the left pannel you cand find your files.
+The center pannel is dedicated to code edition.
+The right pannel is you app live with below the console to track infos and errors.
 
-Higlighted you can find :
-- in the upper right corner - the remix button to clone an existing example in your profile
-- in the bottom bar - the preview button to toggle a preview on the right pannel or in a seperate window.
-- on the left - the code (*index.html*) and an asset folder to  store your files.
-
+On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. 
 
 ---
+Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
 
+---
 ## Several kinds of contents
+
+Let's get started and see how we can add some content in AR to a simple hiro marker.
+
 ### Basic shapes
 ### Texts
-### 3d models
 ### images
 ### videos
 ### p5js sketches
+### 3d models
 
 ---
 ## Several kinds of detections
@@ -135,9 +137,12 @@ Higlighted you can find :
 ### Barcode markers
 ### Custom marker 
 ### Images as marker (mind-arjs)
+### Face tracking (minde-arjs)
 
 --- 
 ## QR-markers
+
+
 
 
 
