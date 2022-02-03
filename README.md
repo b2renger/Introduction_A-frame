@@ -16,6 +16,8 @@ We use three tools :
 - a library for marker detections in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
 - a webhosting plateform to write our code and host our projects : [Replit](https://replit.com/)
 
+[**home**](#Contents)
+
 ### What is A-Frame ?
 [A-Frame](https://aframe.io/docs/1.2.0/introduction/) is a free and open-source framework supported by the mozilla foundation aiming at easing the creation of 3D / VR / AR experiences in the browser. 
 
@@ -116,6 +118,8 @@ The center pannel is dedicated to code edition.
 The right pannel is you app live with below the console to track infos and errors.
 
 On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. 
+
+[**home**](#Contents)
 
 ---
 ## The basic setup
@@ -220,6 +224,8 @@ or scan this qr code  and show it kanji !
 
 Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
 
+[**home**](#Contents)
+
 ---
 ## Several kinds of contents
 
@@ -227,26 +233,69 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 
 <img src="assets/aframe_primitives.png" width="150" height="600"/></br>
 
+[**home**](#Contents)
 
 ### Basic shapes
+
+[**home**](#Contents)
+
 ### Texts
-### images
-### videos
-### p5js sketches
+
+[**home**](#Contents)
+
+### Images
+
+[**home**](#Contents)
+
+### Videos
+
+[**home**](#Contents)
+
+### P5js sketches
+
+[**home**](#Contents)
+
 ### 3d models
+
+[**home**](#Contents)
 
 ---
 ## Several kinds of detections
+
+[**home**](#Contents)
+
 ### Hiro Kanji
+
+[**home**](#Contents)
+
 ### Barcode markers
+
+[**home**](#Contents)
+
 ### Custom marker 
+
+[**home**](#Contents)
+
 ### Images as marker (mind-arjs)
+
+[**home**](#Contents)
+
 ### Face tracking (minde-arjs)
 
+[**home**](#Contents)
+
 --- 
-## QR-markers
+## Qr codes and "marker codes"
+
+[**home**](#Contents)
+
 ## Animations
+
+[**home**](#Contents)
+
 ## Interactivity
+
+[**home**](#Contents)
 
 
 
@@ -261,11 +310,18 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 
 https://aframe.io/aframe-registry/
 
+[**home**](#Contents)
 
 ## Links and references
 
-https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
+### references and sources
 
+get started : https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
+marker codes : https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-only-with-a-qr-code-139bb90e82f1
 
+[**home**](#Contents)
+
+### go further
 https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
 
+[**home**](#Contents)
