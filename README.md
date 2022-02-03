@@ -1,6 +1,7 @@
 # Introduction_A-frame
 
 Code for a creative coding class on A-Frame for designers. (AR focused)
+This is not meant to be exhaustive and code oriented, the goal is to be able to add content and choose the right tracking method for a specific project.
 
 ## Contents
 
@@ -72,7 +73,7 @@ ARjs is a javascript library to create AR application, it allows you to track th
 While ARjs is the library we will use for markers and gps coordinates that is to say most use cases - we will use another one for natural images detection [mindARjs](https://hiukim.github.io/mind-ar-js-doc/quick-start/overview/)
 
 
-Do keep in mind that tracking is really performant when you use markers, like this one - **hiro** :
+Do keep in mind that tracking is performant when you use markers, like this one - **hiro** :
 
 <img src="markers/hiro.png" width="480" height="480" /><br>
 
@@ -117,12 +118,115 @@ The right pannel is you app live with below the console to track infos and error
 On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. 
 
 ---
+## The basic setup
+
+An A-Frame + Arjs app is basically a web page written in html, everything will be managed under the hood for basics applications.
+
+This follows the basic construction of webpage with the classic tags and encapsulation :
+```html
+<html>  
+
+  <head>
+  </head>
+
+  <body>
+  </body>
+
+</html>
+```
+
+In between the 'head' tags we will include the libraries.
+In between the 'body' tags we will include all the html tags for our scene / markers / contents.
+
+The content will be architectured this way :
+
+```html
+<a-scene 
+  options for tracking, rendering etc.
+>
+  <a-marker
+  options for marker : what kind ? , size ?
+  >
+
+    <!-- 
+      any content we want to display with their position
+      anchored to the marker
+    -->
+
+  </a-marker>
+</a-scene>
+```
+
+
+
+The boiler plate code you'll want to use is this one to get eveything setup and have most of usefull options ready to be tweaked later on.
+
+It just displays a box on a kanji marker :
+
+```html
+<!doctype html>
+<html>
+
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720" >
+
+		<a-marker preset="kanji" size: "0.08">
+
+			<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
+```
+The options in the 'a-scene' tags are numerous but we won't go into details about them to keep going forward.
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/00AFrameARboilerplate#index.html
+
+You can run it live with this adress :
+https://00aframearboilerplate.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-00.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
 Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
 
 ---
 ## Several kinds of contents
 
-Let's get started and see how we can add some content in AR to a simple hiro marker.
+Let's get started and see how we can add some content in AR to a simple hiro marker. For all content we will refer to the [A-Frame documentation](https://aframe.io/docs/1.2.0/introduction/) : if you scroll at the **bottom of the left hand side menu** you will find links to the documentation of many primitives you can add to your scene.
+
+<img src="assets/aframe_primitives.png" width="150" height="600"/></br>
+
 
 ### Basic shapes
 ### Texts
@@ -141,6 +245,8 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 
 --- 
 ## QR-markers
+## Animations
+## Interactivity
 
 
 
@@ -151,9 +257,15 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 
 
 ---
+## Extending AFrame
+
+https://aframe.io/aframe-registry/
+
+
 ## Links and references
 
 https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
 
 
 https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
+
