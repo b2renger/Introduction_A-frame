@@ -3,6 +3,8 @@
 Code for a creative coding class on A-Frame for designers. (AR focused)
 This is not meant to be exhaustive and code oriented, the goal is to be able to add content and choose the right tracking method for a specific project.
 
+<img src="assets/snowAR.gif"/>
+
 ## Contents
 
 
@@ -162,10 +164,11 @@ The content will be architectured this way :
 ```
 
 
-
-The boiler plate code you'll want to use is this one to get eveything setup and have most of usefull options ready to be tweaked later on.
+The boilerplate code you'll want to use is this one to get eveything setup and have most of usefull options ready to be tweaked later on.
 
 It just displays a box on a kanji marker :
+
+<img src= "assets/00_boilerplate.gif"/></br>
 
 ```html
 <!doctype html>
@@ -233,6 +236,8 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 
 <img src="assets/aframe_primitives.png" width="150" height="600"/></br>
 
+With those lets create our first 3D scene !
+
 [**home**](#Contents)
 
 ### Basic shapes
@@ -262,9 +267,10 @@ Let's get started and see how we can add some content in AR to a simple hiro mar
 ---
 ## Several kinds of detections
 
+Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
 [**home**](#Contents)
 
-### Hiro Kanji
+### Hiro and Kanji
 
 [**home**](#Contents)
 
@@ -317,7 +323,11 @@ https://aframe.io/aframe-registry/
 ### references and sources
 
 get started : https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
+
 marker codes : https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-only-with-a-qr-code-139bb90e82f1
+
+size matters : https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
+
 
 [**home**](#Contents)
 
