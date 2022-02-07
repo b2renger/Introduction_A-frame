@@ -242,6 +242,103 @@ With those lets create our first 3D scene !
 
 ### Basic shapes
 
+A-Frame has a lot of elements you can draw directly on your scene : all the basic 3D shapes you could imagine : 
+
+- [boxes](https://aframe.io/docs/1.2.0/primitives/a-box.html)
+- [circles](https://aframe.io/docs/1.2.0/primitives/a-circle.html)
+- [cones](https://aframe.io/docs/1.2.0/primitives/a-cone.html)
+- [cylinders](https://aframe.io/docs/1.2.0/primitives/a-cylinder.html)
+- [dodecahedron](https://aframe.io/docs/1.2.0/primitives/a-dodecahedron.html)
+- [icosahedron](https://aframe.io/docs/1.2.0/primitives/a-icosahedron.html)
+- [octahedron](https://aframe.io/docs/1.2.0/primitives/a-octahedron.html)
+- [plane](https://aframe.io/docs/1.2.0/primitives/a-plane.html)
+- [ring](https://aframe.io/docs/1.2.0/primitives/a-ring.html)
+- [sphere](https://aframe.io/docs/1.2.0/primitives/a-sphere.html)
+- [tetrahedron](https://aframe.io/docs/1.2.0/primitives/a-tetrahedron.html)
+- [torus-knot](https://aframe.io/docs/1.2.0/primitives/a-torus-knot.html)
+- [torus](https://aframe.io/docs/1.2.0/primitives/a-torus.html)
+- [triangle](https://aframe.io/docs/1.2.0/primitives/a-triangle.html)
+
+Considering the boilerplate code we've seen it can be pretty easy to build a scene by placing, rotating, scaling etc several shapes in place.
+
+A-Frame also has some [lights](https://aframe.io/docs/1.3.0/components/light.html#sidebar) and also supports realtime [shadows](https://aframe.io/docs/1.2.0/components/shadow.html)
+
+Consider the following code with a few objects placed in a 3D space onto a maker : 
+
+<img src="assets/01_basicShapes.png" width="480" height="320">
+
+
+```html
+<!doctype html>
+<html>
+
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+     >
+
+		<a-marker  preset="kanji" size: "0.8">
+      
+      <a-light type="spot" castShadow="true" color="white" position="-1 10 3" rotation="0 0 0" target="#directionaltarget"></a-light>
+ 
+      <a-entity id="directionaltarget" position="0 0 0"></a-entity>
+      
+
+			<a-box position='0 .8 0' rotation='0 0 0' scale='1 1 1' color='#5800FF' material='opacity: 1;'shadow="receive: true; cast:true" ></a-box>
+
+      <a-dodecahedron position='-1.25 .8 0' color="#E900FF" radius=".5" shadow="receive: true; cast:true" ></a-dodecahedron>
+
+      <a-torus-knot position='1.25 .8 0' rotation='90 90 0' color="#FFC600" arc="180" p="2" q="7" radius=".25" radius-tubular="0.01" shadow="receive: true; cast:true"></a-torus-knot>
+
+      <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4" color='#FFFFFF' side="double"  shadow="receive: true; cast:true"></a-plane>
+     
+
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
+```
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/01AFrameARShapes#index.html
+
+You can run it live with this adress :
+https://01aframearshapes.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-01.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+
 [**home**](#Contents)
 
 ### Texts
