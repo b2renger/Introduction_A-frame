@@ -269,6 +269,8 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 
 <img src="assets/01_basicShapes.png" width="480" height="320">
 
+<details>
+<summary> Code </summary>
 
 ```html
 <!doctype html>
@@ -326,6 +328,8 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 
 </html>
 ```
+
+</details>
 
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/01AFrameARShapes#index.html
@@ -391,8 +395,7 @@ In replit you can create a folder, name it *assets* and upload files into it.
 Then in the **a-plane** object (or in any entity) you can set the **src** for the **material** like this :
 
 ```html
-  <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4"
-      material="src: #leavestex;"></a-plane>
+<a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4" material="src: #leavestex;"></a-plane>
 ```
 
 You can also add normal or displacement map to any object, but be sure if you use a displacement map to have some vertices to displace. You can setup the subdivision of your plane with *segments-height** and *segments-width*.
@@ -400,6 +403,9 @@ You can also add normal or displacement map to any object, but be sure if you us
 <img src="assets/02_baiscShapes_mixins_tex.png" width="480" height="380"/>
 
 You can have a look at the code here :
+
+<details>
+    <summary>Code</summary>
 
 ```html
 <!doctype html>
@@ -485,6 +491,8 @@ You can have a look at the code here :
 </html>
 
 ```
+</details>
+
 
 
 You can find the code on replit here for edition / forking :
