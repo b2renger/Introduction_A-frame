@@ -242,6 +242,8 @@ With those lets create our first 3D scene !
 
 ### Basic shapes
 
+#### Getting started
+
 A-Frame has a lot of elements you can draw directly on your scene : all the basic 3D shapes you could imagine : 
 
 - [boxes](https://aframe.io/docs/1.2.0/primitives/a-box.html)
@@ -335,6 +337,170 @@ or scan this qr code  and show it kanji !
 
 <img src="qrcodes/qr-01.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+[**home**](#Contents)
+
+#### Mixins and texturing
+
+As you get more confortable using primitives, one technique can be usefull to create more re-usable components and allow you to diminish the amount of code you have to type in to get a proper scene running; so let's learn about the [mixins](https://aframe.io/docs/1.2.0/core/mixins.html) !
+
+A **mixin** is basically a way to define an element to be reused later on when building a scene. We can define colors, shapes etc.
+
+A mixin is defined in between **a-assets** tags and uses **a-mixin**. One important point is to give an id to each mixin. This id will be used to recall the shapes or colors we defined.
+
+```html
+ <a-assets>
+    <!-- define some colors -->
+    <a-mixin id="green" material="color: green"></a-mixin>
+    <a-mixin id="brown" material="color: brown"></a-mixin>
+    <a-mixin id="darkbrown" material="color:#7e5835 "></a-mixin>
+    <a-mixin id="lightgreen" material="color:#a5d152 "></a-mixin>
+    <!-- define some geometries -->
+    <a-mixin id="trunk" geometry="primitive: box ; width:.25; height:1; depth:.25"></a-mixin>
+    <a-mixin id="treetop" geometry="primitive: cone ; radius-bottom:.5; radius-top:0"></a-mixin>
+    <a-mixin id="othertreetop" geometry="primitive: dodecahedron ; radius:.75"></a-mixin>
+  </a-assets>
+  ```
+
+Now in our scene we can build objects based on those mixins :
+
+- brown trunk and green treetop
+```html
+<a-entity mixin="brown trunk" position = "0 .5 0"></a-entity>
+<a-entity mixin="green treetop" position = "0 1.5 0"></a-entity>
+```
+
+- or a darkbrown trunk and a lightgreen othertreetop
+```html
+<a-entity mixin="darkbrown trunk" position = "-1.25 .5 0" ></a-entity>
+<a-entity mixin="lightgreen othertreetop" position = "-1.25 1.5 0"></a-entity>
+```
+
+Let's now texture a plane that will represent a ground. The textures should be added as [materials](https://aframe.io/docs/1.2.0/components/material.html). A material can be as simple as a color or it can also be a texture (or image), and if you know about 3D, you can also add some maps like normal map, displacement map, or AO map.
+
+For our examples we will use textures from this [link](https://polyhaven.com/a/forest_leaves_02) - (btw [polyhaven](https://polyhaven.com) is awesome !)
+
+First you need to load your image in the assets part of our programm :
+
+```html
+<img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
+```
+In replit you can create a folder, name it *assets* and upload files into it.
+
+Then in the **a-plane** object (or in any entity) you can set the **src** for the **material** like this :
+
+```html
+  <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4"
+      material="src: #leavestex;"></a-plane>
+```
+
+You can also add normal or displacement map to any object, but be sure if you use a displacement map to have some vertices to displace. You can setup the subdivision of your plane with *segments-height** and *segments-width*.
+
+<img src="assets/02_baiscShapes_mixins_tex.png" width="480" height="380"/>
+
+You can have a look at the code here :
+
+```html
+<!doctype html>
+<html>
+
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+     >
+
+  <a-assets>
+    <!-- define some colors -->
+    <a-mixin id="green" material="color: green"></a-mixin>
+    <a-mixin id="brown" material="color: brown"></a-mixin>
+    <a-mixin id="darkbrown" material="color:#7e5835 "></a-mixin>
+    <a-mixin id="lightgreen" material="color:#a5d152 "></a-mixin>
+    <!-- define some geometries -->
+    <a-mixin id="trunk" geometry="primitive: box ; width:.25; height:1; depth:.25"></a-mixin>
+    <a-mixin id="treetop" geometry="primitive: cone ; radius-bottom:.5; radius-top:0"></a-mixin>
+    <a-mixin id="othertreetop" geometry="primitive: dodecahedron ; radius:.75"></a-mixin>
+    <!-- load some textures-->
+    <img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
+    <img id="leavesnorm" src="assets/forest_leaves_02_nor_gl_1k.png">
+    <img id="leavesdisp" src="assets/forest_leaves_02_disp_1k.png">
+
+
+  </a-assets>
+       
+    
+  
+		<a-marker  preset="kanji" size: "0.8">
+
+      
+      <a-light type="spot" castShadow="true" color="white" intensity="2" position="-1 5 2"  target="#directionaltarget"></a-light>
+      <a-entity id="directionaltarget" position="0 0 0"></a-entity>
+      
+      <a-entity mixin="brown trunk" position = "0 .5 0"></a-entity>
+      <a-entity mixin="green treetop" position = "0 1.5 0"></a-entity>
+
+      <a-entity mixin="darkbrown trunk" position = "1.25 .5 0" geometry="height:1.5"></a-entity>
+      <a-entity mixin="lightgreen treetop" position = "1.25 2 0" geometry="height:1.5"></a-entity>
+
+      <a-entity mixin="darkbrown trunk" position = "-1.25 .5 0" ></a-entity>
+      <a-entity mixin="lightgreen othertreetop" position = "-1.25 1.5 0"></a-entity>
+
+
+
+      <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4"
+        "100" segments-width="100"
+      material="src: #leavestex; normalMap:#leavesnorm;displacementMap:#leavesdisp; displacementBias:-0.5; displacementScale:1" shadow="receive: true; cast:true"></a-plane>
+
+     
+
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
+
+```
+
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
+
+You can run it live with this adress :
+https://02aframearshapesmixins.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-02.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+
 
 
 
