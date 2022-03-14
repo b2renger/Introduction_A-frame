@@ -385,12 +385,11 @@ Let's now texture a plane that will represent a ground. The textures should be a
 
 For our examples we will use textures from this [link](https://polyhaven.com/a/forest_leaves_02) - (btw [polyhaven](https://polyhaven.com) is awesome !)
 
-First you need to load your image in the assets part of our programm :
+First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. Then in the assets part of our programm you can import it:
 
 ```html
 <img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
 ```
-In replit you can create a folder, name it *assets* and upload files into it.
 
 Then in the **a-plane** object (or in any entity) you can set the **src** for the **material** like this :
 
@@ -398,7 +397,7 @@ Then in the **a-plane** object (or in any entity) you can set the **src** for th
 <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4" material="src: #leavestex;"></a-plane>
 ```
 
-You can also add normal or displacement map to any object, but be sure if you use a displacement map to have some vertices to displace. You can setup the subdivision of your plane with *segments-height** and *segments-width*.
+You can also add normal or displacement map to any object, but be sure if you use a displacement map to have some vertices to displace. You can setup the subdivision of your plane with *segments-height* and *segments-width*.
 
 <img src="assets/02_baiscShapes_mixins_tex.png" width="480" height="380"/>
 
@@ -493,8 +492,6 @@ You can have a look at the code here :
 ```
 </details>
 
-
-
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
 
@@ -507,23 +504,114 @@ or scan this qr code  and show it kanji !
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
-
-
-
-
-
-
 [**home**](#Contents)
 
-### Texts
-
-[**home**](#Contents)
 
 ### Images
+
+Putting images in ar experiences is pretty straight forward. We will use the same kind of code as before.
+
+First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. Then in the assets part of our programm you can import it:
+
+```html
+<a-assets>
+  <img id="transparent_image" src="./assets/export1.png">
+</a-assets> 
+```
+
+Then we will use the **"a-image"** tag to display it on the marker :
+
+```html
+<a-marker  preset="kanji" size: "0.8">
+  <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
+</a-marker>
+```
+Easy !
+
+The important part is to understand how the image is linked from the assets to the specific tag. For that we use the *id* in the assets that should match the *src* in the "a-image" tag.
+
+<img src="assets/03_images.png" width="480" height="600"/>
+
+You can have a look at the code here :
+
+<details>
+    <summary>Code</summary>
+
+```html
+<!doctype html>
+<html>
+
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+     >
+
+  <a-assets>
+<img id="transparent_image" src="./assets/export1.png">
+  </a-assets>
+       
+    
+  
+		<a-marker  preset="kanji" size: "0.8">
+      <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
+
+```
+
+</details>
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/03AFRAMEARImages#index.html
+
+You can run it live with this adress :
+https://03aframearimages.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-03.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+
 
 [**home**](#Contents)
 
 ### Videos
+
+[**home**](#Contents)
+
+### Texts
 
 [**home**](#Contents)
 
@@ -550,6 +638,14 @@ Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-diffi
 [**home**](#Contents)
 
 ### Custom marker 
+
+[**home**](#Contents)
+
+
+
+### GPS coordinates
+" - Wait ... what ?! 
+  - Yes ! yes GPS coordinates as anchors ! "
 
 [**home**](#Contents)
 
@@ -604,5 +700,7 @@ size matters : https://stackoverflow.com/questions/67788982/ar-js-is-difficult-f
 
 ### go further
 https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
+
+https://ericjinks.com/blog/2017/creating-a-webvr-synth/
 
 [**home**](#Contents)
