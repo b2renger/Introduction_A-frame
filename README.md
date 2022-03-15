@@ -602,12 +602,39 @@ or scan this qr code  and show it kanji !
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
-
-
-
 [**home**](#Contents)
 
 ### Videos
+
+It's pretty much the same as images except we use the 'a-video' tag.
+
+The source video for this example is available [here](https://www.pexels.com/fr-fr/video/groupe-de-meduses-dans-l-aquarium-3616367/)
+
+
+
+Well that's another story if you actually want to play the video. Most of the videos in a webpage aren't allowed to just do autplay. So you may need to create a little script. The idea is to play the video only if the marker is displayed. 
+
+Let's take a look at the scripting tools we can use in A-Frame !
+
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/04AFRAMEARVideos#index.html
+
+You can run it live with this adress :
+https://04aframearvideos.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-04.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+Yes ! I know what you think : what about videos with transparent background ?
+
+Well it is possible, not easy but possible : 
+- Safari supports HEVC with alpha, Chrome does not.
+- Chrome supports VP9 with alpha, Safari does not.
+
+So it may be complicated :) for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
 
 [**home**](#Contents)
 
@@ -627,6 +654,7 @@ or scan this qr code  and show it kanji !
 ## Several kinds of detections
 
 Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
+
 [**home**](#Contents)
 
 ### Hiro and Kanji
@@ -699,8 +727,12 @@ size matters : https://stackoverflow.com/questions/67788982/ar-js-is-difficult-f
 [**home**](#Contents)
 
 ### go further
-https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
 
 https://ericjinks.com/blog/2017/creating-a-webvr-synth/
+
+https://github.com/b2renger/processing_catalog
+
+https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
+
 
 [**home**](#Contents)
