@@ -511,7 +511,11 @@ or scan this qr code  and show it kanji !
 
 Putting images in ar experiences is pretty straight forward. We will use the same kind of code as before.
 
-First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. Then in the assets part of our programm you can import it:
+First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. 
+
+![](assets/replit_assets_image.png)
+
+Then in the assets part of our programm you can import it:
 
 ```html
 <a-assets>
@@ -610,11 +614,158 @@ It's pretty much the same as images except we use the 'a-video' tag.
 
 The source video for this example is available [here](https://www.pexels.com/fr-fr/video/groupe-de-meduses-dans-l-aquarium-3616367/)
 
+So :
+- you drag and drop your video in the assets folder of replit (same as with images) but beware of the size of the video ! we are on the web so big videos means a lot of loading time and many energy consumed.
+- load the video inside the asset tag of our scene
+  ```html
+  <a-assets>
+    <video 
+      id="vid" 
+      src="./assets/video.mp4"
+      autoplay="true"
+      loop="true"
+      preload="auto"
+      controls="true"
+      playsinline=""
+      webkit-playsinline=""
+      
+      ></video>
+  </a-assets>
+  ```
+- diplay the video on the marker 
+  ```html
+  	<a-marker vidhandler preset="kanji" size: "0.8">
+      <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
+		</a-marker>
+  ```
 
+Well the video is displayed but it doesn't actually play and that's another story if you  want to play the video. 
 
-Well that's another story if you actually want to play the video. Most of the videos in a webpage aren't allowed to just do autplay. So you may need to create a little script. The idea is to play the video only if the marker is displayed. 
+Most of the videos in a webpage aren't allowed to just do autplay. So you may need to create a little script : the idea is to play the video only if the marker is visible. 
 
 Let's take a look at the scripting tools we can use in A-Frame !
+You may have noticed that in the "a-marker" tag the word "vidhandler". This key work can be used to attach a script - and by script we do mean a bit of code to handle interactivity.
+
+There is a full article on [how to write a component for a-frame](https://aframe.io/docs/1.2.0/introduction/writing-a-component.html#registering-the-component-with-aframe-registercomponent)
+
+Basically we need to :
+- register the component with a frame system (registerComponent)
+- write what it does on load (in the init function)
+- write what it does every frame (in the tick function)
+
+```html
+  <script>
+    AFRAME.registerComponent("vidhandler", {
+      init: function() {
+        this.toggle = false;
+        document.querySelector("#vid").pause(); //reference to the video
+      },
+      tick: function() {        
+        if (document.querySelector("a-marker").object3D.visible == true) { // get the state of our marker : is it visible ?
+          if (!this.toggle) {
+            this.toggle = true;
+            document.querySelector("#vid").play();
+          }
+        } else {
+          this.toggle = false;
+          document.querySelector("#vid").pause();
+        }
+      }
+    });
+  </script>
+```
+
+<img src="assets/04_video.gif" width="400" height="600"/>
+
+You can have a look at the code here :
+
+<details>
+    <summary>Code</summary>
+
+```html
+
+<!doctype html>
+<html>
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+    
+     >
+
+  <a-assets>
+    <video 
+      id="vid" 
+      src="./assets/video.mp4"
+      autoplay="true"
+      loop="true"
+      preload="auto"
+      controls="true"
+      playsinline=""
+      webkit-playsinline=""
+      
+      ></video>
+  </a-assets>
+       
+    
+  
+		<a-marker   vidhandler id="vid-marker" preset="kanji" size: "0.8">
+      <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+  <script>
+    AFRAME.registerComponent("vidhandler", {
+      init: function() {
+        this.toggle = false;
+        document.querySelector("#vid").pause(); //reference to the video
+      },
+      tick: function() {        
+        if (document.querySelector("a-marker").object3D.visible == true) { // get the state of our marker : is it visible ?
+          if (!this.toggle) {
+            this.toggle = true;
+            document.querySelector("#vid").play();
+          }
+        } else {
+          this.toggle = false;
+          document.querySelector("#vid").pause();
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
+
+
+
+```
+</details>
 
 
 You can find the code on replit here for edition / forking :
@@ -723,6 +874,7 @@ marker codes : https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-o
 
 size matters : https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
 
+write components : https://aframe.io/docs/1.2.0/introduction/writing-a-component.html#registering-the-component-with-aframe-registercomponent
 
 [**home**](#Contents)
 
