@@ -791,6 +791,119 @@ So it may be complicated :) for your conversion needs [shutter encoder](https://
 
 ### Texts
 
+Text may seem like the most basic component to display, but as a matter of fact it is no that easy fortunately AFrame team and other individual managed to give us good tools and ressources. This is due to the 3D nature of A-Frame and XR technologies. There is a complete documentation on this subject on the website [here](https://aframe.io/docs/1.2.0/components/text.html).
+
+If you want to use basic fonts - the one already available for use - it's relatively easy;  you can probably find a font that will suit you in the stock fonts shipped with A-Frame :
+https://aframe.io/docs/1.2.0/components/text.html#stock-fonts
+
+Or on this github : https://github.com/etiennepinchon/aframe-fonts
+As the link above actually share 200 fonts from Google fonts already converted for you convenience ! Those fonts are classic fonts converted to the msdf format : which is a json file with the data needed to draw the font in 3D.
+
+The most basic way to display a text would be this line of code (inside a "a-marker" tag of course).
+```html
+<a-text value="Hello, World!" side="double" position = "0 0 -1" rotation="270 0 0" color="blue" align="center" ></a-text>
+```
+We do not specify a font file but all the basics features like position, rotation, color, and alignement. The "side" attribute specified to "double" means that the mesh representing the text can be viewed from every angle.
+
+If you want to specify a from the github link above you'll want to use a "a-entity" tag which will give us more options :
+
+```html
+<a-entity text="value:Hello Creepster; color:#FFFFFF; 
+        width: 4; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 -0.5"></a-entity>  
+``` 
+in the font attribute you need to link to the json you can find in the arborescence of the github repo. For "Creepster" it is found in the "font" folder the in the "creepster" folder.
+ 
+If you want to use custom fonts it will require several operations beforehand like using a converter to transform a font into a SDF (signed distance function) font or a MSDF (Multi-channel SDF) one with a tool like this one [MSDF font generator](https://msdf-bmfont.donmccurdy.com/).
+
+<img src="assets/05_texts.png" width="600" height="600"/>
+
+For a complete example you can look here :
+
+
+<details>
+    <summary>Code</summary>
+
+```html
+<!doctype html>
+<html>
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;";
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best";
+    detectionMode: 'color_and_matrix' 
+    changeMatrixMode: "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth: "800", sourceHeight: "600", 
+    displayWidth: "1280", displayHeight:"720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+    
+     >
+    
+  
+		<a-marker preset="kanji" size: "0.8">
+      <!-- basic text : we manually offset the position  -->
+      <a-text value="Hello, World!" side="double" position = "0 0 -1" rotation="270 0 0" color="blue" align="center" ></a-text>
+     
+
+      <a-entity text="value:Hello Creepster; color:#FFFFFF; 
+        width: 4; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 -0.5"></a-entity>   
+
+
+      <a-entity text="value:Hello Indie Flower; color:red; 
+        width: 8; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/indieflower/IndieFlower-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 0"></a-entity>
+      
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+
+</body>
+
+</html>
+
+```
+</details>
+
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/05AFRAMETexts#index.html
+
+You can run it live with this adress :
+https://05aframetexts.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-05.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
 [**home**](#Contents)
 
 ### P5js sketches
@@ -866,7 +979,7 @@ https://aframe.io/aframe-registry/
 
 ## Links and references
 
-### references and sources
+### sources
 
 get started : https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf
 
@@ -875,6 +988,16 @@ marker codes : https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-o
 size matters : https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
 
 write components : https://aframe.io/docs/1.2.0/introduction/writing-a-component.html#registering-the-component-with-aframe-registercomponent
+
+texts in 3D and why it's hard : https://aframe.io/docs/1.2.0/components/text.html
+
+A register for msdf fonts : https://github.com/etiennepinchon/aframe-fonts
+
+Font to MSDF converter : https://msdf-bmfont.donmccurdy.com/
+
+Sequencing animations : https://codepen.io/fmattuschka/pen/aKyLMj
+
+custom markers : https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
 [**home**](#Contents)
 
