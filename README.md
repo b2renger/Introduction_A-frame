@@ -907,6 +907,129 @@ or scan this qr code  and show it kanji !
 [**home**](#Contents)
 
 ### P5js sketches
+This section is a little more advanced than the others, if you don't have a basic grasp of coding in js you'll probably want to learn a bit more - the first few paragraphs will give you some ressources if you want.
+
+P5js is a creative coding framework based on Javascript and thus runs on the web. It's a very nice way to get started with coding if you want to explore graphic generative design, motion and/or interactivity.
+
+The main website is available here [https://p5js.org/](https://p5js.org/). You can also have a look at a bunch of [examples : here](https://p5js.org/examples/) and [learning ressources : here](https://p5js.org/examples/).
+
+If you are french you can have a look at my ressources : [an introduction](https://github.com/b2renger/Introduction_p5js), [a syllabus on generative pattern design](https://github.com/b2renger/p5js-designing-interactive-patterns)
+
+Even if p5js has a 3D mode the method developped here won't allow you to build 3D content. The idea is to create a texture une p5js and apply it on 3D form - like a computer screen actually.
+
+First of all you'll need to add the link to p5js library in the head of your webpage.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+```
+
+Then in the body we need to do three things : 
+  - create a hidden div to attach our p5js program to it
+    ```html
+    <!-- hidden containers to run p5js programs-->
+    <div id="container"></div>
+    ```
+    the name "container" is important but it can be changed, if you change it in all the right places ;)
+
+  - create a [p5js sketch in instance mode](https://p5js.org/examples/instance-mode-instance-container.html), you need to create your own canvas and give it an identifier to be able to bind it to a texture in A-Frame.
+
+    <details>
+    <summary> P5js code </summary>
+
+    ```html
+    <script>
+    // p5js sketch in instance mode - https://p5js.org/examples/instance-mode-instance-container.html
+    let sketch = function (p) {
+      let seed = p.random(9999)
+      p.setup = function () {
+        p.noCanvas();
+        let cnv = p.createCanvas(200, 200);
+        cnv.id("test"); // you need to set this because you'll use it in the a-frame component
+        cnv.hide();
+      };
+
+      p.draw = function () {
+        p.randomSeed(seed)
+        let step = 20
+        p.clear()
+        p.stroke(255, 0, 0)
+        p.strokeWeight(5)
+        for (let i = 0; i < p.width; i += step) {
+          for (let j = 0; j < p.height; j += step) {
+
+            if (p.random(1) > 0.5) {
+              p.line(i, j, i + step, j + step)
+            }
+            else {
+              p.line(i, j + step, i + step, j)
+            }
+          }
+        }
+
+      };
+    };
+    new p5(sketch, "container"); // bind the canvas to tge div just above this script
+    </script>
+
+    ``` 
+    </details>
+    </br>
+
+
+  - finally create an A-Frame component, this component will start our p5js programm when a marker is detected and bind the canvas texture from p5js to a material in A-Frame.
+
+    <details>
+
+    <summary> A-Frame component </summary>
+
+    ```html
+    <!-- a custom aframe component to make a link between the p5js sketch and the Aframe scene-->
+    <script>
+    // aframe component "draw-canvas1" is used in our scene
+    AFRAME.registerComponent("draw-canvas1", {
+      init() {
+        setTimeout(() => {
+          this.el.setAttribute("material", {src: "#test"}); // every element of the scene that has this component will use the canvas ided as "test" for its texture
+        }, 500);
+      },
+      tick() {
+        var el = this.el;
+        var material;
+        material = el.getObject3D("mesh").material;
+        if (!material.map) {
+          // console.log("no material")
+          return;
+        } else {
+          // console.log("have material")
+        }
+        material.map.needsUpdate = true;
+      }
+    });
+    </script>
+    ```
+    </details>
+    </br>
+
+This is about it ! and this will open a lot of possibilities for interactive / animated content.
+
+The example should do something like this
+
+<img src="assets/06_p5.gif" width="600" height="600"/>
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/06AFRAMEP5jssketch#index.html
+
+You can run it live with this adress :
+https://06aframep5jssketch.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-06.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+
 
 [**home**](#Contents)
 
