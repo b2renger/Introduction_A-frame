@@ -906,6 +906,121 @@ or scan this qr code  and show it kanji !
 
 [**home**](#Contents)
 
+### 3d models
+
+3D models is pretty much the same as images or videos, you need to upload the model to replit, then load it using the asset system of a-frame to be able to finally display it on a marker.
+
+You can either import :
+  - obj + mtl files
+  - or glb /gltf files
+
+You can easily create glb files with blender from any kind of 3D file format created in another software.
+The advantage of a glb file is that everything is packed in one file (textures / lights / animations).
+
+We have two options here we can keep the lights we set up in our modelling software or use real-time lights in A-Frame. For the sake of simplicity we will use the lights from our models so to be sure we just need to disable the default lightning in A-Frame in our *a-scene* tag
+
+```h
+light="defaultLightsEnabled: true"
+```
+
+
+#### Obj and mtl
+
+It's as easy as ever ! :)
+
+1- Upload your files to replit in an assets folder.
+
+2- Load them with A-Frame **a-assets** tag.
+  ```html
+  <a-assets>
+      <a-asset-item
+        id="scene-obj"
+        src="./assets/scene.obj"
+      ></a-asset-item>
+      <a-asset-item
+        id="scene-mtl"
+        src="./assets/scene.mtl"
+      ></a-asset-item>
+  </a-assets>
+  ```
+
+3- Display them with the **a-entity** tag.
+  ```html
+  <a-marker preset="kanji">
+    <a-entity obj-model="obj: #scene-obj; mtl: #scene-mtl"></a-entity>
+  </a-marker>
+  ```
+
+
+
+
+
+<img src="assets/07_obj_mtl.gif" width="400" height="400"/>
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
+
+You can run it live with this adress :
+https://07aframe3dmodels00obj-mtl.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-07-obj.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+
+#### GLB
+
+For GLB you can export this format from blender, be sure to include animation in your export, and use Draco compression to get a model that has a decent size (< 5mo>).
+
+<img src="assets/blender_glb_export.png" width="600" height="336"/>
+<img src="assets/blender_glb_export_01.png" width="600" height="336"/>
+
+
+In A-Frame to play the animation you'll need to include a new library in the head of your webpage.
+
+```html
+ <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+```
+
+This will allow us to add a property called **animation-mixer** to the entities supporting animations.
+
+So now basically we just have to upload our glb file to replit in the asset folder (as usual) and import it in our scene.
+
+```html
+<a-assets>
+  <a-asset-item id="glbTest" src="./assets/satanim3.glb"></a-asset-item>
+</a-assets>
+```
+
+Then attach it to a marker without forgetting to add the **animation-mixer** property.
+
+```html
+<a-marker preset="kanji">
+  <a-entity scale=".1 .1 .1" gltf-model="#glbTest" animation-mixer></a-entity>
+</a-marker>
+```
+
+
+<img src="assets/07_glb.gif" width="400" height="400"/>
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
+
+You can run it live with this adress :
+https://07aframe3dmodels01glb.b2renger.repl.co/
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr-07-glb.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+
+[**home**](#Contents)
+
 ### P5js sketches
 This section is a little more advanced than the others, if you don't have a basic grasp of coding in js you'll probably want to learn a bit more - the first few paragraphs will give you some ressources if you want.
 
@@ -1027,15 +1142,9 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr-06.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-
-
-
-
 [**home**](#Contents)
 
-### 3d models
 
-[**home**](#Contents)
 
 ---
 ## Several kinds of detections
