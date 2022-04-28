@@ -1155,6 +1155,33 @@ Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-diffi
 
 ### Hiro and Kanji
 
+Well we used our **Kanji** marker quite a bit, **Hiro** is pretty much the same.
+
+Note that if you have several **Hiro** or **Kanji** marker in the field of view (FOV) of your camera it will not detect any marker. You can though have one Hiro + one Kanji the FOV.
+
+
+As we already know :
+```html
+<a-marker preset="kanji">
+    	<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+</a-marker>
+```
+
+If you want to switch to Hiro, you can just change the **preset** field in the **a-marker** tag
+
+```html
+<a-marker preset="hiro">
+    	<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+</a-marker>
+```
+
+<img src="markers/kanji.png" width="250" height="250"/></br>
+<img src="markers/hiro.png" width="250" height="250"/></br>
+
+
+
+
+
 [**home**](#Contents)
 
 ### Barcode markers
