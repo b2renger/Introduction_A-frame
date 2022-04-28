@@ -1149,7 +1149,18 @@ or scan this qr code  and show it kanji !
 ---
 ## Several kinds of detections
 
-Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
+There is a bunch of possibilities for markers to AR detection.
+
+For now we only used **Kanji** which is very popular. But there are tons of possibilities.
+- barcodes
+- you can also create your own markers with your own images (though there are some rules to follow - and you need to use a third party tool to generate maker data that you can then import in your code)
+- you can us GPS coordinates to anchor content in a specific geographical space with a relative precision of 10 meters ourdoors
+- you can also free yourself from the black border and use Natural Image Tracking (there are some rules to follow and it can be a bit jittery - and you need to use a third party tool to generate maker data that you can then import in your code)
+- and finally you can also track faces ;)
+
+All those technics use sophisticated computer vision algorithms. If you want a good detection you'll probably want to stick to conventionnal markers that don't have a free form.
+
+You also need to understand that the size of the printed marker is important - you can learn more here : Why size matters ? - https://stackoverflow.com/questions/67788982/ar-js-is-difficult-for-vertically-placed-image-tracking-does-ar-even-make-sens
 
 [**home**](#Contents)
 
@@ -1175,11 +1186,8 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
 </a-marker>
 ```
 
-<img src="markers/kanji.png" width="250" height="250"/></br>
+<img src="markers/kanji.png" width="250" height="250"/>
 <img src="markers/hiro.png" width="250" height="250"/></br>
-
-
-
 
 
 [**home**](#Contents)
@@ -1190,8 +1198,11 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
 
 ### Custom marker 
 
-[**home**](#Contents)
+https://ar-js-org.github.io/AR.js-Docs/marker-based/
 
+https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+
+[**home**](#Contents)
 
 
 ### GPS coordinates
@@ -1257,6 +1268,9 @@ Font to MSDF converter : https://msdf-bmfont.donmccurdy.com/
 Sequencing animations : https://codepen.io/fmattuschka/pen/aKyLMj
 
 custom markers : https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+
+genral information on markers in A-Frame: https://ar-js-org.github.io/AR.js-Docs/marker-based/
+
 
 [**home**](#Contents)
 
