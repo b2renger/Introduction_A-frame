@@ -1168,7 +1168,7 @@ You also need to understand that the size of the printed marker is important - y
 
 Well we used our **Kanji** marker quite a bit, **Hiro** is pretty much the same.
 
-Note that if you have several **Hiro** or **Kanji** marker in the field of view (FOV) of your camera it will not detect any marker. You can though have one Hiro + one Kanji the FOV.
+Note that if you have several **Hiro** or **Kanji** marker in the field of view (FOV) of your camera it will not detect any marker. You can though have one Hiro + one Kanji in the FOV.
 
 
 As we already know :
@@ -1185,6 +1185,17 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
     	<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
 </a-marker>
 ```
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
+
+You can run it live with this adress :
+https://08aframehiroandkanji.b2renger.repl.co/
+
+or scan this qr code  and show it Kanji and Hiro!
+
+
+<img src="qrcodes/qr-08-hiro+kanji.png" width="250" height="250"/></br>
 
 <img src="markers/kanji.png" width="250" height="250"/>
 <img src="markers/hiro.png" width="250" height="250"/></br>
@@ -1209,6 +1220,8 @@ https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples
 " - Wait ... what ?! 
   - Yes ! yes GPS coordinates as anchors ! "
 
+  https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
+
 [**home**](#Contents)
 
 ### Images as marker (mind-arjs)
@@ -1229,6 +1242,9 @@ https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples
 [**home**](#Contents)
 
 ## Interactivity
+
+raycasting for touch interactions
+raycasting for gaze interactions
 
 [**home**](#Contents)
 
