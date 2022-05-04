@@ -1206,12 +1206,11 @@ or scan this qr code  and show it Kanji and Hiro!
 ### Barcode markers
 
 
-<img src="markers/barcodes/0.png" width="250" height="250"/>
-<img src="markers/barcodes/1.png" width="250" height="250"/>
-<img src="markers/barcodes/2.png" width="250" height="250"/>
-<img src="markers/barcodes/3.png" width="250" height="250"/>
-<img src="markers/barcodes/4.png" width="250" height="250"/>
-<img src="markers/barcodes/5.png" width="250" height="250"/>
+
+https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
+
+<img src="markers/barcodes_white_back.png" width="640" height="420"/>
+
 </br>
 
 
