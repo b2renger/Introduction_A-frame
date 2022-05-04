@@ -9,7 +9,6 @@ This is not meant to be exhaustive and code oriented, the goal is to be able to 
 
 
 
-
 ---
 ## The tools
 
@@ -187,17 +186,17 @@ It just displays a box on a kanji marker :
 <body style="margin : 0px; overflow: hidden;">
 
 	<a-scene 
-    embedded arjs="sourceType: webcam;";
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; "
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720" >
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720" >
 
-		<a-marker preset="kanji" size: "0.08">
+		<a-marker preset="kanji" size= "0.08">
 
 			<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
 
@@ -228,6 +227,9 @@ or scan this qr code  and show it kanji !
 Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
 
 [**home**](#Contents)
+
+Notes :
+You can open the A-Frame scene inspector by using the shortcut : "ctrl" + "alt" + "i".
 
 ---
 ## Several kinds of contents
@@ -288,21 +290,24 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 
 <body style="margin : 0px; overflow: hidden;">
 
-	<a-scene 
-    embedded arjs="sourceType: webcam;";
+		<a-scene 
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720"
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
     shadow="autoUpdate: true; enabled: true; type:pcf"
     light="defaultLightsEnabled: false"
      >
 
-		<a-marker  preset="kanji" size: "0.8">
+       
+    
+  
+		<a-marker  preset="kanji" size= "0.8">
       
       <a-light type="spot" castShadow="true" color="white" position="-1 10 3" rotation="0 0 0" target="#directionaltarget"></a-light>
  
@@ -423,15 +428,15 @@ You can have a look at the code here :
 <body style="margin : 0px; overflow: hidden;">
 
 	<a-scene 
-    embedded arjs="sourceType: webcam;";
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best"
+    detectionMode= "color_and_matrix"
+    changeMatrixMode= "modelViewMatrix" 
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720"
+    sourceWidth= "800" sourceHeight= "600" 
+    displayWidth= "1280" displayHeight="720"
     shadow="autoUpdate: true; enabled: true; type:pcf"
     light="defaultLightsEnabled: false"
      >
@@ -456,7 +461,7 @@ You can have a look at the code here :
        
     
   
-		<a-marker  preset="kanji" size: "0.8">
+		<a-marker  preset="kanji" size="0.8">
 
       
       <a-light type="spot" castShadow="true" color="white" intensity="2" position="-1 5 2"  target="#directionaltarget"></a-light>
@@ -474,7 +479,7 @@ You can have a look at the code here :
 
 
       <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4"
-        "100" segments-width="100"
+       segments-height="100" segments-width="100"
       material="src: #leavestex; normalMap:#leavesnorm;displacementMap:#leavesdisp; displacementBias:-0.5; displacementScale:1" shadow="receive: true; cast:true"></a-plane>
 
      
@@ -557,17 +562,16 @@ You can have a look at the code here :
 
 
 <body style="margin : 0px; overflow: hidden;">
-
 	<a-scene 
-    embedded arjs="sourceType: webcam;";
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720"
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
     shadow="autoUpdate: true; enabled: true; type:pcf"
     light="defaultLightsEnabled: false"
      >
@@ -578,7 +582,7 @@ You can have a look at the code here :
        
     
   
-		<a-marker  preset="kanji" size: "0.8">
+		<a-marker  preset="kanji" size= "0.8">
       <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
 		</a-marker>
 
@@ -700,15 +704,15 @@ You can have a look at the code here :
 <body style="margin : 0px; overflow: hidden;">
 
 	<a-scene 
-    embedded arjs="sourceType: webcam;";
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720"
+    sourceWidth= "800" sourceHeight="600" 
+    displayWidth= "1280" displayHeight="720"
     shadow="autoUpdate: true; enabled: true; type:pcf"
     light="defaultLightsEnabled: false"
     
@@ -730,7 +734,7 @@ You can have a look at the code here :
        
     
   
-		<a-marker   vidhandler id="vid-marker" preset="kanji" size: "0.8">
+		<a-marker   vidhandler id="vid-marker" preset="kanji" size= "0.8">
       <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
 		</a-marker>
 
@@ -842,23 +846,24 @@ For a complete example you can look here :
 
 <body style="margin : 0px; overflow: hidden;">
 
+	
 	<a-scene 
-    embedded arjs="sourceType: webcam;";
+    embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best";
-    detectionMode: 'color_and_matrix' 
-    changeMatrixMode: "modelViewMatrix" 
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
 	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth: "800", sourceHeight: "600", 
-    displayWidth: "1280", displayHeight:"720"
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
     shadow="autoUpdate: true; enabled: true; type:pcf"
     light="defaultLightsEnabled: false"
     
      >
     
   
-		<a-marker preset="kanji" size: "0.8">
+		<a-marker preset="kanji" size= "0.8">
       <!-- basic text : we manually offset the position  -->
       <a-text value="Hello, World!" side="double" position = "0 0 -1" rotation="270 0 0" color="blue" align="center" ></a-text>
      
@@ -902,7 +907,8 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr-05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-
+Note :
+If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
 
 [**home**](#Contents)
 
@@ -1293,6 +1299,8 @@ texts in 3D and why it's hard : https://aframe.io/docs/1.2.0/components/text.htm
 A register for msdf fonts : https://github.com/etiennepinchon/aframe-fonts
 
 Font to MSDF converter : https://msdf-bmfont.donmccurdy.com/
+
+3D text (with depth) : https://github.com/supermedium/superframe/tree/master/components/text-geometry
 
 Sequencing animations : https://codepen.io/fmattuschka/pen/aKyLMj
 
