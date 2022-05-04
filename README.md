@@ -1205,6 +1205,16 @@ or scan this qr code  and show it Kanji and Hiro!
 
 ### Barcode markers
 
+
+<img src="markers/barcodes/0.png" width="250" height="250"/>
+<img src="markers/barcodes/1.png" width="250" height="250"/>
+<img src="markers/barcodes/2.png" width="250" height="250"/>
+<img src="markers/barcodes/3.png" width="250" height="250"/>
+<img src="markers/barcodes/4.png" width="250" height="250"/>
+<img src="markers/barcodes/5.png" width="250" height="250"/>
+</br>
+
+
 [**home**](#Contents)
 
 ### Custom marker 
@@ -1214,6 +1224,10 @@ https://ar-js-org.github.io/AR.js-Docs/marker-based/
 https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
 [**home**](#Contents)
+
+
+### Planes
+https://glitch.com/~ar-basketball
 
 
 ### GPS coordinates
