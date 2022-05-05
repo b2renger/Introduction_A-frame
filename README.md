@@ -1211,10 +1211,46 @@ or scan this qr code  and show it Kanji and Hiro!
 
 ### Barcode markers
 
+If you need more markers and don't want to produce them yourself you can use barcodes markers.
 
+If you want to know more you can look [here](https://github.com/nicolocarpignoli/artoolkit-docs/blob/master/3_Marker_Training/marker_barcode.md)
 
+To use barcodes you need to tweak the arjs scene settings :
+```
+detectionMode: mono_and_matrix; matrixCodeType: 3x3;
+```
+
+So your "a-scene" tag looks like this :
+```html
+  <a-scene embedded
+    arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
+    vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600"
+    displayWidth="1280" displayHeight="720">
+``` 
+
+When you want to use a certain marker you then just need to add this type of code. You can change the value to match the number of the marker you want :
+
+```html
+<a-marker type="barcode" value="0">
+  <a-box color="#143F6B" depth="1" height="1" width="1">
+  <a-text value="Marker 0" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+  </a-marker>
+```
+
+<img src="assets/09_barcodes.gif" width="600" height="400"/>
+
+You can check the code here
 https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
 
+And see the live example here :
+https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
+
+You can also scan the qrcode below and show it the set of markers under:
+
+
+<img src="qrcodes/qr-09-barcodes.png" width="250" height="250"/>
 <img src="markers/barcodes_white_back.png" width="640" height="420"/>
 
 </br>
@@ -1304,9 +1340,13 @@ Font to MSDF converter : https://msdf-bmfont.donmccurdy.com/
 
 Sequencing animations : https://codepen.io/fmattuschka/pen/aKyLMj
 
+general information on markers in A-Frame: https://ar-js-org.github.io/AR.js-Docs/marker-based/
+
+barcode markers : https://github.com/nicolocarpignoli/artoolkit-docs/blob/master/3_Marker_Training/marker_barcode.md
+
 custom markers : https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
-genral information on markers in A-Frame: https://ar-js-org.github.io/AR.js-Docs/marker-based/
+
 
 
 [**home**](#Contents)
