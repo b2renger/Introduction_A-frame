@@ -1252,17 +1252,57 @@ You can also scan the qrcode below and show it the set of markers under:
 
 <img src="qrcodes/qr-09-barcodes.png" width="250" height="250"/>
 <img src="markers/barcodes_white_back.png" width="640" height="420"/>
-
 </br>
-
 
 [**home**](#Contents)
 
 ### Custom marker 
 
-https://ar-js-org.github.io/AR.js-Docs/marker-based/
+You can build custom markers keeping the white and black border and replacing the center with your own image.
 
+You can follow this link to build your own markers :
 https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+
+It is very easy to use :
+- click on upload to upload your image from your computer
+- adjust the parameters (but not too much : you need to have high contrast, and keep a border wide enough. You might also want to adjust the size in pixels to adapt to the size you want in real life if you print it).
+- you can then download the marker (will give you a *.patt* file to include in your code) and download the image (to print).
+
+For instance it can look like this :
+
+<img src="markers/custom_marker.png" width="250" height="250"/>
+
+Now this is pretty !
+You can just upload the *.patt* file to your replit project. And link it to be a marker in your html code like this :
+
+```html
+<a-marker type="pattern" url="assets/custom_marker.patt">
+  <a-box color="#99FFCD" depth="1" height="1" width="1">
+</a-marker>
+```
+
+And voilà !
+
+
+<img src="assets/10_Custom_markers.png" width="250" height="250"/>
+
+
+You can check the code here
+https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
+
+And see the live example here :
+https://10aframecustommarkers.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our beautiful custom marker :
+
+<img src="qrcodes/qr-10-custom.png" width="250" height="250"/>
+<img src="markers/custom_marker.png" width="250" height="250"/>
+</br>
+
+
+
+
+
 
 [**home**](#Contents)
 
