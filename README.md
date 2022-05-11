@@ -1283,9 +1283,7 @@ You can just upload the *.patt* file to your replit project. And link it to be a
 
 And voilà !
 
-
 <img src="assets/10_Custom_markers.png" width="250" height="250"/>
-
 
 You can check the code here
 https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
@@ -1299,31 +1297,101 @@ You can also scan the qrcode below and show it our beautiful custom marker :
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
 
-
-
-
-
-
 [**home**](#Contents)
 
-
-### Planes
-https://glitch.com/~ar-basketball
-
-
-### GPS coordinates
-" - Wait ... what ?! 
-  - Yes ! yes GPS coordinates as anchors ! "
-
-  https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
-
-[**home**](#Contents)
 
 ### Images as marker (mind-arjs)
 
+You can of course use natural images as marker. Tracking natural takes more computing power than tracking marker and is a bit more shaky.
+
+Some images work better than other, you want images with high resolution, constrast and many details as explained [here](https://github.com/Carnaux/NFT-Marker-Creator/wiki/Creating-good-markers).
+
+Arjs does provide examples to track natural images, but we found the alorithm less performant than the one in mind-arjs, so we will use [mind-arjs](https://hiukim.github.io/mind-ar-js-doc/) instead.
+
+It work pretty much as arjs and works also with a-frame so the code won't be much different than the one we are used to.
+
+To do this, you need : 
+1- to find a suitable image for tracking
+2- feed it to an algorithm to extract feature points that our programm will be able to recognize
+3- download a " *.mind* " file that stores all the images and features you want to recognize
+4- include this file in your code.
+
+To do the feature extraction you can visit the link below :
+https://hiukim.github.io/mind-ar-js-doc/tools/compile
+
+In our example we will track to natural images simultaneously, so you can drop two images in the appropriate field and click on 'start'.
+
+You should the see something like this :
+<img src="assets/MarietteTarget.png" width="640" height="480"/>
+
+You have a tab for each image and several scaling of the source. Each one will get little red dots on it eg remarkable features used for tracking.
+
+You can then click on dowload to get the *.mind file. You can the just upload it to replit.
+
+On replit you'll need to add those script in the head of your webpage to have the appropriate libraries
+
+```html
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+```
+
+Then you have to import your *.mind* file in the a-scene tag :
+
+```html
+  <a-scene id="arscene" mindar-image="imageTargetSrc: ./assets/mariette_target.mind; maxTrack:2" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+```
+
+notice the "mindar-image" attribute with **"imageTargeSrc:"** which points to our replit asset folder. And also notice the **"maxTrack:2"** attribute which means we want to track two images at the same time.
+
+Now to anchor some content on top of those images we will add an attribute to the object or entity we want to display (we do no use the a-marker tag with this technique).
+
+For instance for a box :
+
+```html
+ <a-box mindar-image-target="targetIndex: 0" depth="0.1" color="#FF884B" opacity="0.5" position="0 0 0"></a-box>
+``` 
+
+the **"mindar-image-target"** will help you to specify which image you want to track.
+
+As we used two images we can specify **targetIndex:0** to track the first one, and **targetIndex:1** to track the second one.
+
+<img src="assets/11_natural_images.gif" width="250" height="460"/>
+
+You can check the code here :
+https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
+
+And see the live example here :
+https://11aframemindarjsnatural-image.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our beautiful custom markers :
+
+<img src="qrcodes/qr-11-natural_images.png" width="250" height="250"/>
+</br>
+<img src="markers/MarietteCropCrop.jpg" width="250" height="250"/>
+<img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
+</br>
+
+
+
+
 [**home**](#Contents)
 
-### Face tracking (minde-arjs)
+### Face tracking (mind-arjs)
+todoc
+
+[**home**](#Contents)
+
+### GPS coordinates
+todoc
+
+https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
+
+[**home**](#Contents)
+
+### Marker less tracking (web xr api)
+todoc
 
 [**home**](#Contents)
 
@@ -1386,18 +1454,27 @@ barcode markers : https://github.com/nicolocarpignoli/artoolkit-docs/blob/master
 
 custom markers : https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
+Mind-arjs : https://hiukim.github.io/mind-ar-js-doc/
 
+Choosing good images for natural image tracking : https://github.com/Carnaux/NFT-Marker-Creator/wiki/Creating-good-markers
+
+Smooth natural image tracking : https://hiukim.github.io/mind-ar-js-doc/quick-start/tracking-config
 
 
 [**home**](#Contents)
 
 ### go further
 
-https://ericjinks.com/blog/2017/creating-a-webvr-synth/
+Tutorial : https://ericjinks.com/blog/2017/creating-a-webvr-synth/
 
-https://github.com/b2renger/processing_catalog
+Print exeample for the processing fundation : https://github.com/b2renger/processing_catalog
 
-https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
+Tips on lighnting : https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
 
+Location based : https://github.com/AR-js-org/AR.js/tree/master/aframe/examples/location-based
+
+Webxr official examples : https://immersive-web.github.io/webxr-samples/
+
+MindAR interactive portfolio : https://hiukim.github.io/mind-ar-js-doc/examples/interative
 
 [**home**](#Contents)
