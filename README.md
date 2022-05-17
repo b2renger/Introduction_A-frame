@@ -1379,28 +1379,121 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 [**home**](#Contents)
 
 ### Face tracking (mind-arjs)
-todoc
+todoc later
+
+https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 [**home**](#Contents)
 
 ### GPS coordinates
-todoc
+todoc later
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
 [**home**](#Contents)
 
 ### Marker less tracking (web xr api)
-todoc
+todoc later
+
+https://immersive-web.github.io/webxr-samples/
 
 [**home**](#Contents)
 
 --- 
 ## Qr codes and "marker codes"
+todoc later
+
+https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-only-with-a-qr-code-139bb90e82f1
 
 [**home**](#Contents)
 
 ## Animations
+
+To get the official documentation about animation you can check this [link](https://aframe.io/docs/1.2.0/components/animation.html)
+
+### Animation Basics
+
+It can be very easy to add animation to an object not more complicated thant just adding a new attribute to a priminitive
+
+```html
+<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material="opacity: 1"
+        animation="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: true; easing: easeInOutElastic; dur: 2000; dir:alternate; delay:2000;">
+</a-box>
+```
+
+If you read the text after the **"animation" attribute** it should be almost self-explanatory ! So we do an animation on the **scale** parameter we will go **from** a scale of 0.5 **to** a scale of 1.  We will wait a **delay** of 2000 milliseconds before starting or looping the animation, the animation will last a **duration (dur)** of 2000ms, it will **loop** (including the delay) and it will **alternate** in **direction (dir)** ie play forward and backward alternatively.
+
+
+<img src="assets/12_animation_basic.gif" width="250" height="250"/>
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
+
+And see the live example here :
+https://12aframeanimationsabasic.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our beautiful custom markers :
+
+<img src="qrcodes/qr-12-animation_basic.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/>
+</br>
+
+### Several Animations
+
+You can add more than one animation to an object and it can be on any property.
+
+You'll just have to change the attribute name to **animation** and add two underscore and a name for instance **__2** or **__3** etc.
+
+For instance we can add an animation for the color :
+
+```html
+animation__2="property: material.color; from:#FD5D3B ; to: #541690; easing: easeInOutElastic; loop: true; dur: 4000; dir: alternate;"
+```
+
+And another one for the rotation :
+```html
+animation__3="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: true; easing: easeInOutElastic; dur: 2000; dir:alternate; delay:2000;"
+```
+
+Our object will now have three separate animation and the a-box tag will have a lot of attributes, so be aware of the quotes, semicolons etc.
+
+```html
+<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material="opacity: 1"
+    animation="property: rotation; to: 180 360 0; loop: true; dur: 4000;"
+    animation__2="property: material.color; from:#FD5D3B ; to: #541690; easing: easeInOutElastic; loop: true; dur: 4000; dir: alternate;"
+    animation__3="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: true; easing: easeInOutElastic; dur: 2000; dir:alternate; delay:2000;">
+</a-box>
+```
+
+
+<img src="assets/12_animation_intermediate.gif" width="250" height="250"/>
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations#index.html
+
+And see the live example here :
+https://12aframeanimationsbstackedanimations.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our beautiful custom markers :
+
+<img src="qrcodes/qr-12-animation_intermediate.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/>
+</br>
+
+### Orbiting animation
+
+
+
+
+
+
+
+
+To be able to setup sequences of animation you'll need to go further. 
+
+You can have a look at the [animation timeline component](https://github.com/supermedium/superframe/tree/master/components/animation-timeline/)
+
+
 
 [**home**](#Contents)
 
@@ -1460,6 +1553,7 @@ Choosing good images for natural image tracking : https://github.com/Carnaux/NFT
 
 Smooth natural image tracking : https://hiukim.github.io/mind-ar-js-doc/quick-start/tracking-config
 
+Animation official documentation : https://aframe.io/docs/1.2.0/components/animation.html
 
 [**home**](#Contents)
 
@@ -1476,5 +1570,7 @@ Location based : https://github.com/AR-js-org/AR.js/tree/master/aframe/examples/
 Webxr official examples : https://immersive-web.github.io/webxr-samples/
 
 MindAR interactive portfolio : https://hiukim.github.io/mind-ar-js-doc/examples/interative
+
+Animation timeline : https://github.com/supermedium/superframe/tree/master/components/animation-timeline/
 
 [**home**](#Contents)
