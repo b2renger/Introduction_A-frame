@@ -1432,7 +1432,7 @@ https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
 And see the live example here :
 https://12aframeanimationsabasic.b2renger.repl.co/
 
-You can also scan the qrcode below and show it our beautiful custom markers :
+You can also scan the qrcode below and show it our good old kanji:
 
 <img src="qrcodes/qr-12-animation_basic.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
@@ -1469,22 +1469,68 @@ Our object will now have three separate animation and the a-box tag will have a 
 <img src="assets/12_animation_intermediate.gif" width="250" height="250"/>
 
 You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations#index.html
+https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
 
 And see the live example here :
 https://12aframeanimationsbstackedanimations.b2renger.repl.co/
 
-You can also scan the qrcode below and show it our beautiful custom markers :
+You can also scan the qrcode below and show it our good old kanji :
 
 <img src="qrcodes/qr-12-animation_intermediate.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+
 ### Orbiting animation
 
+To make an orbiting animation, you can play with entities and attach translations or rotations to them :
+
+- first create an entity and apply a rotation to it, but don't close the entity tag right now !
+
+```html
+<a-entity rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000 ;easing: linear">
+```
+
+- then create a sphere and apply a translation to its position :
+```html
+<a-sphere position="0.75 0 0" scale="0.2 0.2 0.2" color="mediumseagreen"></a-sphere>
+```
+
+- you can now close the "a-entity" tag
+
+you'll have a sphere orbiting a central point at a radius of 0.75 from center on the Y-plane !
+
+But you can nest those as much as you want, as long as you don't get lost !
+Check this out !!
+
+```html
+<a-entity rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000 ;easing: linear">
+        <a-sphere position="0.75 0 0" scale="0.2 0.2 0.2" color="mediumseagreen">
+          <a-entity rotation="0 0 0"
+            animation="property: rotation;from:0 0 0; to: 360 0 0; loop: true; dur: 7500; easing: linear;"
+            animation__2="property: rotation;from:0 0 0; to: 0 360 0; loop: true; dur: 2500; easing: linear"
+            animation__2="property: rotation;from:0 0 0; to: 0 0 360; loop: true; dur: 5000; easing: linear">
+            <a-sphere position="1.5 0 0" scale="0.1 0.1 0.1" color="blue"></a-sphere>
+          </a-entity>
+  </a-sphere>
+</a-entity>
+```
 
 
 
+<img src="assets/12_animation_advanced.gif" width="250" height="250"/>
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
+
+And see the live example here :
+https://12aframeanimationscadvanced.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our good old kanji :
+
+<img src="qrcodes/qr-12-animation_advanced.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/>
+</br>
 
 
 
