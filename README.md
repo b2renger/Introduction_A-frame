@@ -2,10 +2,17 @@
 
 Code for a creative coding class on A-Frame for designers. (AR focused)
 This is not meant to be exhaustive and code oriented, the goal is to be able to add content and choose the right tracking method for a specific project.
-
+ 
 <img src="assets/snowAR.gif"/>
 
+
+
 ## Contents
+
+You can read "the tools" to get acquianted with the techno and stuff we will use to make everything work ie cross-plateform AR web based.
+First you have a cookbook style part about the kind of content : get the minimal code working to display 3D / videos / text etc. over a basic marker.
+Second you have the same kind of cookbook ressource going through the several types of detections (makers, barcodes, natural images etc.)
+Then you have a more technical part about animation of content and finaly a part about interaction which will require basic skills on A-Frame and a bit of javascript coding.
 
 
 
@@ -1708,8 +1715,21 @@ You can also scan the qrcode below and show it our good old kanji :
 
 ## Interactivity
 
-raycasting for touch interactions
-raycasting for gaze interactions
+
+<img src="assets/13_interaction.gif" width="250" height="250"/>
+
+You can check the code here :
+https://replit.com/@b2renger/13AFrametestgaze#index.html
+
+And see the live example here :
+https://13aframetestgaze.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our good old kanji :
+
+<img src="qrcodes/qr-13-gaze_interaction.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/>
+</br>
+
 
 [**home**](#Contents)
 
