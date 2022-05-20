@@ -10,9 +10,14 @@ This is not meant to be exhaustive and code oriented, the goal is to be able to 
 ## Contents
 
 You can read "the tools" to get acquianted with the techno and stuff we will use to make everything work ie cross-plateform AR web based.
+
 First you have a cookbook style part about the kind of content : get the minimal code working to display 3D / videos / text etc. over a basic marker.
+
 Second you have the same kind of cookbook ressource going through the several types of detections (makers, barcodes, natural images etc.)
-Then you have a more technical part about animation of content and finaly a part about interaction which will require basic skills on A-Frame and a bit of javascript coding.
+
+Then you have a more technical part about animation of content and finaly a part about interaction which will require basic skills on A-Frame and a bit of javascript coding. So to dive in both those last part you should a least get acquainted with a basic example of detection using kanji marker and 3D shapes/
+
+Have Fun !
 
 
 
