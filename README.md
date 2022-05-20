@@ -19,6 +19,10 @@ Then you have a more technical part about animation of content and finaly a part
 
 Have Fun !
 
+Remember you can always navigate the content hierarchy with the burger menu on github !
+ 
+<img src="assets/nav.gif"/>
+
 
 
 ---
