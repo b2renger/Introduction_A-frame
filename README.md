@@ -1532,13 +1532,176 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+### Sequencing animations
+
+To be able to setup sequences of animation you'll need to import a new component : the [animation timeline component](https://github.com/supermedium/superframe/tree/master/components/animation-timeline/).
+
+Let's break down how it works.
+
+#### setup
+
+First you'll need to import a new script in the **head part** of your html file :
+
+```html
+ <script
+    src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js">
+  </script>
+
+```
+
+Then in the **a-scene** tag we need to make a reference to this new element we are going to use :
+
+```
+animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false;
+```
+
+The first part (ie "animation-timeline__1" ) means that we will create a first timeline (yes ! we can have several timelines !). The **"timeline:#myTimeline;"** part actually makes a reference to another object that we will create next.
+
+So now, we will create our actual timeline in the **a-assets** tag in our scene :
+
+```html
+<a-assets>
+  <a-timeline id="myTimeline" >
+
+  </a-timeline>
+</a-assets>
+```
+notice the *id* attribute which has the same name ("myTimeline") as the element we added as a property in our *a-scene* tag.
 
 
+#### create animations for one object
 
-To be able to setup sequences of animation you'll need to go further. 
+Now we will create an object and multiple animations for it. It is important to name those animations we comprehensive names because we will later use those names to actually sequence them in time.
 
-You can have a look at the [animation timeline component](https://github.com/supermedium/superframe/tree/master/components/animation-timeline/)
+So we will create a box in a kanji marker with a bunch of possible animations (scale effects, position, rotation and color) :
 
+```html
+ <a-marker preset="kanji" size="0.08">
+      <a-box id="box1" scale="0.5 0.5 0.5" color="#FD5D3B" position="-10 0 0"
+        animation__scaleup="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: false; easing: easeInOutElastic; dur: 500; autoplay: false"
+        animation__scaledown="property: scale;from: 1 1 1; to: .5 .5 .5; loop: false; easing: easeInOutElastic; dur: 500;autoplay: false"
+        animation__color="property: material.color; from:#FD5D3B ; to: #541690; easing: easeInOutElastic; loop: false; dur: 5000;autoplay: false"
+        animation__rotation="property:rotation; from: 0 0 0 ; to : 360 360 360 ; easing: linear; loop:false; dur : 5000;autoplay: false"
+        animation__in="property:position; from: -10 0 0 ; to : 0 0 0 ; easing: easeOutBack; loop:false; dur : 2000;autoplay: false"
+        animation__out="property:position; from: 0 0 0 ; to : 10 0 0 ; easing: easeInBack; loop:false; dur : 2000;autoplay: false">
+      </a-box>   
+</a-marker>
+```
+
+Notice that we gave a **id** to our **a-box** tag. This will be usefull later.
+
+#### do the sequencing !
+
+Now let's sequence everything to make a coherent animation. This will happen inside the **a-timeline** tag we created earlier.
+
+We have two new tags we can use **a-timeline-animation** and **a-timeline-group**.
+
+If you place several **a-timeline-animation** tags in a row they will play sequentially one after another.
+
+If you place several **a-timeline-animation** tags inside a **a-timeline-group** tag they we will play together at the same time.
+
+So with our cube we want a animation in several steps :
+- first come into position in the center of the marker.
+- second scale up
+- rotate and change color at the same time
+- then scale down
+- and finally leave the screen.
+
+```html
+    <a-assets>
+      <a-timeline id="myTimeline" >
+        <a-timeline-animation select="#box1" name="in" offset="100"></a-timeline-animation>
+        <a-timeline-animation select="#box1" name="scaleup"></a-timeline-animation>
+        <a-timeline-group>
+          <a-timeline-animation select="#box1" name="color"></a-timeline-animation>
+          <a-timeline-animation select="#box1" name="rotation"></a-timeline-animation>
+        </a-timeline-group>
+        <a-timeline-animation select="#box1" name="scaledown"></a-timeline-animation>
+        <a-timeline-animation select="#box1" name="out"></a-timeline-animation>
+      </a-timeline>
+    </a-assets>
+```
+
+We tell the **a-timeline-animation** tag to act on the elements that have the **id** "box1" through the **select** attribute and we use the **name** attribute to tell which animation to play.
+
+Well this is nice :) but ... the animation plays in loop and starts when the page is loaded so it doesn't start when the marker is visible ! 
+To do that we will need to create a component with js similar to what we did with videos.
+
+#### using startEvent to start an animation
+
+So we need to create a custom script to trigger the animation when we want.
+This script needs to be created inside the body of the page, before the **a-scene** tag.
+
+Let's create an empty script with the name "startanimations".
+```html
+<script>
+    AFRAME.registerComponent("startanimations", {
+      init: function () {
+        
+      },
+      tick: function () {
+      
+      }
+    });
+</script>
+```
+
+We want to be able to toggle the animation when the marker is visble, and restart it when the marker is lost then visible again :
+
+```html
+ <script>
+    AFRAME.registerComponent("startanimations", {
+      init: function () {
+        this.toggle = false; // animation state : false => not playing
+      },
+      tick: function () {
+        // if the maker is visble 
+        if (document.querySelector("a-marker").object3D.visible == true) {
+          if (!this.toggle) { // if toggle is false
+            this.toggle = true; // we change toggle to true
+            // those two actions prevents the message to be sent again and again
+            // as the marker keeps on being visible
+            // console.log("found marker")
+            var box = document.querySelector('#box1'); // we get our box to animate
+            box.emit("go") // we tell the timeline to play
+          }
+        } // if the marker is not visible anymore
+        else {
+          this.toggle = false; // we reset toggle to false
+        }
+      }
+    });
+  </script>
+```
+
+Now we just have to attach the script to our marker tag, by passing the name of our new script as an attribute.
+
+```html
+    <a-marker preset="kanji" size="0.08" startanimations>
+```
+
+And we need to tell the timeline to liste to events that say "go" (this inside the **a-scene** settings)
+
+```html
+animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false; startEvents:go"
+```
+
+#### Final composition
+
+
+<img src="assets/12_animation_timeline.gif" width="250" height="250"/>
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
+
+And see the live example here :
+https://12aframeanimationsdtimeline.b2renger.repl.co/
+
+You can also scan the qrcode below and show it our good old kanji :
+
+<img src="qrcodes/qr-12-animation_timeline.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/>
+</br>
 
 
 [**home**](#Contents)
@@ -1549,13 +1712,6 @@ raycasting for touch interactions
 raycasting for gaze interactions
 
 [**home**](#Contents)
-
-
-
-
-
-
-
 
 
 ---
@@ -1618,5 +1774,7 @@ Webxr official examples : https://immersive-web.github.io/webxr-samples/
 MindAR interactive portfolio : https://hiukim.github.io/mind-ar-js-doc/examples/interative
 
 Animation timeline : https://github.com/supermedium/superframe/tree/master/components/animation-timeline/
+
+A collection of extensions : https://github.com/supermedium/superframe
 
 [**home**](#Contents)
