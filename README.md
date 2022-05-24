@@ -1390,8 +1390,6 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 </br>
 
 
-
-
 [**home**](#Contents)
 
 ### Face tracking (mind-arjs)
@@ -1409,9 +1407,17 @@ https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/av
 [**home**](#Contents)
 
 ### Marker less tracking (web xr api)
-todoc later
 
+This is out of the scope of this course, since this feature is not supported by ArJs nor Mind-Arjs so it means that you'll have to code everything.
+
+But you can find demos here :
 https://immersive-web.github.io/webxr-samples/
+
+More specifically this one :
+https://immersive-web.github.io/webxr-samples/ar-barebones.html
+
+With the associated code : 
+https://github.com/immersive-web/webxr-samples/blob/main/hit-test-anchors.html
 
 [**home**](#Contents)
 
@@ -1893,7 +1899,13 @@ https://replit.com/@b2renger/14AFramegaze2audio
 ---
 ## Extending AFrame
 
+Many components provided by the community exist you can have a look here :
 https://aframe.io/aframe-registry/
+
+and here : 
+https://github.com/supermedium/superframe
+
+Not all are adapted to AR, and beware some can be old !
 
 [**home**](#Contents)
 
