@@ -1724,6 +1724,150 @@ You can also scan the qrcode below and show it our good old kanji :
 
 ## Interactivity
 
+Now let's look how we can interact with our content. This section is more advanced than other and you will have to code custom components.
+
+We will use **gaze based interactions** which is standard for VR application without controllers. This is also very appropriate for AR as the user won't need to click on the screen. The basic user interaction workflow : is to aim at a component and stay locked to it for a certain time to validate and interaction - we call that time **fusing**.
+
+The heavy work will be done inside the "a-camera" tag. Inside this tag we will add a "a-entity" tag that will have the purpose of being a cursor / viewfinder; by this we mean it will used to aim at elements and start animations / events / actions. It will look like a small 2D torus in the center of our view
+
+```html
+ <a-camera position="0 0 0" look-controls="enabled: false">
+      <a-entity cursor="fuse: true; fuseTimeout: 1500" position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+        material="color: white; opacity:0.5; shader: flat">
+      </a-entity>
+</a-camera>
+```
+
+Notice the *cursor* attribute on our entity !
+```
+cursor="fuse: true; fuseTimeout: 1500"
+```
+We do use gaze interaction ("fuse:true") and we set a time for the fusing action in milliseconds ("fuseTimeout: 1500").
+
+Now we will add a few animations to simulate a click. We will decompose the click in 3 parts :
+- first is **fusing** : the cursor is overing and element if the user stays locked onto this element for a specified amount of time the click will happen. It can be seen as a *over* but taking time into account. 
+- second part is the **click** event, which is self explanatory ie it validate an action.
+- third part is the **leave** event, when the cursor was overing an element and is not anymore.
+
+Our animation will play on the scale of our element and we will have an animation for each part of our interaction sequence :
+
+```html
+<a-camera position="0 0 0" look-controls="enabled: false">
+      <a-entity cursor="fuse: true; fuseTimeout: 1500" position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+        material="color: white; opacity:0.5; shader: flat"
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 250; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+      </a-entity>
+</a-camera>
+```
+If you read the part about animations it should be pretty easy to understand. A very important thing to notice is the **startEvents** attributes for each animation. When you give the **cursor** property to the entity it will start to automatically emit [events](https://aframe.io/docs/1.3.0/components/cursor.html#events) 
+
+We can use those events to animate other elements ! Let's consider a box
+
+```html
+ <a-marker preset="kanji" size="0.8">
+      <a-entity id="box" position="1 0 0" geometry="primitive: box" material="color: blue">
+      </a-entity>
+</a-marker>
+```
+
+We can create animations that will respond to those events :
+- one that will scale up on fusing
+- one that will scale down on mouseleave
+
+```html
+ <a-marker preset="kanji" size="0.8">
+      <a-entity id="box" position="1 0 0" geometry="primitive: box" material="color: blue" 
+        animation__scaleup="property: scale; startEvents: fusing; easing: easeInOutBack; dur: 500; from: 1 1 1; to: 1.1 1.1 1.1"
+        animation__scaledown="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500;from: 1.1 1.1 1.1; to: 1 1 1">
+      </a-entity>
+</a-marker>
+```
+
+For that we use the *startEvents* attribute on animations "startEvents:fusing" and "startEvents:mouseleave".
+
+<img src="assets/over.gif" width="250" height="250"/>
+
+
+Now for the action on a click event we need to create a custom component. As usual this components will be created befor the scene in a script tag, and we will use the name of the component as an attribute of any object we want to attach it to.  
+
+Let's try to open a link on click !
+
+We will create a component that will be called "cursor-open"
+
+So we add this attribute to our entity :
+
+```html
+<a-entity id="box" position="0 0 0" geometry="primitive: box" material="color: red" cursor-open
+        animation__scaleup="property: scale; startEvents: fusing; easing: easeInOutBack; dur: 500; from: 1 1 1; to: 1.1 1.1 1.1"
+        animation__scaledown="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; from: 1.1 1.1 1.1 ;to: 1 1 1">
+</a-entity>
+```
+
+Now we can create a custom component :
+
+```html
+  <script>
+    AFRAME.registerComponent('cursor-open', {
+      init: function () {
+        // such empty ... 
+      }
+    });
+  </script>
+```
+
+In our init function we can create event listerners to listen to the events that are provided by our cursor :
+
+```html
+  <script>
+    AFRAME.registerComponent('cursor-open', {
+      init: function () {
+        this.el.addEventListener('click', function (evt) {
+          // code to execute on mouse click
+        });
+
+        this.el.addEventListener('fusing', function (evt) {
+         // code to execute on fusing
+        });
+
+        this.el.addEventListener('mouseleave', function (evt) {
+          // code to execute on mouse leave
+        });
+      }
+    });
+  </script>
+```
+
+We can now add actions such as :
+- open a new window on click
+- change the opacity of our material on fusing and / or mouseleave
+
+```html
+
+  <script>
+    AFRAME.registerComponent('cursor-open', {
+      init: function () {
+        this.el.addEventListener('click', function (evt) {
+          window.open("https://ateliernum.github.io/#/", '_blank').focus(); // open link on new tab (popup blocked)
+          console.log('I was clicked at: ', evt.detail.intersection.point); // get details about the intersection
+        });
+
+        this.el.addEventListener('fusing', function (evt) {
+          this.setAttribute('material', 'opacity', 0.75); // change opacity
+        });
+
+        this.el.addEventListener('mouseleave', function (evt) {
+          this.setAttribute('material', 'opacity', 1); // change opacity
+        });
+      }
+    });
+  </script>
+```
+Considering this code you could easily change the color of a box on mouseclick
+
 
 <img src="assets/13_interaction.gif" width="250" height="250"/>
 
@@ -1738,6 +1882,9 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="qrcodes/qr-13-gaze_interaction.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
+
+An extra example will help you to play a sound on a "cursor-click" :
+https://replit.com/@b2renger/14AFramegaze2audio
 
 
 [**home**](#Contents)
