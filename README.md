@@ -1406,18 +1406,19 @@ https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/av
 
 [**home**](#Contents)
 
-### Marker less tracking (web xr api)
+### Marker less tracking 
 
-This is out of the scope of this course, since this feature is not supported by ArJs nor Mind-Arjs so it means that you'll have to code everything.
+This feature is directly supported by A-Frame in version 1.3.0 and up.
 
-But you can find demos here :
-https://immersive-web.github.io/webxr-samples/
+https://aframe.io/docs/1.3.0/components/webxr.html#sidebar
 
-More specifically this one :
-https://immersive-web.github.io/webxr-samples/ar-barebones.html
+A first simplified implementation : https://replit.com/@b2renger/15AFramesurfaces#index.html
 
-With the associated code : 
-https://github.com/immersive-web/webxr-samples/blob/main/hit-test-anchors.html
+Live example (doesn't work on desktop) :  https://15aframesurfaces.b2renger.repl.co/
+
+<img src="qrcodes/qr-15-markerless.png" width="250" height="250"/>
+
+
 
 [**home**](#Contents)
 
