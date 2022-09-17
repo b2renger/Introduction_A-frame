@@ -138,6 +138,8 @@ On the top right corner you have a small button (right next to the adress bar) t
 
 [**home**](#Contents)
 
+
+
 ---
 ## The basic setup
 
@@ -1950,9 +1952,11 @@ Animation official documentation : https://aframe.io/docs/1.2.0/components/anima
 
 ### go further
 
+What is a QR code : https://typefully.com/DanHollick/qr-codes-T7tLlNi
+
 Tutorial : https://ericjinks.com/blog/2017/creating-a-webvr-synth/
 
-Print exeample for the processing fundation : https://github.com/b2renger/processing_catalog
+Print exeample for the processing foundation : https://github.com/b2renger/processing_catalog
 
 Tips on lighnting : https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
 
