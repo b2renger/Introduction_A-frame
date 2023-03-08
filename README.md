@@ -1041,6 +1041,25 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr-07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
+## Note about textures and animations
+
+When you work in a 3D modelling software not everything can be exported. Most of the time softwares like blender, c4d, houdini etc are made to produce images or animations; most of the time the whole creation process stays inside the software and you output a final image or movie.
+
+The thing you need to know is that what you can actually do depends on the rendrering engine the software uses, all the engines don't necessarly support the same kind of features or they don't work exactly the same. 
+
+For instance most the of the effects you can do on materials and textures and even some kind of specific animations don't transpose well from one to another or from one 3d modelling software to a rendering engine (like unity or unreal), in our case Three.js
+
+To find a workaround this issue we need to actually bake our textures : it means rendering the materials into images and place thoses images onto our models using uvunwrapping.
+
+Here's how you can bake textures on blender :
+https://www.youtube.com/watch?v=7qXwd2M3wzA&ab_channel=RyanKingArt
+https://www.youtube.com/watch?v=Se8GdHptD4A&ab_channel=RyanKingArt
+
+
+Here's a more detailed video about uv unwrapping:
+https://www.youtube.com/watch?v=qa_1LjeWsJg&ab_channel=RyanKingArt
+
+
 
 
 [**home**](#Contents)
