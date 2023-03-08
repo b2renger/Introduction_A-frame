@@ -1437,7 +1437,7 @@ A first simplified implementation : https://replit.com/@b2renger/15AFramesurface
 
 Live example (doesn't work on desktop) :  https://15aframesurfaces.b2renger.repl.co/
 
-<img src="qrcodes/qr-15-markerless.png" width="250" height="250"/>
+<img src="qrcodes/qrcode-15-markerless.png" width="250" height="250"/>
 
 
 
