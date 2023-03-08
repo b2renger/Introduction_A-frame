@@ -527,6 +527,9 @@ or scan this qr code  and show it kanji !
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
+If you want to know more about textures maps and pbr material you can have look here : https://medium.com/@kfarr/experimenting-with-pbr-textures-and-a-frame-26c5a034b7b
+
+
 [**home**](#Contents)
 
 
@@ -1988,5 +1991,8 @@ MindAR interactive portfolio : https://hiukim.github.io/mind-ar-js-doc/examples/
 Animation timeline : https://github.com/supermedium/superframe/tree/master/components/animation-timeline/
 
 A collection of extensions : https://github.com/supermedium/superframe
+
+How to create texture maps : https://medium.com/@kfarr/experimenting-with-pbr-textures-and-a-frame-26c5a034b7b
+
 
 [**home**](#Contents)
