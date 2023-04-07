@@ -1062,6 +1062,9 @@ https://www.youtube.com/watch?v=Se8GdHptD4A&ab_channel=RyanKingArt
 Here's a more detailed video about uv unwrapping:
 https://www.youtube.com/watch?v=qa_1LjeWsJg&ab_channel=RyanKingArt
 
+But you can export transparent textures out of the box !
+https://www.8thwall.com/playground/glass-materials-aframe
+
 
 
 
