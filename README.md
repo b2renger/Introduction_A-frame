@@ -28,10 +28,12 @@ Remember you can always navigate the content hierarchy with the burger menu on g
 ---
 ## The tools
 
-We use three tools :
-- a library for content : [A-Frame](https://aframe.io/)
-- a library for marker detections in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
+We use several tools :
 - a webhosting plateform to write our code and host our projects : [Replit](https://replit.com/)
+- a library for content / assets  manipulation : [A-Frame](https://aframe.io/)
+- a library for marker detection / gps markers in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
+- a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
+- a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
 
 [**home**](#Contents)
 
@@ -80,11 +82,11 @@ AR is a technology that allows you to overlay digital / interactive content on a
 Well to be clear the AR world is globally a mess, in this course we choose to focus on web technologies that do work both on desktop, iOS and android to simplify the overall process and experimentations - and we also use free and open source tools.
 
 To do that several method are use to pin / anchor the content :
-- **markers detection** : you need to use a specific image to detect its position in a video feed and place content onto it.
-- **image detection** : you can train a specific image of your choice to be a marker. You'll need to take a few steps though to make your program recognize your image; be aware that tracking quality will be dependent on the image you choose.
-- **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet.
-- **gps coordinates** : you can pin some contents to a specific gps position, but this is highly experimental at the moment and tracking is a bit shaky.
-- **face detection** : you can detect the presence of a face in an image and then pin content onto it.
+- **markers detection** : you need to use a specific image to detect its position in a video feed and place content onto it. **ARjs**
+- **image detection** : you can train a specific image of your choice to be a marker. You'll need to take a few steps though to make your program recognize your image; be aware that tracking quality will be dependent on the image you choose. **mindAR**
+- **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet. **modelViewer**
+- **gps coordinates** : you can pin some contents to a specific gps position, but this is highly experimental at the moment and tracking is a bit shaky. **Arjs**
+- **face detection** : you can detect the presence of a face in an image and then pin content onto it. **mindAR**
 
 
 ARjs is a javascript library to create AR application, it allows you to track the position of markers / images and even gps coordinates.
@@ -1434,6 +1436,41 @@ https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/av
 [**home**](#Contents)
 
 ### Marker less tracking 
+
+#### ... with modelViewer
+
+The best option here is to go with [modelViewer](https://modelviewer.dev/)
+
+modelViewer work online with its own editor and it's very easy to build a mockup, change the model and run it on a smartphone - it will only work on smartphone though and will only support 3d models but you have a lot of options to :
+- customize the lighting
+- control animations / shadows
+- add information hotspots etc.
+- download the code to host it elsewhere
+
+It's pretty self explanatory and available here : https://modelviewer.dev/editor/
+
+And it looks like this 
+
+<img src="assets/modelviewer_editor_export.jpg" width="600" height="400"/>
+</br>
+
+You can test the scene by clicking **"deploy to mobile"**.
+
+Once you are done, you can download the code by clicking the **"download scene"**.
+This will download a zip file that you can extract and upload to a new replit.
+
+<img src="assets/santar.gif" width="600" height="400"/>
+</br>
+
+You can checkout the replit code here : https://replit.com/@b2renger/ARmodelViewer
+
+And you can test the experience following this qr code (you'll need to be on a mobile phone to test the ar)
+
+<img src="qrcodes/qrcode-16-armodelviewer.png" width="250" height="250"/>
+</br>
+
+
+#### ... with A-Frame
 
 This feature is directly supported by A-Frame in version 1.3.0 and up.
 
