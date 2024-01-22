@@ -2016,6 +2016,10 @@ Animation official documentation : https://aframe.io/docs/1.2.0/components/anima
 
 What is a QR code : https://typefully.com/DanHollick/qr-codes-T7tLlNi
 
+Build QR codes : http://robko.ch/qr-designer/
+
+Build QR codes with AI : https://www.youtube.com/watch?v=Y1rYTnupZk4&list=PLhEFEwmCvXTB8U3WRsVt7Fc4NAXo9OQJU&ab_channel=AiVoiceTutor
+
 Tutorial : https://ericjinks.com/blog/2017/creating-a-webvr-synth/
 
 Print exeample for the processing foundation : https://github.com/b2renger/processing_catalog
