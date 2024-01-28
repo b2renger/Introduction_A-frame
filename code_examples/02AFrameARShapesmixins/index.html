@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;"
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best"
+    detectionMode= "color_and_matrix"
+    changeMatrixMode= "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth= "800" sourceHeight= "600" 
+    displayWidth= "1280" displayHeight="720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+     >
+
+  <a-assets>
+    <!-- define some colors -->
+    <a-mixin id="green" material="color: green"></a-mixin>
+    <a-mixin id="brown" material="color: brown"></a-mixin>
+    <a-mixin id="darkbrown" material="color:#7e5835 "></a-mixin>
+    <a-mixin id="lightgreen" material="color:#a5d152 "></a-mixin>
+    <!-- define some geometries -->
+    <a-mixin id="trunk" geometry="primitive: box ; width:.25; height:1; depth:.25"></a-mixin>
+    <a-mixin id="treetop" geometry="primitive: cone ; radius-bottom:.5; radius-top:0"></a-mixin>
+    <a-mixin id="othertreetop" geometry="primitive: dodecahedron ; radius:.75"></a-mixin>
+    <!-- load some textures-->
+    <img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
+    <img id="leavesnorm" src="assets/forest_leaves_02_nor_gl_1k.png">
+    <img id="leavesdisp" src="assets/forest_leaves_02_disp_1k.png">
+
+
+  </a-assets>
+       
+    
+  
+		<a-marker  preset="kanji" size= "0.8">
+
+      
+      <a-light type="spot" castShadow="true" color="white" intensity="2" position="-1 5 2"  target="#directionaltarget"></a-light>
+      <a-entity id="directionaltarget" position="0 0 0"></a-entity>
+      
+      <a-entity mixin="brown trunk" position = "0 .5 0"></a-entity>
+      <a-entity mixin="green treetop" position = "0 1.5 0"></a-entity>
+
+      <a-entity mixin="darkbrown trunk" position = "1.25 .5 0" geometry="height:1.5"></a-entity>
+      <a-entity mixin="lightgreen treetop" position = "1.25 2 0" geometry="height:1.5"></a-entity>
+
+      <a-entity mixin="darkbrown trunk" position = "-1.25 .5 0" ></a-entity>
+      <a-entity mixin="lightgreen othertreetop" position = "-1.25 1.5 0"></a-entity>
+
+
+
+      <a-plane position='0 0 0' rotation="-90 0 0" width="4" height="4"
+        segments-width="100" segments-width="100"
+      material="src: #leavestex; normalMap:#leavesnorm;displacementMap:#leavesdisp; displacementBias:-0.5; displacementScale:1" shadow="receive: true; cast:true"></a-plane>
+
+     
+
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
