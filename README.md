@@ -812,6 +812,10 @@ Well it is possible, not easy but possible :
 
 So it may be complicated :) for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
 
+You can also check this project that should get the work done : https://github.com/balataca/aframe-transparent-video-shader
+
+note : I have planed work on this subject, to create a custom component, and examples to handle buttons, transparent video and green-screen medias better.
+
 [**home**](#Contents)
 
 ### Texts
@@ -2007,6 +2011,8 @@ Choosing good images for natural image tracking : https://github.com/Carnaux/NFT
 Smooth natural image tracking : https://hiukim.github.io/mind-ar-js-doc/quick-start/tracking-config
 
 Animation official documentation : https://aframe.io/docs/1.2.0/components/animation.html
+
+Playing transparent videos : https://github.com/balataca/aframe-transparent-video-shader
 
 [**home**](#Contents)
 
