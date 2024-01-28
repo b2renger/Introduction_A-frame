@@ -924,12 +924,11 @@ For a complete example you can look here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/05AFRAMETexts#index.html
 
-You can run it live with this adress :
-https://05aframetexts.b2renger.repl.co/
+You can run it live with [this adress :](https://0fe615ca-353b-4995-bc83-9bc11e4848e1-00-qsmh8u7k6hhz.picard.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-05.png" width="250" height="250"/>
+<img src="qrcodes/qr05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 Note :

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;"
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+    
+     >
+    
+  
+		<a-marker preset="kanji" size: "0.8">
+      <!-- basic text : we manually offset the position  -->
+      <a-text value="Hello, World!" side="double" position = "0 0 -1" rotation="270 0 0" color="blue" align="center" ></a-text>
+     
+
+      <a-entity text="value:Hello Creepster; color:#FFFFFF; 
+        width: 4; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 -0.5"></a-entity>   
+
+
+      <a-entity text="value:Hello Indie Flower; color:red; 
+        width: 8; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/indieflower/IndieFlower-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 0"></a-entity>
+      
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+
+</body>
+
+</html>
