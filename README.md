@@ -801,7 +801,7 @@ You can run it live with [this adress :](https://f569f52f-3f4b-412d-82a1-42d3043
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-04.png" width="250" height="250"/>
+<img src="qrcodes/qr04.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 Yes ! I know what you think : what about videos with transparent background ?
