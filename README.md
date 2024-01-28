@@ -796,8 +796,8 @@ You can have a look at the code here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/04AFRAMEARVideos#index.html
 
-You can run it live with this adress :
-https://04aframearvideos.b2renger.repl.co/
+You can run it live with [this adress :](https://f569f52f-3f4b-412d-82a1-42d3043fff24-00-gjnp4mj6md98.janeway.replit.dev/)
+
 
 or scan this qr code  and show it kanji !
 
