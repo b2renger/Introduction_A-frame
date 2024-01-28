@@ -990,12 +990,11 @@ It's as easy as ever ! :)
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
 
-You can run it live with this adress :
-https://07aframe3dmodels00obj-mtl.b2renger.repl.co/
+You can run it live with [this adress :](https://60c0875c-c7d1-4a46-881a-7c4e504d8269-00-itgu0gjq1ppp.janeway.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-07-obj.png" width="250" height="250"/>
+<img src="qrcodes/qr07-obj.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -1039,12 +1038,12 @@ Then attach it to a marker without forgetting to add the **animation-mixer** pro
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
 
-You can run it live with this adress :
-https://07aframe3dmodels01glb.b2renger.repl.co/
+You can run it live with [this adress :](https://63e7b513-595c-4452-85d4-6b9d6405f780-00-3g4tbmnrsel9n.picard.replit.dev/)
+
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-07-glb.png" width="250" height="250"/>
+<img src="qrcodes/qr07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 ## Note about textures and animations

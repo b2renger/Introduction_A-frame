@@ -1,0 +1,44 @@
+<!-- 3D model by Chaïnèze D'Almeida
+https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best" detectionMode='color_and_matrix' changeMatrixMode="modelViewMatrix" smooth="true"
+    smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600" displayWidth="1280"
+    displayHeight="720" shadow="autoUpdate: true; enabled: true; type:pcf" light="defaultLightsEnabled: true"
+    gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.129.0/examples/js/libs/draco/gltf/;">
+    <a-assets>
+      <a-asset-item id="glbTest" src="./assets/satanim3.glb"></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="kanji">
+      <a-entity scale=".1 .1 .1" gltf-model="#glbTest" animation-mixer></a-entity>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+
+</body>
+
+</html>
