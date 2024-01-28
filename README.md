@@ -235,12 +235,12 @@ The options in the 'a-scene' tags are numerous but we won't go into details abou
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/00AFrameARboilerplate#index.html
 
-You can run it live with this adress :
-https://00aframearboilerplate.b2renger.repl.co/
+You can run it live at [this adress :](
+https://5aab5b84-4f8a-4ade-b2b0-181337c92994-00-2jcfz2zh3pd2k.janeway.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-00.png" width="250" height="250"/>
+<img src="qrcodes/qr00.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -256,7 +256,7 @@ You can open the A-Frame scene inspector by using the shortcut : "ctrl" + "alt" 
 
 Let's get started and see how we can add some content in AR to a simple hiro marker. For all content we will refer to the [A-Frame documentation](https://aframe.io/docs/1.2.0/introduction/) : if you scroll at the **bottom of the left hand side menu** you will find links to the documentation of many primitives you can add to your scene.
 
-<img src="assets/aframe_primitives.png" width="150" height="600"/></br>
+<img src="assets/aframe_primitives.png" width="150" height="500"/></br>
 
 With those lets create our first 3D scene !
 
@@ -359,12 +359,12 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/01AFrameARShapes#index.html
 
-You can run it live with this adress :
-https://01aframearshapes.b2renger.repl.co/
+You can run it live at [this adress :](https://f041d2d5-5f39-4dde-b3c7-b647fc4a61e7-00-2gd64doise4qw.worf.replit.dev/)
+
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-01.png" width="250" height="250"/>
+<img src="qrcodes/qr01.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -520,12 +520,11 @@ You can have a look at the code here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
 
-You can run it live with this adress :
-https://02aframearshapesmixins.b2renger.repl.co/
+You can run it live at [this adress :](https://fd834ebf-33d1-4445-b99b-adf722b2fc44-00-1ik9fn26kep3j.kirk.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-02.png" width="250" height="250"/>
+<img src="qrcodes/qr02.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
