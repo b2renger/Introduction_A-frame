@@ -623,12 +623,11 @@ You can have a look at the code here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/03AFRAMEARImages#index.html
 
-You can run it live with this adress :
-https://03aframearimages.b2renger.repl.co/
+You can run it live at [this adress :](https://2c704806-1df3-4b6e-9e07-4dc1cf6f073b-00-c2gimh8gsxcx.worf.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-03.png" width="250" height="250"/>
+<img src="qrcodes/qr03.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 

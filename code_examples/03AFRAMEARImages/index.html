@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;"
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+     >
+
+  <a-assets>
+<img id="transparent_image" src="./assets/export1.png">
+  </a-assets>
+       
+    
+  
+		<a-marker  preset="kanji" size= "0.8">
+      <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+</body>
+
+</html>
