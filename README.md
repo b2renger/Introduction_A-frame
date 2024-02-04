@@ -1196,6 +1196,25 @@ or scan this qr code  and show it kanji !
 
 
 
+### Shaders !
+This is definitely an advanced topic, but it's a very powerful tool to create your own textures and effects.
+
+Nota bene, the "greenscreen" component for videos is made with a shader :)
+
+**todoc later**
+
+if you already know about shaders here are some links to get started
+
+https://replit.com/@b2renger/16AFrameARShadersbasic
+
+https://replit.com/@b2renger/16AFrameARShadersvertexnfrag
+
+
+
+
+[**home**](#Contents)
+
+
 ---
 ## Several kinds of detections
 
@@ -1485,7 +1504,7 @@ https://replit.com/@b2renger/15AFramesurfaces#index.html
 
 --- 
 ## Qr codes and "marker codes"
-todoc later
+**todoc later**
 
 https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-only-with-a-qr-code-139bb90e82f1
 
@@ -2040,6 +2059,8 @@ How to create texture maps : https://medium.com/@kfarr/experimenting-with-pbr-te
 Stemkoski ressources about AFRAME : https://stemkoski.github.io/A-Frame-Examples/
 
 Stemkoski examples about AR in threeJS : https://stemkoski.github.io/AR-Examples/
+
+Print example for irreverent : https://github.com/b2renger/Irreverent/tree/main
 
 
 [**home**](#Contents)
