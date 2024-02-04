@@ -1287,13 +1287,12 @@ When you want to use a certain marker you then just need to add this type of cod
 You can check the code here
 https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
 
-And see the live example here :
-https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
+And see the [live example](https://0de5aba3-7c4e-4b4b-8441-3b4331dc101c-00-drtdbex51q6m.kirk.replit.dev/)
 
 You can also scan the qrcode below and show it the set of markers under:
 
 
-<img src="qrcodes/qr-09-barcodes.png" width="250" height="250"/>
+<img src="qrcodes/qr09-barcodes.png" width="250" height="250"/>
 <img src="markers/barcodes_white_back.png" width="640" height="420"/>
 </br>
 
