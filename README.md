@@ -1204,7 +1204,7 @@ There is a bunch of possibilities for markers to AR detection.
 For now we only used **Kanji** which is very popular. But there are tons of possibilities.
 - barcodes
 - you can also create your own markers with your own images (though there are some rules to follow - and you need to use a third party tool to generate maker data that you can then import in your code)
-- you can us GPS coordinates to anchor content in a specific geographical space with a relative precision of 10 meters ourdoors
+- you can us GPS coordinates to anchor content in a specific geographical space with a relative precision of 10 meters outdoors
 - you can also free yourself from the black border and use Natural Image Tracking (there are some rules to follow and it can be a bit jittery - and you need to use a third party tool to generate maker data that you can then import in your code)
 - and finally you can also track faces ;)
 
@@ -1239,13 +1239,12 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
 
-You can run it live with this adress :
-https://08aframehiroandkanji.b2renger.repl.co/
+You can run it live with [this adress](https://d4e76c1c-0ac8-4a8b-9573-4e5c2e9cf133-00-3cksolu2r7m51.picard.replit.dev/)
 
 or scan this qr code  and show it Kanji and Hiro!
 
 
-<img src="qrcodes/qr-08-hiro+kanji.png" width="250" height="250"/></br>
+<img src="qrcodes/qr08_hiroNkanji.png" width="250" height="250"/></br>
 
 <img src="markers/kanji.png" width="250" height="250"/>
 <img src="markers/hiro.png" width="250" height="250"/></br>
