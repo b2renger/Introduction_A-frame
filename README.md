@@ -1402,12 +1402,11 @@ As we used two images we can specify **targetIndex:0** to track the first one, a
 You can check the code here :
 https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 
-And see the live example here :
-https://11aframemindarjsnatural-image.b2renger.repl.co/
+And see the [live example](https://3f6d0c4f-c905-4ac9-9fcd-bb40edeb6914-00-1mv3genvkjdp6.janeway.replit.dev/)
 
 You can also scan the qrcode below and show it our beautiful custom markers :
 
-<img src="qrcodes/qr-11-natural_images.png" width="250" height="250"/>
+<img src="qrcodes/qr11_naturalImage.png" width="250" height="250"/>
 </br>
 <img src="markers/MarietteCropCrop.jpg" width="250" height="250"/>
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
@@ -1417,14 +1416,14 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 [**home**](#Contents)
 
 ### Face tracking (mind-arjs)
-todoc later
+**todoc later**
 
 https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 [**home**](#Contents)
 
 ### GPS coordinates
-todoc later
+**todoc later**
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
