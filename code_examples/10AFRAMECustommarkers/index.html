@@ -1,0 +1,38 @@
+<!-- To build the necessary files to have custom markers
+https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded
+    arjs="sourceType: webcam; detectionMode :'color_and_matrix' trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
+    vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600"
+    displayWidth="1280" displayHeight="720">
+
+    <a-marker type="pattern" url="assets/custom_marker.patt">
+      <a-box color="#99FFCD" depth="1" height="1" width="1" opacity="0.4">
+    </a-marker>
+
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
