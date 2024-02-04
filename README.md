@@ -1427,6 +1427,8 @@ https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
+basic example : https://replit.com/@b2renger/AFRAMEGPS
+
 [**home**](#Contents)
 
 ### Marker less tracking 
@@ -2033,6 +2035,10 @@ Animation timeline : https://github.com/supermedium/superframe/tree/master/compo
 A collection of extensions : https://github.com/supermedium/superframe
 
 How to create texture maps : https://medium.com/@kfarr/experimenting-with-pbr-textures-and-a-frame-26c5a034b7b
+
+Stemkoski ressources about AFRAME : https://stemkoski.github.io/A-Frame-Examples/
+
+Stemkoski examples about AR in threeJS : https://stemkoski.github.io/AR-Examples/
 
 
 [**home**](#Contents)
