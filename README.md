@@ -1462,7 +1462,7 @@ You can checkout the replit code here : https://replit.com/@b2renger/ARmodelView
 
 And you can test the experience following this qr code (you'll need to be on a mobile phone to test the ar)
 
-<img src="qrcodes/qrcode-16-armodelviewer.png" width="250" height="250"/>
+<img src="qrcodes/qr16_arModelViewer.png" width="250" height="250"/>
 </br>
 
 
@@ -1472,11 +1472,12 @@ This feature is directly supported by A-Frame in version 1.3.0 and up.
 
 https://aframe.io/docs/1.3.0/components/webxr.html#sidebar
 
-A first simplified implementation : https://replit.com/@b2renger/15AFramesurfaces#index.html
+A first simplified implementation is available here : 
+https://replit.com/@b2renger/15AFramesurfaces#index.html
 
-Live example (doesn't work on desktop) :  https://15aframesurfaces.b2renger.repl.co/
+[Live example](https://03689755-534d-4f22-9143-7c65262af07b-00-vq1jz1q3wf1m.riker.replit.dev/) (doesn't work on desktop) 
 
-<img src="qrcodes/qrcode-15-markerless.png" width="250" height="250"/>
+<img src="qrcodes/qr15_markerless.png" width="250" height="250"/>
 
 
 

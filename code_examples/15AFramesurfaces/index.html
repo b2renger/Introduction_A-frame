@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js">
+  </script>
+
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+  <script>
+    AFRAME.registerComponent("hide-on-hit-test-start", {
+      init: function () {
+        var self = this;
+        self.el.object3D.visible = false;
+        this.el.sceneEl.addEventListener("ar-hit-test-start", function () {
+          self.el.object3D.visible = false;
+        });
+        this.el.sceneEl.addEventListener("exit-vr", function () {
+          self.el.object3D.visible = false;
+        });
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", function () {
+      const sceneEl = document.querySelector("a-scene");
+      const message = document.getElementById("dom-overlay-message");
+
+      // If the user taps on any buttons or interactive elements we may add then prevent
+      // Any WebXR select events from firing
+      message.addEventListener("beforexrselect", e => {
+        e.preventDefault();
+      });
+
+      sceneEl.addEventListener("enter-vr", function () {
+        if (this.is("ar-mode")) {
+          // Entered AR
+          message.textContent = "";
+
+          // Hit testing is available
+          this.addEventListener(
+            "ar-hit-test-start",
+            function () {
+              message.innerHTML = `Scanning environment, finding surface.`;
+            },
+            {once: true}
+          );
+
+          // Has managed to start doing hit testing
+          this.addEventListener(
+            "ar-hit-test-achieved",
+            function () {
+              message.innerHTML = `Select the location to place<br />By tapping on the screen or selecting with your controller.`;
+            },
+            {once: true}
+          );
+
+          // User has placed an object
+          this.addEventListener(
+            "ar-hit-test-select",
+            function () {
+              message.textContent = "";
+            },
+            {once: true}
+          );
+        }
+      });
+
+      sceneEl.addEventListener("exit-vr", function () {
+        message.textContent = "Exited Immersive Mode";
+      });
+    });
+
+  </script>
+
+  <a-scene webxr="overlayElement:#dom-overlay; requiredFeatures: hit-test,local-floor;
+                " background="color:skyblue;" ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;"
+    raycaster="objects: #my-objects *">
+
+    <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
+    <a-entity hide-on-hit-test-start id="my-objects" scale="0.2 0.2 0.2" position="0.2 0 -0.4">
+
+      <a-box position="-1 0.5 0" rotation="0 45 0" color="#4CC3D9" material="roughness: 0.1; metalness: 0.2;"></a-box>
+      <a-sphere position="1 0 0" radius="1.25" color="#FFFFFF" material="roughness: 0; metalness: 0;"></a-sphere>
+
+    </a-entity>
+
+    <a-marker preset="kanji" size="0.08">
+
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+
+    </a-marker>
+  </a-scene>
+  <div id="dom-overlay">
+    <div id="dom-overlay-message">Enter AR to start.</div>
+  </div>
+</body>
+
+</html>
