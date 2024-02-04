@@ -1185,12 +1185,11 @@ The example should do something like this
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/06AFRAMEP5jssketch#index.html
 
-You can run it live with this adress :
-https://06aframep5jssketch.b2renger.repl.co/
+You can run it live with [this adress](https://417c9cab-18af-4a0b-a403-06098e19da5d-00-1ovp2gx1y09pg.worf.replit.dev/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr-06.png" width="250" height="250"/>
+<img src="qrcodes/qr06.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 [**home**](#Contents)
