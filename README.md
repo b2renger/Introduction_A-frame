@@ -1321,6 +1321,8 @@ You can also scan the qrcode below and show it the set of markers under:
 
 You can build custom markers keeping the white and black border and replacing the center with your own image.
 
+This actually works best with simple images in black and white with low symetry.
+
 You can follow this link to build your own markers :
 https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
 
