@@ -1575,12 +1575,11 @@ Our object will now have three separate animation and the a-box tag will have a 
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
 
-And see the live example here :
-https://12aframeanimationsbstackedanimations.b2renger.repl.co/
+And see the [live example here](https://900d23c1-c266-486b-80a6-5bf021fa79f0-00-1zjfqqi84nuas.kirk.replit.dev/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr-12-animation_intermediate.png" width="250" height="250"/>
+<img src="qrcodes/qr12-animation_intermediate.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
