@@ -1352,7 +1352,7 @@ https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
 And see the [live example](https://e2ec5474-7bbb-4c68-bde4-3ea7cd000520-00-1eo93w5izsnw7.worf.replit.dev/) 
 You can also scan the qrcode below and show it our beautiful custom marker :
 
-<img src="qrcodes/qr10_ custom.png" width="250" height="250"/>
+<img src="qrcodes/qr10_custom.png" width="250" height="250"/>
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
 
