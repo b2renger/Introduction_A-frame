@@ -1534,12 +1534,11 @@ If you read the text after the **"animation" attribute** it should be almost sel
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
 
-And see the live example here :
-https://12aframeanimationsabasic.b2renger.repl.co/
+And see the [live example](https://bc3d285b-62d6-4ec2-b69b-a333f5a3dd0d-00-1uc8ql45ahio6.kirk.replit.dev/)
 
 You can also scan the qrcode below and show it our good old kanji:
 
-<img src="qrcodes/qr-12-animation_basic.png" width="250" height="250"/>
+<img src="qrcodes/qr12_animationBasic.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
