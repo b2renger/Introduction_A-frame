@@ -934,6 +934,11 @@ or scan this qr code  and show it kanji !
 Note :
 If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
 
+You can also use modelling software to create text effects such as the very cool [Whomp](https://womp.com/index)
+
+https://www.youtube.com/watch?v=ANFMctJG7KY&ab_channel=Womp
+
+
 [**home**](#Contents)
 
 ### 3d models
@@ -2009,6 +2014,8 @@ A register for msdf fonts : https://github.com/etiennepinchon/aframe-fonts
 Font to MSDF converter : https://msdf-bmfont.donmccurdy.com/
 
 3D text (with depth) : https://github.com/supermedium/superframe/tree/master/components/text-geometry
+
+Modeling 3D text with Womp : https://www.youtube.com/watch?v=ANFMctJG7KY&ab_channel=Womp
 
 Sequencing animations : https://codepen.io/fmattuschka/pen/aKyLMj
 
