@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js">
+  </script>
+
+  <script
+    src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <script>
+    AFRAME.registerComponent("startanimations", {
+      init: function () {
+        this.toggle = false; // animation state : false => not playing
+      },
+      tick: function () {
+        // if the maker is visble 
+        if (document.querySelector("a-marker").object3D.visible == true) {
+          if (!this.toggle) { // if toggle is false
+            this.toggle = true; // we change toggle to true
+            // those two actions prevents the message to be sent again and again
+            // as the marker keeps on being visible
+            // console.log("found marker")
+            var box = document.querySelector('#box1'); // we get our box to animate
+            box.emit("go") // we tell the timeline to play
+          }
+        } // if the marker is not visible anymore
+        else {
+          this.toggle = false; // we reset toggle to false
+        }
+      }
+    });
+  </script>
+
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720"
+    animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false; startEvents:go">
+
+    <a-assets>
+      <a-timeline id="myTimeline">
+        <a-timeline-animation select="#box1" name="in" offset="100"></a-timeline-animation>
+        <a-timeline-animation select="#box1" name="scaleup"></a-timeline-animation>
+        <a-timeline-group>
+          <a-timeline-animation select="#box1" name="color"></a-timeline-animation>
+          <a-timeline-animation select="#box1" name="rotation"></a-timeline-animation>
+        </a-timeline-group>
+        <a-timeline-animation select="#box1" name="scaledown"></a-timeline-animation>
+        <a-timeline-animation select="#box1" name="out"></a-timeline-animation>
+      </a-timeline>
+    </a-assets>
+
+
+    <a-marker preset="kanji" size="0.08" startanimations>
+      <a-box id="box1" scale="0.5 0.5 0.5" color="#FD5D3B" position="-10 0 0"
+        animation__scaleup="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: false; easing: easeInOutElastic; dur: 500; autoplay: false"
+        animation__scaledown="property: scale;from: 1 1 1; to: .5 .5 .5; loop: false; easing: easeInOutElastic; dur: 500;autoplay: false"
+        animation__color="property: material.color; from:#FD5D3B ; to: #541690; easing: easeInOutElastic; loop: false; dur: 5000;autoplay: false"
+        animation__rotation="property:rotation; from: 0 0 0 ; to : 360 360 360 ; easing: linear; loop:false; dur : 5000;autoplay: false"
+        animation__in="property:position; from: -10 0 0 ; to : 0 0 0 ; easing: easeOutBack; loop:false; dur : 2000;autoplay: false"
+        animation__out="property:position; from: 0 0 0 ; to : 10 0 0 ; easing: easeInBack; loop:false; dur : 2000;autoplay: false">
+      </a-box>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>

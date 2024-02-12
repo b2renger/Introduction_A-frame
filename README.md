@@ -1631,12 +1631,11 @@ Check this out !!
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
 
-And see the live example here :
-https://12aframeanimationscadvanced.b2renger.repl.co/
+And see the [live example](https://3e912a9f-44b8-4160-9cee-9b3c8e758645-00-29dzyj6d0nxna.picard.replit.dev/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr-12-animation_advanced.png" width="250" height="250"/>
+<img src="qrcodes/qr12_animation_advanced.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
@@ -1802,12 +1801,11 @@ animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false; start
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
-And see the live example here :
-https://12aframeanimationsdtimeline.b2renger.repl.co/
+And see the [live example](https://39894b3a-c0da-4d71-9981-427a2d84c3bf-00-3cypfn9sykufm.picard.replit.dev/)
 
-You can also scan the qrcode below and show it our good old kanji :
+You can also scan the qrcode below and show it our good old kanji : 
 
-<img src="qrcodes/qr-12-animation_timeline.png" width="250" height="250"/>
+<img src="qrcodes/qr12_animation_timeline.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
