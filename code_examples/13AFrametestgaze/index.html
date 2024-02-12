@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+  </script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <script>
+    AFRAME.registerComponent('cursor-listener', {
+      init: function () {
+        var lastIndex = -1;
+        var COLORS = ['#541690', '#FF4949', '#FF8D29', '#FFCD38', '#6EDCD9', '#9FB4FF'];
+
+        this.el.addEventListener('click', function (evt) {
+          lastIndex = (lastIndex + 1) % COLORS.length;
+          this.setAttribute('material', 'color', COLORS[lastIndex]);
+        });
+
+        this.el.addEventListener('fusing', function (evt) {
+          this.setAttribute('material', 'opacity', 0.75);
+        });
+
+        this.el.addEventListener('mouseleave', function (evt) {
+          this.setAttribute('material', 'opacity', 1);
+        });
+      }
+    });
+  </script>
+
+
+  <script>
+    AFRAME.registerComponent('cursor-open', {
+      init: function () {
+        this.el.addEventListener('click', function (evt) {
+          window.open("https://ateliernum.github.io/#/", '_blank').focus();
+          console.log('I was clicked at: ', evt.detail.intersection.point);
+        });
+
+        this.el.addEventListener('fusing', function (evt) {
+          this.setAttribute('material', 'opacity', 0.75);
+        });
+
+        this.el.addEventListener('mouseleave', function (evt) {
+          this.setAttribute('material', 'opacity', 1);
+        });
+      }
+    });
+  </script>
+
+
+
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best" detectionMode='color_and_matrix' changeMatrixMode="modelViewMatrix" smooth="true"
+    smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600" displayWidth="1280"
+    displayHeight="720" shadow="autoUpdate: true; enabled: true; type:pcf" light="defaultLightsEnabled: true">
+
+
+    <a-marker preset="kanji" size="0.8">
+      <!-- first box changing color -->
+      <a-entity id="box" position="1 0 0" geometry="primitive: box" material="color: blue" cursor-listener
+        animation__scaleup="property: scale; startEvents: fusing; easing: easeInOutBack; dur: 500; from: 1 1 1; to: 1.1 1.1 1.1"
+        animation__scaledown="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500;from: 1.1 1.1 1.1; to: 1 1 1">
+      </a-entity>
+
+      <!-- second box opening a link -->
+      <a-entity id="box" position="-1 0 0" geometry="primitive: box" material="color: red" cursor-open
+        animation__scaleup="property: scale; startEvents: fusing; easing: easeInOutBack; dur: 500; from: 1 1 1; to: 1.1 1.1 1.1"
+        animation__scaledown="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; from: 1.1 1.1 1.1 ;to: 1 1 1">
+      </a-entity>
+
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false">
+      <a-entity cursor="fuse: true; fuseTimeout: 1500" position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01"
+        material="color: white; opacity:0.5; shader: flat"
+        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 250; from: 0.1 0.1 0.1; to: 1 1 1"
+        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+        </a-entity>
+      </a-camera>
+    
+  </a-scene>
+
+
+</body>
+
+</html>

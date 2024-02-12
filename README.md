@@ -1964,12 +1964,11 @@ Considering this code you could easily change the color of a box on mouseclick
 You can check the code here :
 https://replit.com/@b2renger/13AFrametestgaze#index.html
 
-And see the live example here :
-https://13aframetestgaze.b2renger.repl.co/
+And see the [live example](https://f0701c29-f711-4637-af06-164977928c82-00-20y5kmsnvzh84.worf.replit.dev/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr-13-gaze_interaction.png" width="250" height="250"/>
+<img src="qrcodes/qr13_gazeInteraction.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
