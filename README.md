@@ -183,7 +183,7 @@ The content will be architectured this way :
 ```
 
 
-The boilerplate code you'll want to use is this one to get eveything setup and have most of usefull options ready to be tweaked later on.
+The boilerplate code you'll want to use is this one to get eveything setup and have most of the usefull options ready to be tweaked later on.
 
 It just displays a box on a kanji marker :
 
@@ -194,10 +194,10 @@ It just displays a box on a kanji marker :
 <html>
 
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -299,10 +299,10 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 <html>
 
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -436,10 +436,10 @@ You can have a look at the code here :
 <html>
 
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -553,7 +553,7 @@ Then in the assets part of our programm you can import it:
 Then we will use the **"a-image"** tag to display it on the marker :
 
 ```html
-<a-marker  preset="kanji" size: "0.8">
+<a-marker  preset="kanji" size="0.8">
   <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
 </a-marker>
 ```
@@ -573,10 +573,10 @@ You can have a look at the code here :
 <html>
 
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -604,7 +604,7 @@ You can have a look at the code here :
        
     
   
-		<a-marker  preset="kanji" size= "0.8">
+		<a-marker  preset="kanji" size="0.8">
       <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
 		</a-marker>
 
@@ -659,7 +659,7 @@ So :
   ```
 - diplay the video on the marker 
   ```html
-  	<a-marker vidhandler preset="kanji" size: "0.8">
+  	<a-marker vidhandler preset="kanji" size="0.8">
       <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
 		</a-marker>
   ```
@@ -712,10 +712,10 @@ You can have a look at the code here :
 <!doctype html>
 <html>
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -814,7 +814,7 @@ So it may be complicated :) for your conversion needs [shutter encoder](https://
 
 You can also check this project that should get the work done : https://github.com/balataca/aframe-transparent-video-shader
 
-note : I have planed work on this subject, to create a custom component, and examples to handle buttons, transparent video and green-screen medias better.
+note : I have planed to work on this subject, to create a custom component, and examples to handle buttons, transparent video and green-screen medias better.
 
 [**home**](#Contents)
 
@@ -859,10 +859,10 @@ For a complete example you can look here :
 <!doctype html>
 <html>
 <head>
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
 
 	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js">
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
 	</script>
 </head>
@@ -934,9 +934,8 @@ or scan this qr code  and show it kanji !
 Note :
 If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
 
-You can also use modelling software to create text effects such as the very cool [Whomp](https://womp.com/index)
+You can also use modelling software to create text effects : https://www.youtube.com/watch?v=7AAroOotai8&ab_channel=YellowDigitalTutorials
 
-https://www.youtube.com/watch?v=ANFMctJG7KY&ab_channel=Womp
 
 
 [**home**](#Contents)
@@ -1071,8 +1070,6 @@ https://www.youtube.com/watch?v=qa_1LjeWsJg&ab_channel=RyanKingArt
 
 But you can export transparent textures out of the box !
 https://www.8thwall.com/playground/glass-materials-aframe
-
-
 
 
 [**home**](#Contents)
@@ -1317,7 +1314,7 @@ You can also scan the qrcode below and show it the set of markers under:
 
 
 <img src="qrcodes/qr09-barcodes.png" width="250" height="250"/>
-<img src="markers/barcodes_white_back.png" width="640" height="420"/>
+<img src="markers/barcodes_white_back.png" width="640" height="350"/>
 </br>
 
 [**home**](#Contents)
@@ -1398,7 +1395,7 @@ On replit you'll need to add those script in the head of your webpage to have th
 
 ```html
   <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js">
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
   </script>
   <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
 ```
@@ -1623,8 +1620,6 @@ Check this out !!
   </a-sphere>
 </a-entity>
 ```
-
-
 
 <img src="assets/12_animation_advanced.gif" width="250" height="250"/>
 
