@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"></script>
+
+  <script>
+    AFRAME.registerShader('greenscreenShader', {
+      schema: {
+        src: {type: 'selector'},
+        red: {type: 'number', default: 0.0},
+        green: {type: 'number', default: 1.0},
+        blue: {type: 'number', default: 0.0},
+        tolerance: {type: 'number', default: 0.1}, // Adjust the tolerance as needed
+      },
+      init: function (data) {
+        const videoEl = data.src;
+        const videoTexture = new THREE.VideoTexture(videoEl);
+        videoTexture.format = THREE.RGBAFormat;
+        //videoTexture.format = THREE.RGBAFormat;
+        console.log(videoEl)
+        this.material = new THREE.ShaderMaterial({
+          vertexShader: `
+            varying vec2 vUv;
+            void main() {
+              vUv = uv;
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+          `,
+          fragmentShader: `
+            varying vec2 vUv;
+            uniform sampler2D videoTexture;
+            uniform float red;
+            uniform float green;
+            uniform float blue;
+            uniform float tolerance;
+            void main() {
+              vec4 videoColor = texture2D(videoTexture, vUv);
+
+                          
+              if (videoColor.r < (red + tolerance) && videoColor.r> (red - tolerance)
+                  && videoColor.g < (green + tolerance) && videoColor.g> (green - tolerance)
+                  && videoColor.b < (blue + tolerance) && videoColor.b> (blue - tolerance)
+                  ){
+                videoColor.rgba = vec4(0.0);
+              } 
+             gl_FragColor = videoColor;
+
+
+            }
+          `,
+          uniforms: {
+            videoTexture: {type: 't', value: videoTexture},
+            red: {type: 'f', value: data.red},
+            green: {type: 'f', value: data.green},
+            blue: {type: 'f', value: data.blue},
+            tolerance: {type: 'f', value: data.tolerance},
+          },
+          transparent: true
+        });
+      }
+    });
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: false; physicallyCorrectLights; logarithmicDepthBuffer: false;"
+    arjs="trackingMethod: best; debugUIEnabled: false;">
+
+    <a-assets>
+      <video id="vid" src="assets/mask_red_back.mkv" autoplay="true" loop="true" preload="auto" controls="true"
+        playsinline="" webkit-playsinline=""></video>
+    </a-assets>
+
+    <a-marker id="vid-marker" preset="kanji" size="0.8">
+      <a-entity material="shader: greenscreenShader; src: #vid; red:0.; green:0.; blue:0.; tolerance:.1"
+        geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
+      </a-entity>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
