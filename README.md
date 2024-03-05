@@ -635,186 +635,149 @@ or scan this qr code  and show it kanji !
 
 ### Videos
 
-It's pretty much the same as images except we use the 'a-video' tag.
+Videos are a complicated subject on the web. Most browsers try to prevent you from auto-playing videos.
 
-The source video for this example is available [here](https://www.pexels.com/fr-fr/video/groupe-de-meduses-dans-l-aquarium-3616367/)
+Then videos are cool but we would like to also be able to play videos with a transparent background.
 
-So :
-- you drag and drop your video in the assets folder of replit (same as with images) but beware of the size of the video ! we are on the web so big videos means a lot of loading time and many energy consumed.
-- load the video inside the asset tag of our scene
-  ```html
-  <a-assets>
-    <video 
-      id="vid" 
-      src="./assets/video.mp4"
-      autoplay="true"
-      loop="true"
-      preload="auto"
-      controls="true"
-      playsinline=""
-      webkit-playsinline=""
-      
-      ></video>
-  </a-assets>
-  ```
-- diplay the video on the marker 
-  ```html
-  	<a-marker vidhandler preset="kanji" size="0.8">
-      <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
-		</a-marker>
-  ```
+Well it is possible, not easy but possible : 
+- Safari supports HEVC with alpha, Chrome does not.
+- Chrome supports VP9 with alpha, Safari does not.
 
-Well the video is displayed but it doesn't actually play and that's another story if you  want to play the video. 
+That's why in the end I wrote a full component to handle videos. It will :
+- load a video
+- display it
+- if you click on the screen it will force the play function of the video
+- it has a mode called **chromakey** to be able to remove a specific color from the video and turn it to transparent pixels. That means that if you export a video with a solid green background you can replace the green with transparent pixels.
 
-Most of the videos in a webpage aren't allowed to just do autplay. So you may need to create a little script : the idea is to play the video only if the marker is visible. 
+It works like this :
+- load a video in the assets tag (like images etc.) - with a bunch of options
+- in the marker tag we will create an entity
+  - this entity will display a geometry (a plane)
+  - this plane will have a material which has been coded to display the video
+- this custom code actually accepts parameters : 
 
-Let's take a look at the scripting tools we can use in A-Frame !
-You may have noticed that in the "a-marker" tag the word "vidhandler". This key work can be used to attach a script - and by script we do mean a bit of code to handle interactivity.
-
-There is a full article on [how to write a component for a-frame](https://aframe.io/docs/1.2.0/introduction/writing-a-component.html#registering-the-component-with-aframe-registercomponent)
-
-Basically we need to :
-- register the component with a frame system (registerComponent)
-- write what it does on load (in the init function)
-- write what it does every frame (in the tick function)
+So loading the video in the assets tag looks like this :
 
 ```html
-  <script>
-    AFRAME.registerComponent("vidhandler", {
-      init: function() {
-        this.toggle = false;
-        document.querySelector("#vid").pause(); //reference to the video
+   <a-assets>
+      <video id="vid" src="assets/mask_blue_sil.mp4" autoplay="true" loop="true" preload="auto" controls="true"
+        muted="true" playsinline="" webkit-playsinline=""></video>
+    </a-assets>
+```
+
+The marker tag with the entity looks like this :
+```html
+    <a-marker preset="kanji" size="0.8">
+      <a-entity material="shader: chromakey; src: #vid; chroma: true; color: 0. 0. 1."
+        geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
+      </a-entity>
+    </a-marker>
+```
+
+Have a look at the "material" parameter from the entity tag :
+- it specifies to run a specific component called "chromakey"
+- the source (**src**) of the video displayed is the one with the id *#vid* - the same we used in our assets.
+- the **chroma** parameter is set to *true* - that means that we will remove a color from the video => set it to false if you just want the video unaltered
+- the **color** parameter lets you specify what color you want to remove in rgb every value between 0.0 and 1.0
+
+In the "geometry" you can change the "width" and "height" of your plane to your desired aspect ratio.
+
+The full code of the component look like this. You can copy / paste it in any "head" tag of a project
+```js
+ <script defer>
+    // https://github.com/nikolaiwarner/aframe-chromakey-material
+    AFRAME.registerShader('chromakey', {
+      schema: {
+        src: {type: 'map'},
+        color: {default: {x: 0.0, y: 1.0, z: 0.0}, type: 'vec3', is: 'uniform'},
+        chroma: {type: 'bool', is: 'uniform'},
+        transparent: {default: true, is: 'uniform'}
       },
-      tick: function() {        
-        if (document.querySelector("a-marker").object3D.visible == true) { // get the state of our marker : is it visible ?
-          if (!this.toggle) {
-            this.toggle = true;
-            document.querySelector("#vid").play();
-          }
-        } else {
-          this.toggle = false;
-          document.querySelector("#vid").pause();
-        }
-      }
-    });
+
+      init: function (data) {
+        const videoEl = data.src;
+        document.addEventListener('click', () => {
+          videoEl.play();
+        });
+
+        var videoTexture = new THREE.VideoTexture(data.src)
+        videoTexture.minFilter = THREE.LinearFilter
+        this.material = new THREE.ShaderMaterial({
+          uniforms: {
+            chroma: {
+              type: 'b',
+              value: data.chroma
+            },
+            color: {
+              type: 'c',
+              value: data.color
+            },
+            myTexture: {
+              type: 't',
+              value: videoTexture
+            }
+          },
+          vertexShader:
+            `
+            varying vec2 vUv;
+            
+            void main(void)
+            {
+              vUv = uv;
+              vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+              gl_Position = projectionMatrix * mvPosition;
+            }
+          `
+          ,
+          fragmentShader:
+            `
+              uniform sampler2D myTexture;
+              uniform vec3 color;
+              uniform bool chroma;
+              varying vec2 vUv;
+              
+              void main(void)
+              {
+                vec3 tColor = texture2D( myTexture, vUv ).rgb;
+                float a;
+                if(chroma == true){
+                   a = (length(tColor - color) - 0.5) * 7.0;
+                }
+                else {
+                  a = 1.0;
+                }
+                
+                gl_FragColor = vec4(tColor, a);
+              }
+            `
+        })
+      },
+
+      update: function (data) {
+        this.material.color = data.color
+        this.material.src = data.src
+        this.material.transparent = data.transparent
+      },
+
+    })
+
   </script>
 ```
 
-<img src="assets/04_video.gif" width="400" height="600"/>
+<img src="assets/video.gif" width="250" height="250"/></br>
 
-You can have a look at the code here :
-
-<details>
-    <summary>Code</summary>
-
-```html
-
-<!doctype html>
-<html>
-<head>
-	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
-
-	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
-
-	</script>
-</head>
-
-
-
-<body style="margin : 0px; overflow: hidden;">
-
-	<a-scene 
-    embedded arjs="sourceType: webcam;"
-    vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best"
-    detectionMode= 'color_and_matrix' 
-    changeMatrixMode= "modelViewMatrix" 
-	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth= "800" sourceHeight="600" 
-    displayWidth= "1280" displayHeight="720"
-    shadow="autoUpdate: true; enabled: true; type:pcf"
-    light="defaultLightsEnabled: false"
-    
-     >
-
-  <a-assets>
-    <video 
-      id="vid" 
-      src="./assets/video.mp4"
-      autoplay="true"
-      loop="true"
-      preload="auto"
-      controls="true"
-      playsinline=""
-      webkit-playsinline=""
-      
-      ></video>
-  </a-assets>
-       
-    
-  
-		<a-marker   vidhandler id="vid-marker" preset="kanji" size= "0.8">
-      <a-video src="#vid" rotation="90 0 0" width="2" height="1.5"></a-video>
-		</a-marker>
-
-		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-	</a-scene>
-
-  <script>
-    AFRAME.registerComponent("vidhandler", {
-      init: function() {
-        this.toggle = false;
-        document.querySelector("#vid").pause(); //reference to the video
-      },
-      tick: function() {        
-        if (document.querySelector("a-marker").object3D.visible == true) { // get the state of our marker : is it visible ?
-          if (!this.toggle) {
-            this.toggle = true;
-            document.querySelector("#vid").play();
-          }
-        } else {
-          this.toggle = false;
-          document.querySelector("#vid").pause();
-        }
-      }
-    });
-  </script>
-
-</body>
-
-</html>
-
-
-
-```
-</details>
-
-
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/04AFRAMEARVideos#index.html
-
-You can run it live with [this adress :](https://f569f52f-3f4b-412d-82a1-42d3043fff24-00-gjnp4mj6md98.janeway.replit.dev/)
-
+You can have a look at the whole example here :
+https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshader
 
 or scan this qr code  and show it kanji !
 
 <img src="qrcodes/qr04.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-Yes ! I know what you think : what about videos with transparent background ?
 
-Well it is possible, not easy but possible : 
-- Safari supports HEVC with alpha, Chrome does not.
-- Chrome supports VP9 with alpha, Safari does not.
+You want to export mp4 files with h264 codec and a
+for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
 
-So it may be complicated :) for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
-
-You can also check this project that should get the work done : https://github.com/balataca/aframe-transparent-video-shader
-
-note : I have planed to work on this subject, to create a custom component, and examples to handle buttons, transparent video and green-screen medias better.
 
 [**home**](#Contents)
 
