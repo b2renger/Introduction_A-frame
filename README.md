@@ -1013,7 +1013,7 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-## Note about textures and animations
+#### Note about textures and animations
 
 When you work in a 3D modelling software not everything can be exported. Most of the time softwares like blender, c4d, houdini etc are made to produce images or animations; most of the time the whole creation process stays inside the software and you output a final image or movie.
 
