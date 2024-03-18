@@ -774,9 +774,14 @@ The full code of the component look like this. You can copy / paste it in any "h
 You can have a look at the whole example here :
 https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshader
 
-or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr04.png" width="250" height="250"/>
+You can run it live at [this adress :](
+https://b2renger.github.io/Introduction_A-frame/code_examples/04AFRAMEARVideosgreenscreenshader/)
+
+
+or scan this qr code and show it kanji ! (if nothing happens click on the screen to launch the video)
+
+<img src="qrcodes/qr_04.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -892,11 +897,11 @@ For a complete example you can look here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/05AFRAMETexts#index.html
 
-You can run it live with [this adress :](https://0fe615ca-353b-4995-bc83-9bc11e4848e1-00-qsmh8u7k6hhz.picard.replit.dev/)
+You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/05AFRAMETexts/index.html)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr05.png" width="250" height="250"/>
+<img src="qrcodes/qr_05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 Note :
@@ -954,19 +959,16 @@ It's as easy as ever ! :)
   ```
 
 
-
-
-
 <img src="assets/07_obj_mtl.gif" width="400" height="400"/>
 
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
 
-You can run it live with [this adress :](https://60c0875c-c7d1-4a46-881a-7c4e504d8269-00-itgu0gjq1ppp.janeway.replit.dev/)
+You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/07AFRAME3DModels00obj-mtl/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr07-obj.png" width="250" height="250"/>
+<img src="qrcodes/qr_07-obj.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -1010,7 +1012,7 @@ Then attach it to a marker without forgetting to add the **animation-mixer** pro
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
 
-You can run it live with [this adress :](https://63e7b513-595c-4452-85d4-6b9d6405f780-00-3g4tbmnrsel9n.picard.replit.dev/)
+You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/07AFRAME3DModels01glb/)
 
 
 or scan this qr code  and show it kanji !
@@ -1155,11 +1157,11 @@ The example should do something like this
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/06AFRAMEP5jssketch#index.html
 
-You can run it live with [this adress](https://417c9cab-18af-4a0b-a403-06098e19da5d-00-1ovp2gx1y09pg.worf.replit.dev/)
+You can run it live with [this adress](https://b2renger.github.io/Introduction_A-frame/code_examples/06AFRAMEP5jssketch/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr06.png" width="250" height="250"/>
+<img src="qrcodes/qr_06.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 [**home**](#Contents)
