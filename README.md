@@ -35,6 +35,11 @@ We use several tools :
 - a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 - a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
 
+Note : Replit has put some restrictions on its webhosting capabilities, so in the future a new section on deployment will appear in this course.
+Options are :
+- [github pages](https://www.w3schools.com/git/git_remote_pages.asp?remote=github) 
+- [cloudflare pages](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+
 [**home**](#Contents)
 
 ### What is A-Frame ?
@@ -1465,6 +1470,8 @@ https://replit.com/@b2renger/15AFramesurfaces#index.html
 
 <img src="qrcodes/qr15_markerless.png" width="250" height="250"/>
 
+A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameModelonsurfaceandshadows#index.html
+
 
 
 [**home**](#Contents)
@@ -2023,6 +2030,17 @@ Stemkoski ressources about AFRAME : https://stemkoski.github.io/A-Frame-Examples
 Stemkoski examples about AR in threeJS : https://stemkoski.github.io/AR-Examples/
 
 Print example for irreverent : https://github.com/b2renger/Irreverent/tree/main
+
+Webxr attribute for a-scene : https://aframe.io/docs/1.5.0/components/webxr.html
+
+Plane detection hit test etc. : https://github.com/stspanho/aframe-hit-test?tab=readme-ov-file
+
+Ada rose canon on light estimation : https://medium.com/samsung-internet-dev/use-new-augmented-reality-features-with-just-a-few-lines-of-code-with-webxr-and-aframe-c6f3f5789345
+
+Deploy project to cloudflare pages : https://www.youtube.com/watch?v=hIB8DuFeSpU&ab_channel=JamesQQuick
+
+Deploy project to github pages : https://docs.github.com/en/pages/quickstart
+
 
 
 [**home**](#Contents)
