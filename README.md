@@ -40,6 +40,7 @@ Options are :
 - [github pages](https://www.w3schools.com/git/git_remote_pages.asp?remote=github) 
 - [cloudflare pages](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
 
+
 [**home**](#Contents)
 
 ### What is A-Frame ?
@@ -89,7 +90,7 @@ Well to be clear the AR world is globally a mess, in this course we choose to fo
 To do that several method are use to pin / anchor the content :
 - **markers detection** : you need to use a specific image to detect its position in a video feed and place content onto it. **ARjs**
 - **image detection** : you can train a specific image of your choice to be a marker. You'll need to take a few steps though to make your program recognize your image; be aware that tracking quality will be dependent on the image you choose. **mindAR**
-- **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet. **modelViewer**
+- **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet. **modelViewer** can work well in many use cases. Aframe does support this aswell.
 - **gps coordinates** : you can pin some contents to a specific gps position, but this is highly experimental at the moment and tracking is a bit shaky. **Arjs**
 - **face detection** : you can detect the presence of a face in an image and then pin content onto it. **mindAR**
 
@@ -240,12 +241,11 @@ The options in the 'a-scene' tags are numerous but we won't go into details abou
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/00AFrameARboilerplate#index.html
 
-You can run it live at [this adress :](
-https://5aab5b84-4f8a-4ade-b2b0-181337c92994-00-2jcfz2zh3pd2k.janeway.replit.dev/)
+You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/00AFrameARboilerplate/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr00.png" width="250" height="250"/>
+<img src="qrcodes/qr_00.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -364,12 +364,12 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/01AFrameARShapes#index.html
 
-You can run it live at [this adress :](https://f041d2d5-5f39-4dde-b3c7-b647fc4a61e7-00-2gd64doise4qw.worf.replit.dev/)
+You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/01AFrameARShapes/)
 
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr01.png" width="250" height="250"/>
+<img src="qrcodes/qr_01.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
