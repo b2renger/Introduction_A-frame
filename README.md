@@ -525,11 +525,11 @@ You can have a look at the code here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
 
-You can run it live at [this adress :](https://fd834ebf-33d1-4445-b99b-adf722b2fc44-00-1ik9fn26kep3j.kirk.replit.dev/)
+You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/02AFrameARShapesmixins/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr02.png" width="250" height="250"/>
+<img src="qrcodes/qr_02.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
@@ -628,11 +628,11 @@ You can have a look at the code here :
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/03AFRAMEARImages#index.html
 
-You can run it live at [this adress :](https://2c704806-1df3-4b6e-9e07-4dc1cf6f073b-00-c2gimh8gsxcx.worf.replit.dev/)
+You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/03AFRAMEARImages/)
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr03.png" width="250" height="250"/>
+<img src="qrcodes/qr_03.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
