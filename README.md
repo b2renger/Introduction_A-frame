@@ -1230,12 +1230,12 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
 You can find the code on replit here for edition / forking :
 https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
 
-You can run it live with [this adress](https://d4e76c1c-0ac8-4a8b-9573-4e5c2e9cf133-00-3cksolu2r7m51.picard.replit.dev/)
+You can run it live with [this adress](https://b2renger.github.io/Introduction_A-frame/code_examples/08AFRAMEHiroandKanji/)
 
 or scan this qr code  and show it Kanji and Hiro!
 
 
-<img src="qrcodes/qr08_hiroNkanji.png" width="250" height="250"/></br>
+<img src="qrcodes/qr_08.png" width="250" height="250"/></br>
 
 <img src="markers/kanji.png" width="250" height="250"/>
 <img src="markers/hiro.png" width="250" height="250"/></br>
@@ -1278,13 +1278,13 @@ When you want to use a certain marker you then just need to add this type of cod
 You can check the code here
 https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
 
-And see the [live example](https://0de5aba3-7c4e-4b4b-8441-3b4331dc101c-00-drtdbex51q6m.kirk.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/09AFRAMEBarcodes/)
 
 You can also scan the qrcode below and show it the set of markers under:
 
 
-<img src="qrcodes/qr09-barcodes.png" width="250" height="250"/>
-<img src="markers/barcodes_white_back.png" width="640" height="350"/>
+<img src="qrcodes/qr_09.png" width="250" height="250"/>
+<img src="markers/barcodes_white_back.png" width="640" height="400"/>
 </br>
 
 [**home**](#Contents)
@@ -1323,7 +1323,7 @@ And voilà !
 You can check the code here
 https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
 
-And see the [live example](https://e2ec5474-7bbb-4c68-bde4-3ea7cd000520-00-1eo93w5izsnw7.worf.replit.dev/) 
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/10AFRAMECustommarkers/) 
 You can also scan the qrcode below and show it our beautiful custom marker :
 
 <img src="qrcodes/qr10_custom.png" width="250" height="250"/>
@@ -1395,11 +1395,11 @@ As we used two images we can specify **targetIndex:0** to track the first one, a
 You can check the code here :
 https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 
-And see the [live example](https://3f6d0c4f-c905-4ac9-9fcd-bb40edeb6914-00-1mv3genvkjdp6.janeway.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/11AFRAMEmindarjsnatural-image/)
 
 You can also scan the qrcode below and show it our beautiful custom markers :
 
-<img src="qrcodes/qr11_naturalImage.png" width="250" height="250"/>
+<img src="qrcodes/qr_11.png" width="250" height="250"/>
 </br>
 <img src="markers/MarietteCropCrop.jpg" width="250" height="250"/>
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
@@ -1409,26 +1409,34 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 [**home**](#Contents)
 
 ### Face tracking (mind-arjs)
-**todoc later**
 
+**todoc**
 https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 [**home**](#Contents)
 
 ### GPS coordinates
-**todoc later**
+
+**todoc**
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
-basic example : https://replit.com/@b2renger/AFRAMEGPS
+basic example to get started : https://replit.com/@b2renger/AFRAMEGPS
 
 [**home**](#Contents)
 
 ### Marker less tracking 
 
+We have two options to do this on a browser with a mobile phone :
+- modelViewer : a "product" made by google
+- webXR mode in A-Frame
+
+Both are mainly limited to chrome mobile browser on Android or iOS.
+(https://caniuse.com/webxr)
+
 #### ... with modelViewer
 
-The best option here is to go with [modelViewer](https://modelviewer.dev/)
+The most simple option here is to go with [modelViewer](https://modelviewer.dev/)
 
 modelViewer work online with its own editor and it's very easy to build a mockup, change the model and run it on a smartphone - it will only work on smartphone though and will only support 3d models but you have a lot of options to :
 - customize the lighting
@@ -1448,14 +1456,14 @@ You can test the scene by clicking **"deploy to mobile"**.
 Once you are done, you can download the code by clicking the **"download scene"**.
 This will download a zip file that you can extract and upload to a new replit.
 
-<img src="assets/santar.gif" width="600" height="400"/>
+<img src="assets/santar.gif" width="640" height="350"/>
 </br>
 
 You can checkout the replit code here : https://replit.com/@b2renger/ARmodelViewer
 
 And you can test the experience following this qr code (you'll need to be on a mobile phone to test the ar)
 
-<img src="qrcodes/qr16_arModelViewer.png" width="250" height="250"/>
+<img src="qrcodes/qr_16_model_viewer.png" width="250" height="250"/>
 </br>
 
 
@@ -1468,9 +1476,6 @@ https://aframe.io/docs/1.3.0/components/webxr.html#sidebar
 A first simplified implementation is available here : 
 https://replit.com/@b2renger/15AFramesurfaces#index.html
 
-[Live example](https://03689755-534d-4f22-9143-7c65262af07b-00-vq1jz1q3wf1m.riker.replit.dev/) (doesn't work on desktop) 
-
-<img src="qrcodes/qr15_markerless.png" width="250" height="250"/>
 
 A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameModelonsurfaceandshadows#index.html
 
@@ -1480,9 +1485,11 @@ A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameMode
 
 --- 
 ## Qr codes and "marker codes"
-**todoc later**
+
+How to deliver both the qr code and the marker at the same time ?
 
 https://nicolcarpignoli.medium.com/how-to-deliver-ar-on-the-web-only-with-a-qr-code-139bb90e82f1
+
 
 [**home**](#Contents)
 
@@ -1508,11 +1515,11 @@ If you read the text after the **"animation" attribute** it should be almost sel
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
 
-And see the [live example](https://bc3d285b-62d6-4ec2-b69b-a333f5a3dd0d-00-1uc8ql45ahio6.kirk.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsabasic/)
 
 You can also scan the qrcode below and show it our good old kanji:
 
-<img src="qrcodes/qr12_animationBasic.png" width="250" height="250"/>
+<img src="qrcodes/qr_12_anim_basic.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
@@ -1549,11 +1556,11 @@ Our object will now have three separate animation and the a-box tag will have a 
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
 
-And see the [live example here](https://900d23c1-c266-486b-80a6-5bf021fa79f0-00-1zjfqqi84nuas.kirk.replit.dev/)
+And see the [live example here](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsbstackedanimations/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr12-animation_intermediate.png" width="250" height="250"/>
+<img src="qrcodes/qr_12_anim_stacked.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
@@ -1598,7 +1605,7 @@ Check this out !!
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
 
-And see the [live example](https://3e912a9f-44b8-4160-9cee-9b3c8e758645-00-29dzyj6d0nxna.picard.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationscadvanced/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
@@ -1768,11 +1775,11 @@ animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false; start
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
-And see the [live example](https://39894b3a-c0da-4d71-9981-427a2d84c3bf-00-3cypfn9sykufm.picard.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsdtimeline/)
 
 You can also scan the qrcode below and show it our good old kanji : 
 
-<img src="qrcodes/qr12_animation_timeline.png" width="250" height="250"/>
+<img src="qrcodes/qr_12_anim_timeline.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
@@ -1931,15 +1938,16 @@ Considering this code you could easily change the color of a box on mouseclick
 You can check the code here :
 https://replit.com/@b2renger/13AFrametestgaze#index.html
 
-And see the [live example](https://f0701c29-f711-4637-af06-164977928c82-00-20y5kmsnvzh84.worf.replit.dev/)
+And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/13AFrametestgaze/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr13_gazeInteraction.png" width="250" height="250"/>
+<img src="qrcodes/qr_13_gaze_interaction.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-An extra example will help you to play a sound on a "cursor-click" :
+
+An extra example will help you to **play a sound on a "cursor-click"** :
 https://replit.com/@b2renger/14AFramegaze2audio
 
 
