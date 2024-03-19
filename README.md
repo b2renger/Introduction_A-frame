@@ -1326,7 +1326,7 @@ https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
 And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/10AFRAMECustommarkers/) 
 You can also scan the qrcode below and show it our beautiful custom marker :
 
-<img src="qrcodes/qr10_custom.png" width="250" height="250"/>
+<img src="qrcodes/qr_10.png" width="250" height="250"/>
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
 
