@@ -1609,7 +1609,7 @@ And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_
 
 You can also scan the qrcode below and show it our good old kanji :
 
-<img src="qrcodes/qr12_animation_advanced.png" width="250" height="250"/>
+<img src="qrcodes/qr_12_anim_advanced.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
