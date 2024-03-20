@@ -1479,6 +1479,9 @@ https://replit.com/@b2renger/15AFramesurfaces#index.html
 
 A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameModelonsurfaceandshadows#index.html
 
+Sadly it will not work on iphones due to apple not supporting webxr api on iOS.
+This app might help though : https://apps.apple.com/fr/app/webxr-viewer/id1295998056
+
 
 
 [**home**](#Contents)
