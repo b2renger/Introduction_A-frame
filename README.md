@@ -1249,6 +1249,28 @@ If you need more markers and don't want to produce them yourself you can use bar
 
 If you want to know more you can look [here](https://github.com/nicolocarpignoli/artoolkit-docs/blob/master/3_Marker_Training/marker_barcode.md)
 
+You can use this barcode marker generator : https://au.gmented.com/app/marker/marker.php
+
+It will help you generate the maker you want with a specific 'id'.
+
+And specially if you want marker with a white border ! This could be useful to do stencils :)
+
+Note thatI did include another border to make the contrast good enough for detection.
+
+This first image is the **black border marker** for the id 53 with a white contrasting border.
+
+<img src="markers/53_black.png" width="250" height="250"/>
+
+This second image is the **white border marker** with a contrasting black border.
+
+<img src="markers/53_white.png" width="250" height="250" />
+
+I know it is confusing ... the thing is like this they are printable on white paper (which is mode common); it's not really easy to print in white on a black paper.
+
+
+
+#### Black border markers
+
 To use barcodes you need to tweak the arjs scene settings :
 ```
 detectionMode: mono_and_matrix; matrixCodeType: 3x3;
@@ -1286,6 +1308,65 @@ You can also scan the qrcode below and show it the set of markers under:
 <img src="qrcodes/qr_09.png" width="250" height="250"/>
 <img src="markers/barcodes_white_back.png" width="640" height="400"/>
 </br>
+
+
+#### White border markers
+
+It is pretty straight forward to use, if you understood how to work with the previous black border markers.
+
+It is not really worth an example : you basically just have to add an option to the arjs attribute in the scene-tag :
+
+```
+labelingMode: white_region;
+```
+
+Here is the a fully functional code
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded
+        arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; labelingMode: white_region;' renderer='precision: mediump;'>
+
+        <a-marker type='barcode' value='0'>
+            <a-sphere position="0 0.5 0" radius="1" color="red" />
+        </a-marker>
+
+        <a-entity camera></a-entity>
+
+    </a-scene>
+
+
+</body>
+
+</html>
+```
+
+That you can find on replit to fork and run : 
+https://replit.com/@b2renger/09AFRAMEBarcodeswhite#index.html
+
+Just show it the marker with the id "0"
+<br></br>
+<br></br>
+<img src="markers/white_000.png" width="250" height="250"/>
+<br></br>
+<br></br>
+I didn't include the black constrating border here, because the back of the page is black and it should be enough to detect "the end" of the marker.
+
+
+
 
 [**home**](#Contents)
 
