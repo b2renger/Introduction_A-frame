@@ -2030,9 +2030,22 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+## Extra
 
+### Sound !
 An extra example will help you to **play a sound on a "cursor-click"** :
 https://replit.com/@b2renger/14AFramegaze2audio
+
+### 3D print
+In the extra folder of this repo, you will find a blender file to help you create 3D of barcode markers.
+
+<img src="assets/blender.png" width="450" height="250"/>
+
+Then you'll be able to export an stl file and print it with any 3D printer. You can start with black filament and when you begin to print the extruded parts change the filament for a white one.
+
+et voilà :)
+
+<img src="assets/3DMarker.jpg" width="250" height="250"/>
 
 
 [**home**](#Contents)
