@@ -725,7 +725,9 @@ It works like this :
 - in the marker tag we will create an entity
   - this entity will display a geometry (a plane)
   - this plane will have a material which has been coded to display the video
-- this custom code actually accepts parameters : 
+- this custom code actually accepts parameters : like is chromakey enabled or not and on what color is it active.
+
+Be aware that this technique does not play the audio contained in the video. If you want to play both audio and video, read through this section, there is an example at the end to combine the audio script and this video example.
 
 So loading the video in the assets tag looks like this :
 
@@ -853,6 +855,9 @@ or scan this qr code and show it kanji ! (if nothing happens click on the screen
 
 You want to export mp4 files with h264 codec and a
 for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
+
+If you want to play audio with the video, you'll need to have a video (mp4) and an audio file seperated (mp3). Check out this exampl that combines both scripts :
+https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
 
 
 [**home**](#Contents)
@@ -2108,7 +2113,7 @@ Then you'll be able to export an stl file and print it with any 3D printer. You 
 
 et voilà :)
 
-<img src="assets/3DMarker.jpg" width="250" height="250"/>
+<img src="assets/3Dmarker.jpg" width="250" height="250"/>
 
 
 [**home**](#Contents)
