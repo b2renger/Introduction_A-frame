@@ -692,7 +692,7 @@ You can run it live at [this adress :](https://b2renger.github.io/Introduction_A
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr_14_audio_on_sight.png" width="250" height="250"/>
+<img src="qrcodes/qr_14-audio_on_sight.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
