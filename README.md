@@ -638,6 +638,72 @@ or scan this qr code  and show it kanji !
 
 [**home**](#Contents)
 
+### Audio
+The first example aims at **playing a sound when a marker is on sight** ! (thank you @zhakk-harn)
+
+
+The breakdown of this example goes like this :
+In the head of our page we defer a script which is a component to play audio :
+```js
+<script defer>
+    AFRAME.registerComponent("audiohandler", {
+      init: function () {
+        this.trackedElements = document.querySelectorAll(
+          "a-marker[audiohandler]"
+        );
+      },
+      tick: function () {
+        this.trackedElements.forEach((marker) => {
+       
+          const sound = document.querySelector(
+            marker.attributes.audioReference.value
+          );
+          if (marker.object3D.visible) {
+           
+            if (sound.paused) {
+              sound.play();
+            }
+          } else {
+        
+            if (!sound.paused) {
+              sound.pause();
+              sound.currentTime = 0;
+            }
+          }
+        });
+      },
+    });
+  </script>
+```
+Then we can load assets :
+```html
+  <a-assets>
+    <audio id="sound1" src="assets/634332__josefpres__bass-loops-077-with-drums-long-loop-120-bpm.mp3" preload="auto"></audio>
+  </a-assets>
+```
+And finally call the script on our maker with the reference of the audio file :
+```html
+  <a-marker audiohandler audioReference="#sound1"  preset="kanji" size="0.8"></a-marker>
+```
+You can find the code forkable and usable on replit at this adress :
+https://replit.com/@b2renger/14AFRAMEARAudio#index.html
+
+You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/14AFRAMEARAudio/)
+
+or scan this qr code  and show it kanji !
+
+<img src="qrcodes/qr_14_audio_on_sight.png" width="250" height="250"/>
+<img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+An extra example will help you to **play a sound on a "cursor-click"**, it's more advanced and you'll need to read the *interaction* part of this cook book to understand how "cursors" and "fusing" actually work.
+
+https://replit.com/@b2renger/14AFramegaze2audio
+
+
+
+[**home**](#Contents)
+
 ### Videos
 
 Videos are a complicated subject on the web. Most browsers try to prevent you from auto-playing videos.
@@ -2030,11 +2096,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-## Extra
 
-### Sound !
-An extra example will help you to **play a sound on a "cursor-click"** :
-https://replit.com/@b2renger/14AFramegaze2audio
+## Extra
 
 ### 3D print
 In the extra folder of this repo, you will find a blender file to help you create 3D of barcode markers.

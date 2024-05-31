@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"></script>
+
+
+  <script defer>
+    AFRAME.registerComponent("audiohandler", {
+      init: function () {
+        this.trackedElements = document.querySelectorAll(
+          "a-marker[audiohandler]"
+        );
+      },
+      tick: function () {
+        this.trackedElements.forEach((marker) => {
+
+          const sound = document.querySelector(
+            marker.attributes.audioReference.value
+          );
+          if (marker.object3D.visible) {
+
+            if (sound.paused) {
+              sound.play();
+            }
+          } else {
+
+            if (!sound.paused) {
+              sound.pause();
+              sound.currentTime = 0;
+            }
+          }
+        });
+      },
+    });
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: false; physicallyCorrectLights; logarithmicDepthBuffer: false;"
+    arjs="trackingMethod: best; debugUIEnabled: false;">
+
+
+    <a-assets>
+      <audio id="sound1" src="assets/634332__josefpres__bass-loops-077-with-drums-long-loop-120-bpm.mp3" preload="auto">
+      </audio>
+    </a-assets>
+
+
+    <a-marker audiohandler audioReference="#sound1" preset="kanji" size="0.8">
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
