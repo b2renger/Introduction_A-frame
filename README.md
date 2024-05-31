@@ -1083,7 +1083,7 @@ You can run it live with [this adress :](https://b2renger.github.io/Introduction
 
 or scan this qr code  and show it kanji !
 
-<img src="qrcodes/qr07-glb.png" width="250" height="250"/>
+<img src="qrcodes/qr_07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 #### Note about textures and animations
