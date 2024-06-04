@@ -2176,6 +2176,8 @@ Playing transparent videos : https://github.com/balataca/aframe-transparent-vide
 
 ### go further
 
+Excellent video series for VR use cases on youtube by clarecreate : https://www.youtube.com/playlist?list=PLP3KjR1TMw7ekqC4o5gy0rR4odw7Jga84
+
 What is a QR code : https://typefully.com/DanHollick/qr-codes-T7tLlNi
 
 Build QR codes : http://robko.ch/qr-designer/
