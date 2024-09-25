@@ -150,6 +150,9 @@ On the top right corner you have a small button (right next to the adress bar) t
 ---
 # The Setup
 
+https://github.com/user-attachments/assets/055da2fd-e9d5-4112-8c46-b86da93d4fae
+
+
 ## The technical setup
 The technical setup will help you setup github, projectIDX so that they can work together.
 
