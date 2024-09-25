@@ -36,6 +36,12 @@ We use several tools :
 - a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 - a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
 
+Note : we used replit at a time instead of github and projectIDX. 
+- replit was good, easy and free, but it's not free anymore.
+- using github let us own our code and it's distribution.
+- projectIDX is a better code editor and let us do all what we need.
+You will sometime find link that will send you to replit to see the code, how it is structured etc.
+
 [**home**](#Contents)
 
 ### What is A-Frame ?
