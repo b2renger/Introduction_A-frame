@@ -479,7 +479,7 @@ In the```<body>```, and this is where everything comes into play for the content
 To sumup, this code creates an AR experience where an orange box appears in a 3D spce when the marker 'kanji' is detected by the camera.
 
 
-##### Step 5 : Test
+#### Step 5 : Test
 
 - Save changes : Save your index.html file.
 
