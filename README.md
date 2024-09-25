@@ -9,13 +9,13 @@ This is not meant to be exhaustive and code oriented, the goal is to be able to 
 
 ## Contents
 
-You can read "the tools" to get acquianted with the techno and stuff we will use to make everything work ie cross-plateform AR web based.
+You can read **"the tools"** to get acquainted with the techno and stuff we will use to make everything work ie cross-plateform AR web based.
 
-First you have a cookbook style part about the kind of content : get the minimal code working to display 3D / videos / text etc. over a basic marker.
+First you have a cookbook style part about the kind of **content** : get the minimal code working to display 3D / videos / text etc. over a basic marker.
 
-Second you have the same kind of cookbook ressource going through the several types of detections (makers, barcodes, natural images etc.)
+Second you have the same kind of cookbook ressource going through the **several types of detections** (makers, barcodes, natural images etc.)
 
-Then you have a more technical part about animation of content and finaly a part about interaction which will require basic skills on A-Frame and a bit of javascript coding. So to dive in both those last part you should a least get acquainted with a basic example of detection using kanji marker and 3D shapes/
+Then you have a more technical part about **animation** of content and finally a part about **interaction** which will require basic skills on A-Frame and a bit of javascript coding. So to dive in both those last part you should a least get acquainted with a basic example of detection using kanji marker and 3D shapes/
 
 Have Fun !
 
@@ -35,8 +35,6 @@ We use several tools :
 - a library for marker detection / gps markers in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
 - a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 - a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
-- a library for face detection : [faceAR](https://github.com/jeromeetienne/AR.js/tree/master/aframe/examples/face)
-
 
 [**home**](#Contents)
 
@@ -68,7 +66,6 @@ For instance this code :
 Creates a scene with a sky, a floor (or plane) and 3 3D primitives (a box, a sphere and a cylinder); each element has **attributes** to specify their *position*, *rotation*, *color* etc.
 
 <img src="assets/aframe_starter.png" width="640" height="360" /><br>
-
 
 The live result can be seen here : https://glitch.com/~aframe
 
@@ -144,7 +141,6 @@ On the top right corner you have a small button (right next to the adress bar) t
 [**home**](#Contents)
 
 
-
 ---
 # The Setup
 
@@ -159,64 +155,167 @@ Github will host our files and changes to it. In the end our web app will be ser
 You'll be guided to setup github pages to host your own website.
 
 
+#### Step 1 : Create a GitHub account and repository
+- *Create a GitHub account* : If you don't already have one, go to https://github.com/signup?source=login and create an account.
+
+**☢️ The username you choose will be used for the address that needs to be typed in to see your project. <u>Choose a short name! no spaces, no special characters (accents etc.)</u>**
+
+<div align="center"> 
+  <img src="assets/Capture_signup_github.png" alt="signup github page" width="49%" height="400"/>
+  <img src="assets/Capture_login_github.png" alt="login github page" width="49%" height="400"/>
+</div>
+
+- *Create a new repository* : Once you have logged in, click on the "New repository" button. Give your repository a name (for example, "microProjetAr"), add an optional description, and click on "Create repository".
+
+<div align="center"> 
+<img src="assets/Capture_github_newRepo.png" alt="menu to create new repo" width="75%" />
+</div>
+</br>
+<div align="center"> 
+<img src="assets/Capture_github_newRepoCreation.png" alt="menu to create new repo" width="75%" />
+</div>
+
+#### Step 2: Activate GitHub Pages
+We're now going to configure GitHub Pages to allow our project to be served by the github servers when we enter the address: https://[your-user-name].github.io/[your-depot].
+
+- *Access the settings* : In your repository, click on the "Settings" tab, then on the "Pages" tab.
+
+<div align="center"> 
+<img src="assets/Capture_github_settings.png" alt="menu to access gh-pages settings" width="75%" />
+</div>
+</br>
+<div align="center"> 
+<img src="assets/Capture_github_settings_pages.png" alt="Pages menu to access gh-pages settings" width="75%" />
+</div>
+
+- *Select the branch*: In the "GitHub Pages" section, select the main branch (or the main branch of your repository) 
+
+- *Save the changes*: Click the "Save" button. Your GitHub Pages site will now be accessible at https://[your-user-name].github.io/[microprojetAr].
+
+<div align="center"> 
+<img src="assets/Capture_github_settings_pages_activate.png" alt="activate gh-pages" width="75%" />
+</div>
+
+If you return to your project home page, you'll notice after a few minutes that some elements have changed. A deployment is now available!
+
+<div align="center"> 
+<img src="assets/Capture_github_settings_pages_done.png" alt="gh-pages settings done" width="75%" />
+</div>
+
+So all the infrastructure you need to host your project is in place, all you need to do now is add content.
+
 ### Setup projectIDX with github
 ProjectIDX is our primary tool, when we work on our project we will mostly be facing their interface. It's where we write the code and test.
+
 We will give it access to our github account to be able to **push** our changes in production (accessible to everyone) after testing them.
 
+Go to the [projectIDX] website (https://idx.dev/) and sign in / log in.
 
-## The basic AR setup
+#### Step 1 : import github repo in projectIDX
 
-An A-Frame + Arjs app is basically a web page written in html, everything will be managed under the hood for basics applications.
+*Import repository* : Use this option to import your GitHub repository into Project IDX.
 
-This follows the basic construction of webpage with the classic tags and encapsulation :
-```html
-<html>  
+<div align="center"> 
+<img src="assets/Capture_projetIDX_importRepo.png" alt="import repo in projetIDX" width="75%" />
+</div>
 
-  <head>
-  </head>
+Copy the address of the repository you created earlier.
+<div align="center"> 
+<img src="assets/Capture_projetIDX_importRepo2.png" alt="import repo in projetIDX" width="75%" />
+</div>
 
-  <body>
-  </body>
+#### Step 2 : configure projectIDX for web development
+*Configuring the project for web development use.*
 
-</html>
-```
+- Create an ".idx" folder :
+  <div align="center"> 
+  <img src="assets/ProjetIDX_newFolder.png" alt="create a new file in project IDX" width="75%" />
+  </div>
 
-In between the 'head' tags we will include the libraries.
-In between the 'body' tags we will include all the html tags for our scene / markers / contents.
+- In this folder, create a file called "dev.nix".  
+  <div align="center"> 
+  <img src="assets/ProjetIDX_newFile.png" alt="create a new file in project IDX" width="75%" />
+  </div>
+  To achieve this result :
+  <div align="center"> 
+  <img src="assets/ProjetIDX_comf.png" alt="create a new file in project IDX" width="75%" />
+  </div>
 
-The content will be architectured this way :
+- Copy the development environment configuration code into the "dev.nix" file you have just created. (This file will enable us to test our code directly in projetIDX and also to test it on our phone).
 
-```html
-<a-scene 
-  options for tracking, rendering etc.
->
-  <a-marker
-  options for marker : what kind ? , size ?
-  >
+  ```
+  # To learn more about how to use Nix to configure your environment
+  # see: https://developers.google.com/idx/guides/customize-idx-env
+  { pkgs, ... }: {
+    # Which nixpkgs channel to use.
+    channel = "stable-23.11"; # or "unstable"
+    # Use https://search.nixos.org/packages to find packages
+    packages = [
+      pkgs.nodejs_20
+      pkgs.python3
+    ];
+    # Sets environment variables in the workspace
+    env = {};
+    idx = {
+      # Search for the extensions you want on https://open-vsx.org/ and use   "publisher.id"
+      extensions = [
+        # "vscodevim.vim"
+      ];
+      # Enable previews and customize configuration
+      previews = {
+        enable = true;
+        previews = {
+          web = {
+            command = ["python3" "-m" "http.server" "$PORT" "--bind" "0.0.0.0"];
+            manager = "web";
+          };
+        };
+      };
+      # Workspace lifecycle hooks
+      workspace = {
+        # Runs when a workspace is first created
+        onCreate = {
+          # Example: install JS dependencies from NPM
+          # npm-install = "npm install";
+          # Open editors for the following files by default, if they exist:
+          default.openFiles = [ "style.css" "main.js" "index.html" ];
+        };
+        # Runs when the workspace is (re)started
+        onStart = {
+          # Example: start a background task to watch and re-build backend code
+          # watch-backend = "npm run watch-backend";
+        };
+      };
+    };
+  }
+  ```
+Your working environment should look like this:
+   
+  <div align="center"> 
+  <img src="assets/projetIDX_final_conf.png" alt="create a new file in project IDX" width="100%" />
+  </div>
 
-    <!-- 
-      any content we want to display with their position
-      anchored to the marker
-    -->
-
-  </a-marker>
-</a-scene>
-```
+All you have to do is click on the "Rebuild Environment" button and you're done!
 
 
-The boilerplate code you'll want to use is this one to get eveything setup and have most of the usefull options ready to be tweaked later on.
+# Step 3 : Creating the HTML page
 
-It just displays a box on a kanji marker :
+Create an index.html file: In your IDX project, create a file called **"index.html. "**.
 
-<img src= "assets/00_boilerplate.gif"/></br>
+<div align="center"> 
+<img src="assets/Capture_projetIDX_newFile.png" alt="create a new file in project IDX" width="75%" />
+</div>
 
-```html
+
+Add the HTML code: Copy and paste the following HTML code into your index.html file:
+
+```HTML
 <!doctype html>
 <html>
 
 <head>
+  <title>My first ar experience </title>
 	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
-
 	</script>
 	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
 
@@ -229,7 +328,7 @@ It just displays a box on a kanji marker :
 	<a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best;
     detectionMode :'color_and_matrix' 
     changeMatrixMode: 'modelViewMatrix'; "
@@ -251,7 +350,152 @@ It just displays a box on a kanji marker :
 
 </html>
 ```
-The options in the 'a-scene' tags are numerous but we won't go into details about them to keep going forward.
+
+#### Step 4 : Understand the code
+
+This code creates a simple augmented reality (AR) experience using A-Frame and AR.js. Let's break down what each part does:
+
+If you are unfamiliar with how html code works, click on the small triangle to unfold an explanation of the basics of html syntax.
+
+<details > <summary> <b>&#128161 html basics</b> </summary>
+
+An HTML page is like a sandwich. It needs a top bun and a bottom bun to hold the filling!
+
+The top and bottom breadcrumbs are the ```<html>``` and ```</html>``` tags. They tell the browser that the content between these tags is HTML code.
+
+Two main parts: Inside the "HTML sandwich", there are two parts:
+
+**The head** (```<head>``` and ```</head>```): This is like the information on a sandwich wrapper. It contains information that is important for the browser, but which is not displayed directly to the user. 
+
+For example:
+
+- The page title ```<title>```
+
+- Links to CSS files for styling
+
+- Links to JavaScript files for interactive features
+
+**The body** (```<body>``` and ```</body>```): This is the filling in the sandwich! It is the visible content of the web page: text, images, videos, etc.
+
+The syntax and therefore the interpretation of html code by the browser is based on opening and closing tags:
+
+- The **opening** tag (for example ```<p>```)  tells the navigator: "Watch out, we're starting a paragraph!"
+
+- The **closing** tag (for example ```</p>```) says: "That's it, the paragraph is finished".
+
+All content between the opening tag and the closing tag is considered to be part of this element.
+
+Exemple :
+```html
+<html>
+<head>
+  <title>My web page</title>
+</head>
+<body>
+  <h1>Welcome !</h1>
+  <p>This is a paragraph</p>
+</body>
+</html>
+```
+In this example :
+
+- ```<html>``` opens the HTML page and ```</html>``` closes it.
+- ```<head>``` opens the header section and ```</head>``` closes it.
+- ```<title>``` opens the page title and ```</title>``` closes it.
+- ```<body>``` opens the body of the page and ```</body>``` closes it.
+- ```<h1>``` opens a level 1 heading and ```</h1>``` closes it.
+- ```<p>``` opens a paragraph and ```</p>``` closes it.
+
+</details>
+</br>
+
+Here we have a classic HTML structure: The code sets up a basic HTML page with <head> and <body> sections.
+
+In the ```<head>``` part, we add : 
+
+- the title of the experience
+  ```html
+  <title>My first AR app</title>
+  ```
+
+- the A-Frame Library: It includes the A-Frame library (aframe.min.js), a JavaScript framework for creating virtual reality (VR) and AR experiences using HTML.
+
+  ```html
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  ``` 
+
+- the *AR.js library*: It includes the AR.js library (aframe-ar.js) which adds AR capabilities to A-Frame.
+
+  ```html
+  <script src="https://raw.githubusercontent.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>  
+  ```
+
+In the```<body>```, and this is where everything comes into play for the content visible to the user. We add : 
+
+- the *RA stage* : The element ```<a-scene>``` creates the RA scene.
+  ```html
+  <a-scene embedded
+    arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
+
+    vr-mode-ui="enabled: false"
+
+    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5"
+    
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+        <!-- contenu de l'expérience AR avec d'autres balises -->
+
+  </a-scene>
+  ```
+
+  Note that before the closing chevron '>' in the ```<a-scene>``` we add a lot of options (called attributes in html) to configure the way the scene is displayed.
+
+
+
+- The *marker* : The tag ```<a-marker>``` defines what type of marker we use (here it's the default kanji marker) When the camera detects this marker, the content inside the tag will be displayed in AR.
+  ```html
+  <a-marker preset="kanji" size= "0.08">
+    <!-- add content that will be visible to the user and therefore anchored on our marker, can be a cube, an image etc. -->
+  </a-marker>
+  ```
+
+- A box : The element <a-box> creates a 3D box that will be displayed on top of the kanji marker.
+  ```html
+  <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+  
+  ```
+
+
+- Camera : L'élément ```<a-camera>``` defines the camera in the scene, we're perfectly happy with the way it works by default, but it's possible to add features such as gaze interaction.
+
+
+To sumup, this code creates an AR experience where an orange box appears in a 3D spce when the marker 'kanji' is detected by the camera.
+
+
+##### Step 5 : Test
+
+- Save changes : Save your index.html file.
+
+- Test your project : Display the webview of your project.
+
+  <div align="center"> 
+  <img src="assets/Capture_projetIDX_webview.png" alt="check the webview tab !" width="75%" />
+  </div>
+
+  **☣️** It may happen that the webview disappears... In this case you can bring up the "command palette" by (Cmd+Shift+P on Mac or Ctrl+Shift+P for other systems), then select or type "Show Web Preview".
+
+  <div align="center"> 
+  <img src="assets/Capture_projetIDX_webview_commandPalette.png" alt="command palette" width="75%" />
+  </div>
+
+  You can then view your page full screen by clicking on the small icon at the top right.
+
+  <div align="center"> 
+  <img src="assets/Capture_projetIDX_webview_ouvrir.png" alt="command palette" width="75%" />
+  </div>
+
+  This will open your experience in a new tab on your computer. At this point you should see: a web page showing you!
 
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/00AFrameARboilerplate/)
