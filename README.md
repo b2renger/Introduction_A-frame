@@ -508,6 +508,8 @@ or scan this qr code  and show it kanji !
 
 Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
 
+Most of the time you will be able to copy and paste code from the examples in this course, beware of the assets that may be needed (3D models, images, etc.)
+
 [**home**](#Contents)
 
 Notes :
@@ -575,7 +577,7 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 		<a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best"
     detectionMode= 'color_and_matrix' 
     changeMatrixMode= "modelViewMatrix" 
@@ -621,7 +623,6 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/01AFrameARShapes/)
-
 
 or scan this qr code  and show it kanji !
 
@@ -711,7 +712,7 @@ You can have a look at the code here :
 	<a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best"
     detectionMode= "color_and_matrix"
     changeMatrixMode= "modelViewMatrix" 
@@ -778,8 +779,8 @@ You can have a look at the code here :
 ```
 </details>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
+
+
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/02AFrameARShapesmixins/)
 
@@ -788,6 +789,10 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_02.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
+You can find the code on replit here to see how it is structured and help you reproduce it in projectIDX
+https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
+
+Note that you need texture images to reproduce this example in projectIDX. You can find them in the release section of the github repo
 
 If you want to know more about textures maps and pbr material you can have look here : https://medium.com/@kfarr/experimenting-with-pbr-textures-and-a-frame-26c5a034b7b
 
@@ -799,7 +804,7 @@ If you want to know more about textures maps and pbr material you can have look 
 
 Putting images in ar experiences is pretty straight forward. We will use the same kind of code as before.
 
-First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. 
+First you need to load your image into projectIDX you can just drag and drop it onto the 'assets' folder. 
 
 ![](assets/replit_assets_image.png)
 
@@ -848,7 +853,7 @@ You can have a look at the code here :
 	<a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true;  logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best"
     detectionMode= 'color_and_matrix' 
     changeMatrixMode= "modelViewMatrix" 
@@ -860,16 +865,16 @@ You can have a look at the code here :
      >
 
   <a-assets>
-<img id="transparent_image" src="./assets/export1.png">
+    <img id="transparent_image" src="./assets/export1.png">
   </a-assets>
        
     
   
-		<a-marker  preset="kanji" size="0.8">
-      <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
-		</a-marker>
+	<a-marker  preset="kanji" size="0.8">
+    <a-image src="#transparent_image" rotation="90 0 0" width="2" height="2"></a-image>
+	</a-marker>
 
-		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+	<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
 	</a-scene>
 
@@ -881,9 +886,6 @@ You can have a look at the code here :
 
 </details>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/03AFRAMEARImages#index.html
-
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/03AFRAMEARImages/)
 
 or scan this qr code  and show it kanji !
@@ -891,6 +893,10 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_03.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
+You can find the code on replit here to see how it is structured and help you reproduce it in projectIDX
+https://replit.com/@b2renger/03AFRAMEARImages#index.html
+
+Note you will need an image to put in your asset folder.
 
 [**home**](#Contents)
 
@@ -899,6 +905,7 @@ The first example aims at **playing a sound when a marker is on sight** ! (thank
 
 
 The breakdown of this example goes like this :
+
 In the head of our page we defer a script which is a component to play audio :
 ```js
 <script defer>
@@ -931,18 +938,22 @@ In the head of our page we defer a script which is a component to play audio :
     });
   </script>
 ```
+The component is a tiny bit of code we attach to a tag, that will run all the time.
+
+Basically this component loads a sound file that is given as an attribute to a marker tag. At every frame calculated we check if the marker is visible, if it's visible and the sound is paused we play the sound - if the marker is not visible and the sound is not paused we pause it and we reset it.
+
 Then we can load assets :
 ```html
   <a-assets>
     <audio id="sound1" src="assets/634332__josefpres__bass-loops-077-with-drums-long-loop-120-bpm.mp3" preload="auto"></audio>
   </a-assets>
 ```
+
 And finally call the script on our maker with the reference of the audio file :
+
 ```html
   <a-marker audiohandler audioReference="#sound1"  preset="kanji" size="0.8"></a-marker>
 ```
-You can find the code forkable and usable on replit at this adress :
-https://replit.com/@b2renger/14AFRAMEARAudio#index.html
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/14AFRAMEARAudio/)
 
@@ -951,9 +962,12 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_14-audio_on_sight.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
+You can find the code on replit at this adress :
+https://replit.com/@b2renger/14AFRAMEARAudio#index.html
+
+Note : you'll need audio files to experiments with this.
 
 An extra example will help you to **play a sound on a "cursor-click"**, it's more advanced and you'll need to read the *interaction* part of this cook book to understand how "cursors" and "fusing" actually work.
-
 https://replit.com/@b2renger/14AFramegaze2audio
 
 
@@ -1095,10 +1109,6 @@ The full code of the component look like this. You can copy / paste it in any "h
 
 <img src="assets/video.gif" width="250" height="250"/></br>
 
-You can have a look at the whole example here :
-https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshader
-
-
 You can run it live at [this adress :](
 https://b2renger.github.io/Introduction_A-frame/code_examples/04AFRAMEARVideosgreenscreenshader/)
 
@@ -1107,6 +1117,10 @@ or scan this qr code and show it kanji ! (if nothing happens click on the screen
 
 <img src="qrcodes/qr_04.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
+
+
+You can have a look at the whole example here :
+https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshader
 
 
 You want to export mp4 files with h264 codec and a
@@ -1175,7 +1189,7 @@ For a complete example you can look here :
 	<a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best"
     detectionMode= 'color_and_matrix' 
     changeMatrixMode= "modelViewMatrix" 
@@ -1221,8 +1235,7 @@ For a complete example you can look here :
 </details>
 
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/05AFRAMETexts#index.html
+
 
 You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/05AFRAMETexts/index.html)
 
@@ -1230,6 +1243,9 @@ or scan this qr code  and show it kanji !
 
 <img src="qrcodes/qr_05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
+
+You can find the code on replit here :
+https://replit.com/@b2renger/05AFRAMETexts#index.html
 
 Note :
 If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
@@ -1288,8 +1304,6 @@ It's as easy as ever ! :)
 
 <img src="assets/07_obj_mtl.gif" width="400" height="400"/>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
 
 You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/07AFRAME3DModels00obj-mtl/)
 
@@ -1298,7 +1312,8 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_07-obj.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-
+You can find the code on replit here :
+https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
 
 
 #### GLB
@@ -1336,16 +1351,19 @@ Then attach it to a marker without forgetting to add the **animation-mixer** pro
 
 <img src="assets/07_glb.gif" width="400" height="400"/>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
+
 
 You can run it live with [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/07AFRAME3DModels01glb/)
-
 
 or scan this qr code  and show it kanji !
 
 <img src="qrcodes/qr_07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
+
+You can find the code on replit here :
+https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
+
+Note : you'll need 3D models. You have a few examples of good 3D models inside the realease part of the github.
 
 #### Note about textures and animations
 
@@ -1481,8 +1499,7 @@ The example should do something like this
 
 <img src="assets/06_p5.gif" width="600" height="600"/>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/06AFRAMEP5jssketch#index.html
+
 
 You can run it live with [this adress](https://b2renger.github.io/Introduction_A-frame/code_examples/06AFRAMEP5jssketch/)
 
@@ -1490,6 +1507,9 @@ or scan this qr code  and show it kanji !
 
 <img src="qrcodes/qr_06.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
+
+You can find the code on replit here for edition / forking :
+https://replit.com/@b2renger/06AFRAMEP5jssketch#index.html
 
 [**home**](#Contents)
 
@@ -1554,8 +1574,6 @@ If you want to switch to Hiro, you can just change the **preset** field in the *
 </a-marker>
 ```
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
 
 You can run it live with [this adress](https://b2renger.github.io/Introduction_A-frame/code_examples/08AFRAMEHiroandKanji/)
 
@@ -1567,6 +1585,9 @@ or scan this qr code  and show it Kanji and Hiro!
 <img src="markers/kanji.png" width="250" height="250"/>
 <img src="markers/hiro.png" width="250" height="250"/></br>
 
+
+You can find the code on replit here :
+https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
 
 [**home**](#Contents)
 
@@ -1592,7 +1613,7 @@ This second image is the **white border marker** with a contrasting black border
 
 <img src="markers/53_white.png" width="250" height="250" />
 
-I know it is confusing ... the thing is like this they are printable on white paper (which is mode common); it's not really easy to print in white on a black paper.
+I know it is confusing ... the thing is like this they are printable on white paper (which is most common); it's not really easy to print in white on a black paper.
 
 
 
@@ -1608,7 +1629,7 @@ So your "a-scene" tag looks like this :
   <a-scene embedded
     arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
     vr-mode-ui="enabled: false"
-    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600"
     displayWidth="1280" displayHeight="720">
 ``` 
@@ -1624,18 +1645,18 @@ When you want to use a certain marker you then just need to add this type of cod
 
 <img src="assets/09_barcodes.gif" width="600" height="400"/>
 
-You can check the code here
-https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
+
 
 And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/09AFRAMEBarcodes/)
 
 You can also scan the qrcode below and show it the set of markers under:
 
-
 <img src="qrcodes/qr_09.png" width="250" height="250"/>
 <img src="markers/barcodes_white_back.png" width="640" height="400"/>
 </br>
 
+You can check the code here
+https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
 
 #### White border markers
 
@@ -1681,9 +1702,6 @@ Here is the a fully functional code
 </html>
 ```
 
-That you can find on replit to fork and run : 
-https://replit.com/@b2renger/09AFRAMEBarcodeswhite#index.html
-
 Just show it the marker with the id "0"
 <br></br>
 <br></br>
@@ -1692,6 +1710,9 @@ Just show it the marker with the id "0"
 <br></br>
 I didn't include the black constrating border here, because the back of the page is black and it should be enough to detect "the end" of the marker.
 
+
+That you can find on replit to fork and run : 
+https://replit.com/@b2renger/09AFRAMEBarcodeswhite#index.html
 
 
 
@@ -1728,8 +1749,7 @@ And voilà !
 
 <img src="assets/10_Custom_markers.png" width="250" height="250"/>
 
-You can check the code here
-https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
+
 
 And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/10AFRAMECustommarkers/) 
 You can also scan the qrcode below and show it our beautiful custom marker :
@@ -1737,6 +1757,9 @@ You can also scan the qrcode below and show it our beautiful custom marker :
 <img src="qrcodes/qr_10.png" width="250" height="250"/>
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
+
+You can check the code here :
+https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
 
 [**home**](#Contents)
 
@@ -1800,8 +1823,6 @@ As we used two images we can specify **targetIndex:0** to track the first one, a
 
 <img src="assets/11_natural_images.gif" width="250" height="460"/>
 
-You can check the code here :
-https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 
 And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/11AFRAMEmindarjsnatural-image/)
 
@@ -1812,6 +1833,9 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 <img src="markers/MarietteCropCrop.jpg" width="250" height="250"/>
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
 </br>
+
+You can check the code here :
+https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 
 
 [**home**](#Contents)
@@ -1867,13 +1891,14 @@ This will download a zip file that you can extract and upload to a new replit.
 <img src="assets/santar.gif" width="640" height="350"/>
 </br>
 
-You can checkout the replit code here : https://replit.com/@b2renger/ARmodelViewer
 
 And you can test the experience following this qr code (you'll need to be on a mobile phone to test the ar)
 
 <img src="qrcodes/qr_16_model_viewer.png" width="250" height="250"/>
 </br>
 
+
+You can checkout the replit code here : https://replit.com/@b2renger/ARmodelViewer
 
 #### ... with A-Frame
 
@@ -1887,7 +1912,7 @@ https://replit.com/@b2renger/15AFramesurfaces#index.html
 
 A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameModelonsurfaceandshadows#index.html
 
-Sadly it will not work on iphones due to apple not supporting webxr api on iOS.
+Sadly it will not work on iphones due to apple not supporting webxr api on iOS for now
 This app might help though : https://apps.apple.com/fr/app/webxr-viewer/id1295998056
 
 
@@ -1923,16 +1948,18 @@ If you read the text after the **"animation" attribute** it should be almost sel
 
 <img src="assets/12_animation_basic.gif" width="250" height="250"/>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
 
-And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsabasic/)
+Check the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsabasic/)
 
 You can also scan the qrcode below and show it our good old kanji:
 
 <img src="qrcodes/qr_12_anim_basic.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
+
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
 
 ### Several Animations
 
@@ -1964,10 +1991,9 @@ Our object will now have three separate animation and the a-box tag will have a 
 
 <img src="assets/12_animation_intermediate.gif" width="250" height="250"/>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
 
-And see the [live example here](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsbstackedanimations/)
+
+Check the [live example here](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsbstackedanimations/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
@@ -1975,6 +2001,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
 
 ### Orbiting animation
 
@@ -2013,16 +2041,17 @@ Check this out !!
 
 <img src="assets/12_animation_advanced.gif" width="250" height="250"/>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
 
-And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationscadvanced/)
+Check see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationscadvanced/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
 <img src="qrcodes/qr_12_anim_advanced.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
+
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
 
 ### Sequencing animations
 
@@ -2183,10 +2212,9 @@ animation-timeline__1="timeline:#myTimeline; loop: true ; autoplay: false; start
 
 <img src="assets/12_animation_timeline.gif" width="250" height="250"/>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
-And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsdtimeline/)
+
+You can see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/12AFRAMEAnimationsdtimeline/)
 
 You can also scan the qrcode below and show it our good old kanji : 
 
@@ -2194,6 +2222,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+You can check the code here :
+https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
 [**home**](#Contents)
 
@@ -2346,10 +2376,9 @@ Considering this code you could easily change the color of a box on mouseclick
 
 <img src="assets/13_interaction.gif" width="250" height="250"/>
 
-You can check the code here :
-https://replit.com/@b2renger/13AFrametestgaze#index.html
 
-And see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/13AFrametestgaze/)
+
+You can see the [live example](https://b2renger.github.io/Introduction_A-frame/code_examples/13AFrametestgaze/)
 
 You can also scan the qrcode below and show it our good old kanji :
 
@@ -2357,6 +2386,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
+You can check the code here :
+https://replit.com/@b2renger/13AFrametestgaze#index.html
 
 ## Extra
 
