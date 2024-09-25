@@ -29,16 +29,13 @@ Remember you can always navigate the content hierarchy with the burger menu on g
 ## The tools
 
 We use several tools :
-- a webhosting plateform to write our code and host our projects : [Replit](https://replit.com/)
+- a web plateform to write our code and test our projects : [ProjectIDX](https://idx.dev/)
+- a source versionning plateform to publish and host our final project : [github](https://github.com)
 - a library for content / assets  manipulation : [A-Frame](https://aframe.io/)
 - a library for marker detection / gps markers in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
 - a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
 - a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
-
-Note : Replit has put some restrictions on its webhosting capabilities, so in the future a new section on deployment will appear in this course.
-Options are :
-- [github pages](https://www.w3schools.com/git/git_remote_pages.asp?remote=github) 
-- [cloudflare pages](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+- a library for face detection : [faceAR](https://github.com/jeromeetienne/AR.js/tree/master/aframe/examples/face)
 
 
 [**home**](#Contents)
@@ -128,28 +125,46 @@ Try opening this qr code with your phone and show it the hiro marker above.
 [**home**](#Contents)
 
 
-### What is Replit ?
+### What is projectIDX ?
 
-Replit is the plateform we will use to write code  onlineand host our project.
+ProjectIDX is the plateform we will use to write code online and host our project while in development and testing.
 
-You'll need to create an account onto it to code and host your own examples and you'll be able to fork the examples found here.
+You'll need to create an account onto it to code.
 
 When you are logged in and have an example open it looks like this :
 
-<img src="assets/replit.png" width="800" height="450" /><br>
+<img src="assets/projectIDX.png" width="800" height="450" /><br>
 
 On the left pannel you cand find your files.
 The center pannel is dedicated to code edition.
 The right pannel is you app live with below the console to track infos and errors.
 
-On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. 
+On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. There is another button (with the link icon) to open a qrcode and help test on your phone.
 
 [**home**](#Contents)
 
 
 
 ---
-## The basic setup
+# The Setup
+
+## The technical setup
+The technical setup will help you setup github, projectIDX so that they can work together.
+
+**This part is not optional since it's the way you will make you project public ie accessible to everyone**
+
+### Setup github and github pages
+Github will host our files and changes to it. In the end our web app will be served by github hosting services.
+
+You'll be guided to setup github pages to host your own website.
+
+
+### Setup projectIDX with github
+ProjectIDX is our primary tool, when we work on our project we will mostly be facing their interface. It's where we write the code and test.
+We will give it access to our github account to be able to **push** our changes in production (accessible to everyone) after testing them.
+
+
+## The basic AR setup
 
 An A-Frame + Arjs app is basically a web page written in html, everything will be managed under the hood for basics applications.
 
@@ -238,8 +253,6 @@ It just displays a box on a kanji marker :
 ```
 The options in the 'a-scene' tags are numerous but we won't go into details about them to keep going forward.
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/00AFrameARboilerplate#index.html
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/00AFrameARboilerplate/)
 
@@ -361,8 +374,7 @@ Consider the following code with a few objects placed in a 3D space onto a maker
 
 </details>
 
-You can find the code on replit here for edition / forking :
-https://replit.com/@b2renger/01AFrameARShapes#index.html
+
 
 You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/01AFrameARShapes/)
 
@@ -415,7 +427,7 @@ Let's now texture a plane that will represent a ground. The textures should be a
 
 For our examples we will use textures from this [link](https://polyhaven.com/a/forest_leaves_02) - (btw [polyhaven](https://polyhaven.com) is awesome !)
 
-First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. Then in the assets part of our programm you can import it:
+First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. If the folder does not exist : you can create one. Then in the assets part of our programm you can import it:
 
 ```html
 <img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
