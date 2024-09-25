@@ -304,7 +304,7 @@ Your working environment should look like this:
 All you have to do is click on the "Rebuild Environment" button and you're done!
 
 
-# Step 3 : Creating the HTML page
+#### Step 3 : Creating the HTML page
 
 Create an index.html file: In your IDX project, create a file called **"index.html. "**.
 
