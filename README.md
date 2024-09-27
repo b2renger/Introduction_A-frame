@@ -38,7 +38,7 @@ We use several tools :
 
 Note : we used replit at a time instead of github and projectIDX. 
 - replit was good, easy and free, but it's not free anymore.
-- using github let us own our code and it's distribution.
+- using github let us own our code and its distribution.
 - projectIDX is a better code editor and let us do all what we need.
 You will sometime find link that will send you to replit to see the code, how it is structured etc.
 
