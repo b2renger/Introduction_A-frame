@@ -1,56 +1,55 @@
 # Introduction_A-frame
 
-Code for a creative coding class on A-Frame for designers. (AR focused)
-This is not meant to be exhaustive and code oriented, the goal is to be able to add content and choose the right tracking method for a specific project.
- 
+Code et explication pour un cours de code créatif sur A-Frame pour les designers orienté vers la réalité augmentée et les technologies WebXR.
+(Le but est de pouvoir utiliser cette ressource comme un cookbook pour ajouter du contenu en RA et de choisir la meilleure méthode de suivi pour un projet spécifique.)
+
 <img src="assets/snowAR.gif"/>
 
 
 
-## Contents
+## Contenu
 
-You can read **"the tools"** to get acquainted with the techno and stuff we will use to make everything work ie cross-plateform AR web based.
+Vous pouvez lire **"les outils "** pour vous familiariser avec la techno et le matériel que nous utiliserons pour que tout fonctionne, c'est à dire cross-plateform AR basé sur des technos web.
 
-First you have a cookbook style part about the kind of **content** : get the minimal code working to display 3D / videos / text etc. over a basic marker.
+Tout d'abord, vous avez une partie de type "livre de recettes" sur le type de **contenu** : faire fonctionner le code minimal pour afficher de la 3D, des vidéos, du texte, etc. sur un marqueur de base.
 
-Second you have the same kind of cookbook ressource going through the **several types of detections** (makers, barcodes, natural images etc.)
+Dans un second temps, vous avez le même type de ressource qui passe en revue les  **différents types de détections possible pour déployer des narration en réalité augmentée** (marqueurs, codes-barres, images naturelles, etc.).
 
-Then you have a more technical part about **animation** of content and finally a part about **interaction** which will require basic skills on A-Frame and a bit of javascript coding. So to dive in both those last part you should a least get acquainted with a basic example of detection using kanji marker and 3D shapes/
+Ensuite, vient une partie plus technique sur l'**animation** du contenu et enfin une partie sur l'**interaction** qui nécessitera des compétences de base en A-Frame et un peu de code javascript. Donc, pour plonger dans ces deux dernières parties, vous devez au moins vous familiariser avec un exemple basique de détection utilisant des marqueurs de kanji et des formes 3D.
 
 Have Fun !
 
-Remember you can always navigate the content hierarchy with the burger menu on github !
- 
+N'oubliez pas que vous pouvez toujours naviguer dans la hiérarchie du contenu avec le menu burger sur github !
+
 <img src="assets/nav.gif"/>
 
 
 
 ---
-## The tools
+## Les outils
 
-We use several tools :
-- a web plateform to write our code and test our projects : [ProjectIDX](https://idx.dev/)
-- a source versionning plateform to publish and host our final project : [github](https://github.com)
-- a library for content / assets  manipulation : [A-Frame](https://aframe.io/)
-- a library for marker detection / gps markers in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
-- a library for image / face detection : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
-- a library for marker less (ground, walls etc) detection : [modelViewer](https://modelviewer.dev/)
+Nous utilisons plusieurs outils :
+- une plateforme web pour écrire notre code et tester nos projets : [ProjectIDX](https://idx.dev/)
+- une plateforme de versionnage des sources pour publier et héberger notre projet final : [github](https://github.com)
+- une bibliothèque pour la manipulation du contenu : [A-Frame](https://aframe.io/)
+- une bibliothèque pour la détection de marqueurs / marqueurs gps dans la réalité augmentée : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
+- une bibliothèque pour la détection d'images et de visages : [MindAR](https://hiukim.github.io/mind-ar-js-doc/)
+- une bibliothèque pour la détection sans marqueurs (surfaces planes : sol et murs) : [modelViewer](https://modelviewer.dev/)
 
-Note : we used replit at a time instead of github and projectIDX. 
-- replit was good, easy and free, but it's not free anymore.
-- using github let us own our code and its distribution.
-- projectIDX is a better code editor and let us do all what we need.
-You will sometime find link that will send you to replit to see the code, how it is structured etc.
+Note : nous avons utilisé replit par le passé au lieu de github et projectIDX. 
+- replit était pratique, facile et gratuit, mais il n'est plus gratuit.
+- l'utilisation de github nous permet d'être propriétaire de notre code et de sa distribution.
+- projectIDX est un meilleur éditeur de code et nous permet de faire tout ce dont nous avons besoin. (tester avec le téléphone)
+Vous trouverez parfois un lien qui vous enverra sur replit pour voir le code, comment il est structuré où sont placés les fichiers etc.
 
-[**home**](#Contents)
+[**home**](#Contenu)
 
-### What is A-Frame ?
-[A-Frame](https://aframe.io/docs/1.2.0/introduction/) is a free and open-source framework supported by the mozilla foundation aiming at easing the creation of 3D / VR / AR experiences in the browser. 
+### A-Frame késako ?
+[A-Frame](https://aframe.io/docs/1.2.0/introduction/) est un framework gratuit et open-source soutenu par la fondation mozilla visant à faciliter la création d'expériences 3D / VR / AR dans le navigateur.
 
-With this this tool it's pretty easy to use the html syntax to create 3D scenes that can then be used in any of the contexts mentionned above.
+Avec cet outil, il est assez facile d'utiliser la syntaxe html pour créer des scènes 3D qui peuvent ensuite être utilisées dans l'un des contextes mentionnés ci-dessus.
 
-For instance this code :
-
+Par exemple, ce code :
 ```html
 <html>
   <head>
@@ -69,44 +68,38 @@ For instance this code :
 
 ```
 
-Creates a scene with a sky, a floor (or plane) and 3 3D primitives (a box, a sphere and a cylinder); each element has **attributes** to specify their *position*, *rotation*, *color* etc.
+Crée une scène avec un ciel, un sol (ou un plan) et 3 primitives 3D (une boîte, une sphère et un cylindre) ; chaque élément a des **attributs** pour spécifier leur *position*, *rotation*, *couleur*, etc.
 
 <img src="assets/aframe_starter.png" width="640" height="360" /><br>
 
-The live result can be seen here : https://glitch.com/~aframe
+Le résultat en direct peut être consulté ici : https://glitch.com/~aframe
 
-Notice that by *clicking and dragging the mouse around* you can change your point of view, and you can even move around using you keyboard with the keys QZSD. Everything is handle behind the scenes for you.
+Notez qu'en *cliquant et en déplaçant la souris*, vous pouvez changer de point de vue, et vous pouvez même vous déplacer en utilisant les touches QZSD de votre clavier. Tout est géré dans les coulisses pour vous.
 
-FYI the rendering engine behind A-Frame is [Threejs](https://threejs.org/), and for advanced usage you can have access to it through code.
+Pour information, le moteur de rendu derrière A-Frame est [Threejs](https://threejs.org/), et pour une utilisation avancée, vous pouvez y avoir accès par le biais de l'écriture code.
 
-[**home**](#Contents)
+[**home**](#Contenu)
 
-### What is AR ?
+### La réalité augmenté c'est quoi ?
 
-AR is a technology that allows you to overlay digital / interactive content on a real world image in real-time. The idea is to augment our vision of the physical world with new information, graphics etc.
+La RA est une technologie qui permet de superposer un contenu numérique/interactif à une image du monde réel en temps réel. L'idée est d'enrichir notre vision du monde physique avec de nouvelles informations, des images, des vidéos, des modèles 3D etc.
 
-Well to be clear the AR world is globally a mess, in this course we choose to focus on web technologies that do work both on desktop, iOS and android to simplify the overall process and experimentations - and we also use free and open source tools.
+Dans ce cours, nous avons choisi de nous concentrer sur les technologies web qui fonctionnent à la fois sur desktop, iOS et Android afin de simplifier le processus global et les expérimentations - et nous utilisons également des outils gratuits et open source.
 
-To do that several method are use to pin / anchor the content :
-- **markers detection** : you need to use a specific image to detect its position in a video feed and place content onto it. **ARjs**
-- **image detection** : you can train a specific image of your choice to be a marker. You'll need to take a few steps though to make your program recognize your image; be aware that tracking quality will be dependent on the image you choose. **mindAR**
-- **marker less detection** : you can detect planes in your environment that is to say : the floor, the ceilling and the walls. Though this technology is not really easily available with free and open source web technologies yet. **modelViewer** can work well in many use cases. Aframe does support this aswell.
-- **gps coordinates** : you can pin some contents to a specific gps position, but this is highly experimental at the moment and tracking is a bit shaky. **Arjs**
-- **face detection** : you can detect the presence of a face in an image and then pin content onto it. **mindAR**
+Pour ce faire, plusieurs méthodes sont utilisées pour épingler / ancrer le contenu :
+- **Détection de marqueurs** : vous devez utiliser une image spécifique pour détecter sa position dans un flux vidéo et y placer du contenu avec **ARjs**
+- **détection d'images** : vous pouvez entraîner une image spécifique de votre choix à devenir un marqueur. Vous devrez cependant prendre quelques mesures pour que votre programme reconnaisse votre image avec **mindAR** ; sachez que la qualité du suivi dépendra de l'image que vous choisirez. 
+- **Détection sans marqueur** : vous pouvez détecter des plans dans votre environnement, c'est-à-dire le sol, le plafond et les murs. Bien que cette technologie ne soit pas encore facilement disponible (apple refusant d'intégrer les spécification webXR pour leur OS de téléphone). **modelViewer** peut fonctionner sur iOS mais vous aurez beaucoup moins de contrôle qu'avec A-frame.
+- **coordonnées gps** : il est possible d'associer certains contenus à une position gps spécifique avec **Arjs**, mais cette fonction est très expérimentale pour le moment et le suivi est dépendant de la performance des gps (précision de 10m en extérieur dans le meilleur des cas)
+- **détection de visage** : vous pouvez détecter la présence d'un visage dans une image et y épingler du contenu avec **mindAR**
 
-
-ARjs is a javascript library to create AR application, it allows you to track the position of markers / images and even gps coordinates.
-
-While ARjs is the library we will use for markers and gps coordinates that is to say most use cases - we will use another one for natural images detection [mindARjs](https://hiukim.github.io/mind-ar-js-doc/quick-start/overview/)
-
-
-Do keep in mind that tracking is performant when you use markers, like this one - **hiro** :
+Gardez à l'esprit que le suivi est performant lorsque vous utilisez des marqueurs, comme celui-ci - **hiro** :
 
 <img src="markers/hiro.png" width="480" height="480" /><br>
 
-Tracking images is more challenging and you need to train an algorithm to do it and the tracking quality highly depends on the image you choose.
+Le suivi des images est plus difficile et vous devez entrainer un algorithme pour le faire. La qualité du suivi dépend fortement de l'image que vous choisissez.
 
-But just to give you an idea on how we will do all this, it's still pretty easy - check out this code :
+Mais pour vous donner une idée de la manière dont nous allons procéder, c'est encore assez facile - regardez ce code :
 
 ```html
 <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
@@ -119,62 +112,62 @@ But just to give you an idea on how we will do all this, it's still pretty easy 
 </body>
 ```
 
-from this [article](https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf)
+depuis cet [article](https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf)
 
-Try opening this qr code with your phone and show it the hiro marker above.
+Essayez d'ouvrir ce code qr avec votre téléphone et montrez-lui le marqueur hiro ci-dessus !
 
 <img src="qrcodes/00_qr_base_example_arjs.png" width="240" height="240" /><br>
 
-[**home**](#Contents)
+[**home**](#Contenu)
 
 
-### What is projectIDX ?
+### Qu'est-ce que projectIDX ?
 
-ProjectIDX is the plateform we will use to write code online and host our project while in development and testing.
+ProjectIDX est la plateforme que nous utiliserons pour écrire du code en ligne et héberger notre projet pendant les phases de développement et de test.
 
-You'll need to create an account onto it to code.
+Vous devez créer un compte sur ce site pour coder.
 
-When you are logged in and have an example open it looks like this :
+Lorsque vous êtes connecté et qu'un exemple est ouvert, cela ressemble à ça :
 
 <img src="assets/projectIDX.png" width="800" height="450" /><br>
 
-On the left pannel you cand find your files.
-The center pannel is dedicated to code edition.
-The right pannel is you app live with below the console to track infos and errors.
+- Sur le panneau de gauche, vous pouvez trouver vos fichiers.
+- Le panneau central est consacré à l'édition du code.
+- Le panneau de droite est l'application que vous utilisez sous la console pour suivre les informations et les erreurs.
 
-On the top right corner you have a small button (right next to the adress bar) to open your program in a seperate window in fullscreen. There is another button (with the link icon) to open a qrcode and help test on your phone.
+Dans le coin supérieur droit, vous avez un petit bouton (juste à côté de la barre d'adresse) pour ouvrir votre programme dans une fenêtre séparée en plein écran. Un autre bouton (avec l'icône de lien) permet d'ouvrir un qrcode et d'effectuer un test d'aide sur votre téléphone.
 
-[**home**](#Contents)
+[**home**](#Contenu)
 
 
 ---
-# The Setup
+# Le Setup
 
 https://github.com/user-attachments/assets/055da2fd-e9d5-4112-8c46-b86da93d4fae
 
 
-## The technical setup
-The technical setup will help you setup github, projectIDX so that they can work together.
+## Le setup technique
 
-**This part is not optional since it's the way you will make you project public ie accessible to everyone**
+L'installation technique vous aidera à configurer github et projectIDX de manière à ce qu'ils puissent fonctionner ensemble.
 
-### Setup github and github pages
-Github will host our files and changes to it. In the end our web app will be served by github hosting services.
+**Cette partie n'est pas facultative car c'est la façon dont vous rendrez votre projet public, c'est-à-dire accessible à tous**.
 
-You'll be guided to setup github pages to host your own website.
+### Setup github et github pages
+Github hébergera nos fichiers et les modifications qui y seront apportées. Au final, notre application web sera servie par les services d'hébergement de Github.
 
+Vous serez guidé pour mettre en place des pages github afin d'héberger votre propre site web.
 
-#### Step 1 : Create a GitHub account and repository
-- *Create a GitHub account* : If you don't already have one, go to https://github.com/signup?source=login and create an account.
+#### Étape 1 : Créer un compte et un dépôt GitHub
+- Créez un compte GitHub* : Si vous n'en avez pas encore, rendez-vous sur https://github.com/signup?source=login et créez un compte.
 
-**☢️ The username you choose will be used for the address that needs to be typed in to see your project. <u>Choose a short name! no spaces, no special characters (accents etc.)</u>**
+**☢️ Le nom d'utilisateur que vous choisissez sera utilisé pour l'adresse web à taper pour visiter votre projet. <u>Choisissez un nom court ! pas d'espaces, pas de caractères spéciaux (accents, etc.) </u>**
 
 <div align="center"> 
   <img src="assets/Capture_signup_github.png" alt="signup github page" width="49%" height="400"/>
   <img src="assets/Capture_login_github.png" alt="login github page" width="49%" height="400"/>
 </div>
 
-- *Create a new repository* : Once you have logged in, click on the "New repository" button. Give your repository a name (for example, "microProjetAr"), add an optional description, and click on "Create repository".
+- *Créer un nouveau dépôt* : Une fois connecté, cliquez sur le bouton "New repository". Donnez un nom à votre dépôt (par exemple, "microProjetAr"), ajoutez une description optionnelle, et cliquez sur "Create repository".
 
 <div align="center"> 
 <img src="assets/Capture_github_newRepo.png" alt="menu to create new repo" width="75%" />
@@ -184,10 +177,11 @@ You'll be guided to setup github pages to host your own website.
 <img src="assets/Capture_github_newRepoCreation.png" alt="menu to create new repo" width="75%" />
 </div>
 
-#### Step 2: Activate GitHub Pages
-We're now going to configure GitHub Pages to allow our project to be served by the github servers when we enter the address: https://[your-user-name].github.io/[your-depot].
+#### Étape 2 : Activer les pages GitHub
 
-- *Access the settings* : In your repository, click on the "Settings" tab, then on the "Pages" tab.
+Nous allons maintenant configurer GitHub Pages pour permettre à notre projet d'être servi par les serveurs de GitHub lorsque nous entrons l'adresse : https://[your-user-name].github.io/[your-depot].
+
+- *Accéder aux paramètres* : Dans votre dépot, cliquez sur l'onglet "Paramètres", puis sur l'onglet "Pages".
 
 <div align="center"> 
 <img src="assets/Capture_github_settings.png" alt="menu to access gh-pages settings" width="75%" />
@@ -197,60 +191,61 @@ We're now going to configure GitHub Pages to allow our project to be served by t
 <img src="assets/Capture_github_settings_pages.png" alt="Pages menu to access gh-pages settings" width="75%" />
 </div>
 
-- *Select the branch*: In the "GitHub Pages" section, select the main branch (or the main branch of your repository) 
+- *Sélectionnez la branche* : Dans la section "GitHub Pages", sélectionnez la branche principale (ou la branche principale de votre dépôt).
 
-- *Save the changes*: Click the "Save" button. Your GitHub Pages site will now be accessible at https://[your-user-name].github.io/[microprojetAr].
+- *Sauvegarder les modifications* : Cliquez sur le bouton "Enregistrer". Votre site GitHub Pages sera désormais accessible à l'adresse suivante https://[your-user-name].github.io/[microprojetAr].
 
 <div align="center"> 
 <img src="assets/Capture_github_settings_pages_activate.png" alt="activate gh-pages" width="75%" />
 </div>
 
-If you return to your project home page, you'll notice after a few minutes that some elements have changed. A deployment is now available!
+Si vous revenez sur la page d'accueil de votre projet, vous constaterez après quelques minutes que certains éléments ont changé. Un déploiement est maintenant disponible !
 
 <div align="center"> 
 <img src="assets/Capture_github_settings_pages_done.png" alt="gh-pages settings done" width="75%" />
 </div>
 
-So all the infrastructure you need to host your project is in place, all you need to do now is add content.
+Toute l'infrastructure nécessaire à l'hébergement de votre projet est donc en place, il ne vous reste plus qu'à ajouter du contenu.
 
 ### Setup projectIDX with github
-ProjectIDX is our primary tool, when we work on our project we will mostly be facing their interface. It's where we write the code and test.
+ProjectIDX est notre outil principal, lorsque nous travaillons sur notre projet, nous sommes principalement confrontés à son interface. C'est là que nous écrivons le code et que nous testons.
 
-We will give it access to our github account to be able to **push** our changes in production (accessible to everyone) after testing them.
+Nous lui donnerons accès à notre compte github pour pouvoir **pousser** nos changements en production (accessible à tous) après les avoir testés.
 
-Go to the [projectIDX] website (https://idx.dev/) and sign in / log in.
+Allez sur [projectIDX](https://idx.dev/) et connectez-vous.
 
-#### Step 1 : import github repo in projectIDX
 
-*Import repository* : Use this option to import your GitHub repository into Project IDX.
+#### Etape 1 : importer le repo github dans projectIDX
+
+*Import repository* : Utilisez cette option pour importer votre dépôt GitHub dans le projet IDX.
 
 <div align="center"> 
 <img src="assets/Capture_projetIDX_importRepo.png" alt="import repo in projetIDX" width="75%" />
 </div>
 
-Copy the address of the repository you created earlier.
+Copiez l'adresse du référentiel que vous avez créé précédemment.
+
 <div align="center"> 
 <img src="assets/Capture_projetIDX_importRepo2.png" alt="import repo in projetIDX" width="75%" />
 </div>
 
-#### Step 2 : configure projectIDX for web development
-*Configuring the project for web development use.*
+#### Étape 2 : configurer projectIDX pour le développement web
 
-- Create an ".idx" folder :
+- Créer un dossier ".idx" :
   <div align="center"> 
   <img src="assets/ProjetIDX_newFolder.png" alt="create a new file in project IDX" width="75%" />
   </div>
 
-- In this folder, create a file called "dev.nix".  
+- In this folder, create a file called "dev.nix"
   <div align="center"> 
   <img src="assets/ProjetIDX_newFile.png" alt="create a new file in project IDX" width="75%" />
   </div>
-  To achieve this result :
+  Pour parvenir à ce résultat :
   <div align="center"> 
   <img src="assets/ProjetIDX_comf.png" alt="create a new file in project IDX" width="75%" />
   </div>
 
-- Copy the development environment configuration code into the "dev.nix" file you have just created. (This file will enable us to test our code directly in projetIDX and also to test it on our phone).
+- Copiez le code de configuration de l'environnement de développement dans le fichier "dev.nix" que vous venez de créer. (Ce fichier nous permettra de tester notre code directement dans projetIDX et également de le tester sur notre téléphone).
 
   ```
   # To learn more about how to use Nix to configure your environment
@@ -298,25 +293,24 @@ Copy the address of the repository you created earlier.
     };
   }
   ```
-Your working environment should look like this:
+Votre environnement de travail devrait ressembler à ceci :
    
   <div align="center"> 
   <img src="assets/projetIDX_final_conf.png" alt="create a new file in project IDX" width="100%" />
   </div>
 
-All you have to do is click on the "Rebuild Environment" button and you're done!
+Il vous suffit de cliquer sur le bouton "Rebuild Environment" !
 
 
-#### Step 3 : Creating the HTML page
+#### Étape 3 : Création de la page HTML
 
-Create an index.html file: In your IDX project, create a file called **"index.html. "**.
+Créez un fichier index.html : Dans votre projet IDX, créez un fichier nommé **"index.html. "**.
 
 <div align="center"> 
 <img src="assets/Capture_projetIDX_newFile.png" alt="create a new file in project IDX" width="75%" />
 </div>
 
-
-Add the HTML code: Copy and paste the following HTML code into your index.html file:
+Ajoutez le code HTML : Copiez et collez le code HTML suivant dans votre fichier index.html :
 
 ```HTML
 <!doctype html>
@@ -360,39 +354,39 @@ Add the HTML code: Copy and paste the following HTML code into your index.html f
 </html>
 ```
 
-#### Step 4 : Understand the code
+#### Étape 4 : Comprendre le code
 
-This code creates a simple augmented reality (AR) experience using A-Frame and AR.js. Let's break down what each part does:
+Ce code crée une expérience simple de réalité augmentée (AR) en utilisant A-Frame et AR.js. Voyons ce que fait chaque partie :
 
-If you are unfamiliar with how html code works, click on the small triangle to unfold an explanation of the basics of html syntax.
+Si vous ne savez pas comment fonctionne le code html, cliquez sur le petit triangle pour dérouler une explication des bases de la syntaxe html.
 
-<details > <summary> <b>&#128161 html basics</b> </summary>
+<details > <summary> <b>&#128161 bases html </b> </summary>
 
-An HTML page is like a sandwich. It needs a top bun and a bottom bun to hold the filling!
+Une page HTML est comme un sandwich. Elle a besoin d'un petit pain supérieur et d'un petit pain inférieur pour contenir la garniture !
 
-The top and bottom breadcrumbs are the ```<html>``` and ```</html>``` tags. They tell the browser that the content between these tags is HTML code.
+Les pains du haut et du bas sont les balises ```<html>``` et ```</html>```. Elles indiquent au navigateur que le contenu entre ces balises est du code HTML.
 
-Two main parts: Inside the "HTML sandwich", there are two parts:
+Deux parties principales : Le "sandwich HTML" se compose de deux parties :
 
-**The head** (```<head>``` and ```</head>```): This is like the information on a sandwich wrapper. It contains information that is important for the browser, but which is not displayed directly to the user. 
+**head** (```<head>``` and ```</head>```): C'est comme les informations figurant sur l'emballage d'un sandwich. Elles contiennent des informations importantes pour le navigateur, mais qui ne sont pas affichées directement à l'utilisateur. 
 
-For example:
+Par exemple :
 
-- The page title ```<title>```
+- Le titre de la page ```<title>```
 
-- Links to CSS files for styling
+- Liens vers des fichiers CSS pour la mise en forme
 
-- Links to JavaScript files for interactive features
+- Liens vers des fichiers JavaScript pour des fonctions interactives
 
-**The body** (```<body>``` and ```</body>```): This is the filling in the sandwich! It is the visible content of the web page: text, images, videos, etc.
+**body** (```<body>``` and ```</body>```): C'est la garniture du sandwich ! Il s'agit du contenu visible de la page web : texte, images, vidéos, etc.
 
-The syntax and therefore the interpretation of html code by the browser is based on opening and closing tags:
+La syntaxe et donc l'interprétation du code html par le navigateur est basée sur les balises d'ouverture et de fermeture :
 
-- The **opening** tag (for example ```<p>```)  tells the navigator: "Watch out, we're starting a paragraph!"
+- La balise **ouvrante** (par exemple ```<p>```)  dit au navigateur : "Attention, nous commençons un paragraphe !".
 
-- The **closing** tag (for example ```</p>```) says: "That's it, the paragraph is finished".
+- La balise **fermante** (par exemple ```</p>```) dit : "Ça y est, le paragraphe est terminé".
 
-All content between the opening tag and the closing tag is considered to be part of this element.
+Tout le contenu entre la balise d'ouverture et la balise de fermeture est considéré comme faisant partie de cet élément.
 
 Exemple :
 ```html
@@ -406,42 +400,42 @@ Exemple :
 </body>
 </html>
 ```
-In this example :
+Dans cet exemple :
 
-- ```<html>``` opens the HTML page and ```</html>``` closes it.
-- ```<head>``` opens the header section and ```</head>``` closes it.
-- ```<title>``` opens the page title and ```</title>``` closes it.
-- ```<body>``` opens the body of the page and ```</body>``` closes it.
-- ```<h1>``` opens a level 1 heading and ```</h1>``` closes it.
-- ```<p>``` opens a paragraph and ```</p>``` closes it.
+- ```<html>``` ouvre la page HTML et ```</html>``` le ferme.
+- ```<head>``` ouvre la section de l'en-tête et ```</head>``` la ferme.
+- ```<title>``` ouvre le titre de la page et ```</title>``` le ferme.
+- ```<body>``` ouvre le corps de la page et ```</body>``` le ferme.
+- ```<h1>``` ouvre une rubrique de niveau 1 et ```</h1>``` la ferme.
+- ```<p>``` ouvre un paragraphe et ```</p>``` le ferme.
 
 </details>
 </br>
 
-Here we have a classic HTML structure: The code sets up a basic HTML page with <head> and <body> sections.
+Nous avons ici une structure HTML classique : Le code met en place une page HTML de base avec des sections ```<head>``` et ```<body>```.
 
-In the ```<head>``` part, we add : 
+Dans la partie ```<head>```, nous ajoutons :
 
-- the title of the experience
+- le titre de l'expérience
   ```html
   <title>My first AR app</title>
   ```
 
-- the A-Frame Library: It includes the A-Frame library (aframe.min.js), a JavaScript framework for creating virtual reality (VR) and AR experiences using HTML.
+- la bibliothèque A-Frame : Il comprend la bibliothèque A-Frame (aframe.min.js), un framework JavaScript permettant de créer des expériences de réalité virtuelle (VR) et de réalité augmentée (AR) à l'aide de HTML.
 
   ```html
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   ``` 
 
-- the *AR.js library*: It includes the AR.js library (aframe-ar.js) which adds AR capabilities to A-Frame.
+- la *bibliothèque AR.js* : Il inclut la bibliothèque AR.js (aframe-ar.js) qui ajoute des capacités AR à A-Frame.
 
   ```html
   <script src="https://raw.githubusercontent.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>  
   ```
 
-In the```<body>```, and this is where everything comes into play for the content visible to the user. We add : 
+Dans la section ```<body>``` c'est ici que tout se joue pour le contenu visible par l'utilisateur. Nous ajoutons: 
 
-- the *RA stage* : The element ```<a-scene>``` creates the RA scene.
+- la *scène RA* : L'élément ``<a-scene>`` crée la scène RA.
   ```html
   <a-scene embedded
     arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
@@ -458,71 +452,69 @@ In the```<body>```, and this is where everything comes into play for the content
   </a-scene>
   ```
 
-  Note that before the closing chevron '>' in the ```<a-scene>``` we add a lot of options (called attributes in html) to configure the way the scene is displayed.
+  Notez qu'avant le chevron de fermeture '>' dans le ```<a-scene>```, nous ajoutons un grand nombre d'options (appelées attributs en html) pour configurer la façon dont la scène est affichée.
 
 
+- Le *marqueur* : La balise ```<a-marker>``` définit le type de marqueur utilisé (ici, c'est le marqueur kanji par défaut). Lorsque la caméra détecte ce marqueur, le contenu de la balise s'affiche en AR.
 
-- The *marker* : The tag ```<a-marker>``` defines what type of marker we use (here it's the default kanji marker) When the camera detects this marker, the content inside the tag will be displayed in AR.
   ```html
   <a-marker preset="kanji" size= "0.08">
     <!-- add content that will be visible to the user and therefore anchored on our marker, can be a cube, an image etc. -->
   </a-marker>
   ```
 
-- A box : The element <a-box> creates a 3D box that will be displayed on top of the kanji marker.
+- Une boîte : l'élément ```<a-box>``` crée une boîte 3D qui sera affichée au-dessus du marqueur de kanji.
   ```html
   <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
   
   ```
 
 
-- Camera : L'élément ```<a-camera>``` defines the camera in the scene, we're perfectly happy with the way it works by default, but it's possible to add features such as gaze interaction.
+- Camera : L'élément ```<a-camera>``` définit la caméra dans la scène, nous sommes parfaitement satisfaits de son fonctionnement par défaut, mais il est possible d'ajouter des fonctionnalités telles que l'interaction avec le regard.
 
+En résumé, ce code crée une expérience de réalité augmentée dans laquelle une boîte orange apparaît dans un espace 3D lorsque le marqueur "kanji" est détecté par la caméra.
 
-To sumup, this code creates an AR experience where an orange box appears in a 3D spce when the marker 'kanji' is detected by the camera.
+#### Étape 5 : Test
 
+- Enregistrer les modifications : Enregistrez votre fichier index.html.
 
-#### Step 5 : Test
-
-- Save changes : Save your index.html file.
-
-- Test your project : Display the webview of your project.
+- Testez votre projet : Affichez la vue web de votre projet.
 
   <div align="center"> 
   <img src="assets/Capture_projetIDX_webview.png" alt="check the webview tab !" width="75%" />
   </div>
 
-  **☣️** It may happen that the webview disappears... In this case you can bring up the "command palette" by (Cmd+Shift+P on Mac or Ctrl+Shift+P for other systems), then select or type "Show Web Preview".
+  **☣️** Il peut arriver que la webview disparaisse... Dans ce cas, vous pouvez faire apparaître la "palette de commandes" par (Cmd+Shift+P sur Mac ou Ctrl+Shift+P pour les autres systèmes), puis sélectionner ou taper "Show Web Preview".
 
   <div align="center"> 
   <img src="assets/Capture_projetIDX_webview_commandPalette.png" alt="command palette" width="75%" />
   </div>
 
-  You can then view your page full screen by clicking on the small icon at the top right.
+  Vous pouvez ensuite afficher votre page en plein écran en cliquant sur la petite icône en haut à droite.
 
   <div align="center"> 
   <img src="assets/Capture_projetIDX_webview_ouvrir.png" alt="command palette" width="75%" />
   </div>
 
-  This will open your experience in a new tab on your computer. At this point you should see: a web page showing you!
+  Cela ouvrira votre expérience dans un nouvel onglet sur votre ordinateur. À ce stade, vous devriez voir : une page web qui vous montre vous!
 
+Vous pouvez le faire fonctionner en direct à [cette adresse :](https://b2renger.github.io/Introduction_A-frame/code_examples/00AFrameARboilerplate/)
 
-You can run it live at [this adress :](https://b2renger.github.io/Introduction_A-frame/code_examples/00AFrameARboilerplate/)
-
-or scan this qr code  and show it kanji !
+ou scannez ce qr code et montrez-lui le kanji !
 
 <img src="qrcodes/qr_00.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
-Now that we have covered the tools, we will see what kind of content we can add and then, we will try several detections methods
+Maintenant que nous avons couvert les outils, nous allons voir quel type de contenu nous pouvons ajouter et ensuite, nous allons essayer plusieurs méthodes de détection.
 
-Most of the time you will be able to copy and paste code from the examples in this course, beware of the assets that may be needed (3D models, images, etc.)
-
-[**home**](#Contents)
+La plupart du temps, vous pourrez copier et coller du code à partir des exemples de ce cours, mais attention aux ressources qui peuvent être nécessaires (modèles 3D, images, vidéos, son etc.).
 
 Notes :
-You can open the A-Frame scene inspector by using the shortcut : "ctrl" + "alt" + "i".
+Vous pouvez ouvrir l'inspecteur de scène A-Frame en utilisant le raccourci : "ctrl" + "alt" + "i".
+
+[**home**](#Contenu)
+
 
 ---
 ## Several kinds of contents
