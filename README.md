@@ -1015,6 +1015,7 @@ The marker tag with the entity looks like this :
       <a-entity material="shader: chromakey; src: #vid; chroma: true; color: 0. 0. 1."
         geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
       </a-entity>
+      <a-text value="Click Me !" scale='1 1 1' position='-0.4 0 0'></a-text>
     </a-marker>
 ```
 
@@ -1028,7 +1029,7 @@ In the "geometry" you can change the "width" and "height" of your plane to your 
 
 The full code of the component look like this. You can copy / paste it in any "head" tag of a project
 ```js
- <script defer>
+  <script defer>
     // https://github.com/nikolaiwarner/aframe-chromakey-material
     AFRAME.registerShader('chromakey', {
       schema: {
@@ -1042,6 +1043,9 @@ The full code of the component look like this. You can copy / paste it in any "h
         const videoEl = data.src;
         document.addEventListener('click', () => {
           videoEl.play();
+
+          this.el.children[0].setAttribute('visible', false)
+          //console.log(this.el.children)
         });
 
         var videoTexture = new THREE.VideoTexture(data.src)
