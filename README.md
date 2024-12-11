@@ -1023,7 +1023,7 @@ The marker tag with the entity looks like this :
       <a-entity material="shader: chromakey; src: #vid; chroma: true; color: 0. 0. 1."
         geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
       </a-entity>
-              <a-text value="Click Me !" scale='1 1 1' position='-0.4 0 0'></a-text>
+      <a-text value="Click Me !" scale='1 1 1' position='-0.4 0 0'></a-text>
     </a-marker>
 ```
 
@@ -1141,6 +1141,164 @@ for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) 
 
 If you want to play audio with the video, you'll need to have a video (mp4) and an audio file seperated (mp3). Check out this exampl that combines both scripts :
 https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"></script>
+
+  <script defer>
+    // https://github.com/nikolaiwarner/aframe-chromakey-material
+    AFRAME.registerShader('chromakey', {
+      schema: {
+        src: {type: 'map'},
+        color: {default: {x: 0.0, y: 1.0, z: 0.0}, type: 'vec3', is: 'uniform'},
+        chroma: {type: 'bool', is: 'uniform'},
+        transparent: {default: true, is: 'uniform'}
+      },
+
+      init: function (data) {
+
+        const videoEl = data.src;
+
+        document.addEventListener('click', () => {
+          videoEl.play();
+          const entity = document.querySelector("[sound]");
+          if (entity) entity.components.sound.playSound();
+        });
+
+        var videoTexture = new THREE.VideoTexture(data.src)
+        videoTexture.minFilter = THREE.LinearFilter
+        this.material = new THREE.ShaderMaterial({
+          uniforms: {
+            chroma: {
+              type: 'b',
+              value: data.chroma
+            },
+            color: {
+              type: 'c',
+              value: data.color
+            },
+            myTexture: {
+              type: 't',
+              value: videoTexture
+            }
+          },
+          vertexShader:
+            `
+            varying vec2 vUv;
+            
+            void main(void)
+            {
+              vUv = uv;
+              vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+              gl_Position = projectionMatrix * mvPosition;
+            }
+          `
+          ,
+          fragmentShader:
+            `
+              uniform sampler2D myTexture;
+              uniform vec3 color;
+              uniform bool chroma;
+              varying vec2 vUv;
+              
+              void main(void)
+              {
+                vec3 tColor = texture2D( myTexture, vUv ).rgb;
+                float a;
+                if(chroma == true){
+                   a = (length(tColor - color) - 0.5) * 7.0;
+                }
+                else {
+                  a = 1.0;
+                }
+                
+                gl_FragColor = vec4(tColor, a);
+              }
+            `
+        })
+      },
+
+      update: function (data) {
+        this.material.color = data.color
+        this.material.src = data.src
+        this.material.transparent = data.transparent
+      },
+    });
+  </script>
+
+  <script defer>
+    AFRAME.registerComponent("audiohandler", {
+      init: function () {
+        this.trackedElements = document.querySelectorAll(
+          "a-marker[audiohandler]"
+        );
+        // console.log(this.trackedElements);
+      },
+      tick: function () {
+        this.trackedElements.forEach((marker) => {
+          const vid = document.querySelector(
+            marker.attributes.vidreference.value
+          );
+          const sound = document.querySelector(
+            marker.attributes.audioReference.value
+          );
+          if (marker.object3D.visible) {
+            if (vid.paused) {
+              vid.play();
+            }
+            if (sound.paused) {
+              sound.play();
+            }
+          } else {
+            if (!vid.paused) {
+              vid.pause();
+              vid.currentTime = 0;
+            }
+            if (!sound.paused) {
+              sound.pause();
+              sound.currentTime = 0;
+            }
+          }
+        });
+      },
+    });
+
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: false; physicallyCorrectLights; logarithmicDepthBuffer: false;"
+    arjs="trackingMethod: best; debugUIEnabled: false;">
+
+
+    <a-assets>
+      <video id="vid1" src="assets/mask_red_back.mp4" autoplay="true" loop="true" preload="auto" controls="true"
+        muted="true" playsinline="" webkit-playsinline=""></video>
+      <audio id="sound1" src="assets/634332__josefpres__bass-loops-077-with-drums-long-loop-120-bpm.mp3" preload="auto"></audio>
+    </a-assets>
+
+
+    <a-marker audiohandler audioReference="#sound1" vidreference="#vid1" preset="kanji" size="0.8">
+      <a-entity material="shader: chromakey; src:#vid1; chroma:true; color: 0. 0. 0."
+        geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
+      </a-entity>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
 
 
 [**home**](#Contents)
