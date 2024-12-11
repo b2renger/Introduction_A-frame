@@ -1242,24 +1242,24 @@ https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
       tick: function () {
         this.trackedElements.forEach((marker) => {
           const vid = document.querySelector(
-            marker.attributes.vidreference.value
+            marker.attributes.vidReference.value
           );
           const sound = document.querySelector(
             marker.attributes.audioReference.value
           );
           if (marker.object3D.visible) {
-            if (vid.paused) {
+            if (vid && vid.paused) {
               vid.play();
             }
-            if (sound.paused) {
+            if (sound && sound.paused) {
               sound.play();
             }
           } else {
-            if (!vid.paused) {
+            if (vid && !vid.paused) {
               vid.pause();
               vid.currentTime = 0;
             }
-            if (!sound.paused) {
+            if (sound && !sound.paused) {
               sound.pause();
               sound.currentTime = 0;
             }
@@ -1285,7 +1285,7 @@ https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
     </a-assets>
 
 
-    <a-marker audiohandler audioReference="#sound1" vidreference="#vid1" preset="kanji" size="0.8">
+    <a-marker audiohandler audioReference="#sound1" vidReference="#vid1" preset="kanji" size="0.8">
       <a-entity material="shader: chromakey; src:#vid1; chroma:true; color: 0. 0. 0."
         geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
       </a-entity>
