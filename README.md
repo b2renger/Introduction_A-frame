@@ -2005,8 +2005,41 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
 </br>
 
-You can check the code here :
+You can check the code here on replit:
 https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
+
+
+```html
+<!-- https://hiukim.github.io/mind-ar-js-doc/tools/compile/ -->
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+
+</head>
+
+<body>
+  <!-- in the scene tag : change the path to the .mind file you downloaded from the feature extractor and uploaded to your project eg "assets/mariette_target.mind"-->
+  <a-scene id="arscene" 
+  mindar-image="imageTargetSrc: ./assets/mariette_target.mind; maxTrack:2" 
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <!--mindar-image-target="targetIndex: 0" means the box will be attached on the first image you trained-->
+    <a-box mindar-image-target="targetIndex: 0" depth="0.1" color="#FF884B" opacity="0.5" position="0 0 0"></a-box>
+       <!--mindar-image-target="targetIndex: 0" means the box will be attached on the second image you trained-->
+    <a-box mindar-image-target="targetIndex: 1" depth=".1" color="#9D0191" opacity="0.5" position="0 0 0"></a-box>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
 
 
 [**home**](#Contents)
