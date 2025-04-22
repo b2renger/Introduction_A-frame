@@ -2041,6 +2041,161 @@ https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 </html>
 ```
 
+Another example to play a video :
+Note that for some reasons related to apple, on iphones the live test on projectIdX (or firebase studio) doesn't work : you'll need to push to github-pages and test from the deployed version.
+
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <script defer>
+    // https://github.com/nikolaiwarner/aframe-chromakey-material
+    AFRAME.registerShader('chromakey', {
+      schema: {
+        src: { type: 'map' },
+        color: { default: { x: 0.0, y: 1.0, z: 0.0 }, type: 'vec3', is: 'uniform' },
+        chroma: { type: 'bool', is: 'uniform' },
+        transparent: { default: true, is: 'uniform' }
+      },
+
+      init: function (data) {
+
+        var videoTexture = new THREE.VideoTexture(data.src)
+        videoTexture.minFilter = THREE.LinearFilter
+        this.material = new THREE.ShaderMaterial({
+          uniforms: {
+            chroma: {
+              type: 'b',
+              value: data.chroma
+            },
+            color: {
+              type: 'c',
+              value: data.color
+            },
+            myTexture: {
+              type: 't',
+              value: videoTexture
+            }
+          },
+          vertexShader:
+            `
+            varying vec2 vUv;
+            
+            void main(void)
+            {
+              vUv = uv;
+              vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+              gl_Position = projectionMatrix * mvPosition;
+            }
+          `
+          ,
+          fragmentShader:
+            `
+              uniform sampler2D myTexture;
+              uniform vec3 color;
+              uniform bool chroma;
+              varying vec2 vUv;
+              
+              void main(void)
+              {
+                vec3 tColor = texture2D( myTexture, vUv ).rgb;
+                float a;
+                if(chroma == true){
+                   a = (length(tColor - color) - 0.5) * 7.0;
+                }
+                else {
+                  a = 1.0;
+                }
+                
+                gl_FragColor = vec4(tColor, a);
+              }
+            `
+        })
+      },
+
+      update: function (data) {
+        this.material.color = data.color
+        this.material.src = data.src
+        this.material.transparent = data.transparent
+      },
+
+    })
+
+  </script>
+
+
+  <script defer>
+    AFRAME.registerComponent('play-on-click', {
+      init: function () {
+        this.onClick = this.onClick.bind(this);
+
+        this.el.addEventListener('targetFound', event => {
+          console.log("target found");
+          var videoEl = this.el.getAttribute('material').src;
+          if (!videoEl) { return; }
+          this.el.object3D.visible = true;
+          videoEl.play();
+
+        });
+        this.el.addEventListener('targetLost', event => {
+          console.log("target found");
+          var videoEl = this.el.getAttribute('material').src;
+          if (!videoEl) { return; }
+          this.el.object3D.visible = false;
+          videoEl.pause();
+        });
+      },
+      play: function () {
+        window.addEventListener('click', this.onClick);
+      },
+      pause: function () {
+        window.removeEventListener('click', this.onClick);
+      },
+      onClick: function (evt) {
+        var videoEl = this.el.getAttribute('material').src;
+        if (!videoEl) { return; }
+        this.el.object3D.visible = true;
+        videoEl.play();
+      }
+    });
+  </script>
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!--point to your *.mind file created on the website-->
+  <a-scene mindar-image="imageTargetSrc:assets/test_target.mind;" color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <!--point to you *mp4 file : h264, AAC etc-->
+      <video src="./assets/Test.mp4#t=0.1" muted="true" loop="true" controls="false" playsinline webkit-playsinline
+        type='video/mp4' id="vid"></video>
+    </a-assets>
+
+    <a-entity mindar-image-target="targetIndex: 0" play-on-click
+      material="shader: chromakey; src: #vid; chroma: false; color: 0. 0. 1."
+      geometry="primitive: plane; width:  1; height:  1.6" position="0  0  0" rotation="270  0  0" side="double">
+    </a-entity>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+
+```
+
 
 [**home**](#Contents)
 
