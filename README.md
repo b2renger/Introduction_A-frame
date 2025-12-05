@@ -29,7 +29,7 @@ Remember you can always navigate the content hierarchy with the burger menu on g
 ## The tools
 
 We use several tools :
-- a web plateform to write our code and test our projects : [ProjectIDX](https://idx.dev/)
+- a web plateform to write our code and test our projects : [Firebase studio](https://firebase.studio/)
 - a source versionning plateform to publish and host our final project : [github](https://github.com)
 - a library for content / assets  manipulation : [A-Frame](https://aframe.io/)
 - a library for marker detection / gps markers in augmented reality : [ARjs](https://ar-js-org.github.io/AR.js-Docs/) 
@@ -681,7 +681,7 @@ Let's now texture a plane that will represent a ground. The textures should be a
 
 For our examples we will use textures from this [link](https://polyhaven.com/a/forest_leaves_02) - (btw [polyhaven](https://polyhaven.com) is awesome !)
 
-First you need to load your image into replit you can just drag and drop it onto the 'assets' folder. If the folder does not exist : you can create one. Then in the assets part of our programm you can import it:
+First you need to load your image you can just drag and drop it onto the 'assets' folder. If the folder does not exist : you can create one. Then in the assets part of our programm you can import it:
 
 ```html
 <img id="leavestex" src="assets/forest_leaves_02_diffuse_1k.jpg">
@@ -798,8 +798,7 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_02.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit here to see how it is structured and help you reproduce it in projectIDX
-https://replit.com/@b2renger/02AFrameARShapesmixins#index.html
+
 
 Note that you need texture images to reproduce this example in projectIDX. You can find them in the release section of the github repo
 
@@ -813,7 +812,7 @@ If you want to know more about textures maps and pbr material you can have look 
 
 Putting images in ar experiences is pretty straight forward. We will use the same kind of code as before.
 
-First you need to load your image into projectIDX you can just drag and drop it onto the 'assets' folder. 
+First you need to load your image into firebase studio you can just drag and drop it onto the 'assets' folder. 
 
 ![](assets/replit_assets_image.png)
 
@@ -902,8 +901,6 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_03.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit here to see how it is structured and help you reproduce it in projectIDX
-https://replit.com/@b2renger/03AFRAMEARImages#index.html
 
 Note you will need an image to put in your asset folder.
 
@@ -971,14 +968,79 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_14-audio_on_sight.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit at this adress :
-https://replit.com/@b2renger/14AFRAMEARAudio#index.html
 
 Note : you'll need audio files to experiments with this.
 
 An extra example will help you to **play a sound on a "cursor-click"**, it's more advanced and you'll need to read the *interaction* part of this cook book to understand how "cursors" and "fusing" actually work.
-https://replit.com/@b2renger/14AFramegaze2audio
 
+<details>
+<summary> Code </summary>
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"></script>
+
+
+  <script defer>
+    AFRAME.registerComponent("audiohandler", {
+      init: function () {
+        this.trackedElements = document.querySelectorAll(
+          "a-marker[audiohandler]"
+        );
+      },
+      tick: function () {
+        this.trackedElements.forEach((marker) => {
+
+          const sound = document.querySelector(
+            marker.attributes.audioReference.value
+          );
+          if (marker.object3D.visible) {
+
+            if (sound.paused) {
+              sound.play();
+            }
+          } else {
+
+            if (!sound.paused) {
+              sound.pause();
+              sound.currentTime = 0;
+            }
+          }
+        });
+      },
+    });
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: false; physicallyCorrectLights; logarithmicDepthBuffer: false;"
+    arjs="trackingMethod: best; debugUIEnabled: false;">
+
+
+    <a-assets>
+      <audio id="sound1" src="assets/634332__josefpres__bass-loops-077-with-drums-long-loop-120-bpm.mp3" preload="auto">
+      </audio>
+    </a-assets>
+
+
+    <a-marker audiohandler audioReference="#sound1" preset="kanji" size="0.8">
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+</details>
 
 
 [**home**](#Contents)
@@ -1133,15 +1195,132 @@ or scan this qr code and show it kanji ! (if nothing happens click on the screen
 
 
 You can have a look at the whole example here :
-https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshader
+<details>
+<summary>Code</summary>
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"></script>
+
+  <script defer>
+    // https://github.com/nikolaiwarner/aframe-chromakey-material
+    AFRAME.registerShader('chromakey', {
+      schema: {
+        src: {type: 'map'},
+        color: {default: {x: 0.0, y: 1.0, z: 0.0}, type: 'vec3', is: 'uniform'},
+        chroma: {type: 'bool', is: 'uniform'},
+        transparent: {default: true, is: 'uniform'}
+      },
+
+      init: function (data) {
+        const videoEl = data.src;
+        document.addEventListener('click', () => {
+          videoEl.play();
+        });
+
+        var videoTexture = new THREE.VideoTexture(data.src)
+        videoTexture.minFilter = THREE.LinearFilter
+        this.material = new THREE.ShaderMaterial({
+          uniforms: {
+            chroma: {
+              type: 'b',
+              value: data.chroma
+            },
+            color: {
+              type: 'c',
+              value: data.color
+            },
+            myTexture: {
+              type: 't',
+              value: videoTexture
+            }
+          },
+          vertexShader:
+            `
+            varying vec2 vUv;
+            
+            void main(void)
+            {
+              vUv = uv;
+              vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+              gl_Position = projectionMatrix * mvPosition;
+            }
+          `
+          ,
+          fragmentShader:
+            `
+              uniform sampler2D myTexture;
+              uniform vec3 color;
+              uniform bool chroma;
+              varying vec2 vUv;
+              
+              void main(void)
+              {
+                vec3 tColor = texture2D( myTexture, vUv ).rgb;
+                float a;
+                if(chroma == true){
+                   a = (length(tColor - color) - 0.5) * 7.0;
+                }
+                else {
+                  a = 1.0;
+                }
+                
+                gl_FragColor = vec4(tColor, a);
+              }
+            `
+        })
+      },
+
+      update: function (data) {
+        this.material.color = data.color
+        this.material.src = data.src
+        this.material.transparent = data.transparent
+      },
+
+    })
+
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: false; physicallyCorrectLights; logarithmicDepthBuffer: false;"
+    arjs="trackingMethod: best; debugUIEnabled: false;">
+
+    <a-assets>
+      <video id="vid" src="assets/mask_blue_sil.mp4" autoplay="true" loop="true" preload="auto" controls="true"
+        muted="true" playsinline="" webkit-playsinline=""></video>
+    </a-assets>
+
+    <a-marker id="vid-marker" preset="kanji" size="0.8">
+      <a-entity material="shader: chromakey; src: #vid; chroma: true; color: 0. 0. 1."
+        geometry="primitive: plane; width:  1; height:  1" position="0  0  0" rotation="270  0  0" side="double">
+      </a-entity>
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+</detals>
 
 
 You want to export mp4 files with h264 codec and a
 for your conversion needs [shutter encoder](https://www.shutterencoder.com/en/) is a very good tool.
 
-If you want to play audio with the video, you'll need to have a video (mp4) and an audio file seperated (mp3). Check out this exampl that combines both scripts :
-https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
+If you want to play audio with the video, you'll need to have a video (mp4) and an audio file seperated (mp3). Check out this example that combines both scripts :
 
+<details>
+<summary>Code</summary>
 ```html
 <!doctype html>
 <html>
@@ -1299,6 +1478,7 @@ https://replit.com/@b2renger/04AFRAMEARVideosgreenscreenshaderaudio
 
 </html>
 ```
+</summary>
 
 
 [**home**](#Contents)
@@ -1415,8 +1595,70 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit here :
-https://replit.com/@b2renger/05AFRAMETexts#index.html
+<summary>
+<details>Code</details>
+```html
+<!doctype html>
+<html>
+<head>
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+	</script>
+	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+	</script>
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+	<a-scene 
+    embedded arjs="sourceType: webcam;"
+    vr-mode-ui="enabled: false" 
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best"
+    detectionMode= 'color_and_matrix' 
+    changeMatrixMode= "modelViewMatrix" 
+	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280" displayHeight="720"
+    shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: false"
+    
+     >
+    
+  
+		<a-marker preset="kanji" size="0.8">
+      <!-- basic text : we manually offset the position  -->
+      <a-text value="Hello, World!" side="double" position = "0 0 -1" rotation="270 0 0" color="blue" align="center" ></a-text>
+     
+
+      <a-entity text="value:Hello Creepster; color:#FFFFFF; 
+        width: 4; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 -0.5"></a-entity>   
+
+
+      <a-entity text="value:Hello Indie Flower; color:red; 
+        width: 8; height: auto; align:center;
+        shader: msdf; 
+        font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/indieflower/IndieFlower-Regular.json;" 
+        side="double" rotation="270 0 0" position="0 0 0"></a-entity>
+      
+		</a-marker>
+
+		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+	</a-scene>
+
+
+</body>
+
+</html>
+``` 
+</summary>
 
 Note :
 If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
@@ -1429,7 +1671,7 @@ You can also use modelling software to create text effects : https://www.youtube
 
 ### 3d models
 
-3D models is pretty much the same as images or videos, you need to upload the model to replit, then load it using the asset system of a-frame to be able to finally display it on a marker.
+3D models is pretty much the same as images or videos, you need to upload the model, then load it using the asset system of a-frame to be able to finally display it on a marker.
 
 You can either import :
   - obj + mtl files
@@ -1440,8 +1682,9 @@ The advantage of a glb file is that everything is packed in one file (textures /
 
 We have two options here we can keep the lights we set up in our modelling software or use real-time lights in A-Frame. For the sake of simplicity we will use the lights from our models so to be sure we just need to disable the default lightning in A-Frame in our *a-scene* tag
 
-```h
+```html
 light="defaultLightsEnabled: true"
+
 ```
 
 
@@ -1449,7 +1692,7 @@ light="defaultLightsEnabled: true"
 
 It's as easy as ever ! :)
 
-1- Upload your files to replit in an assets folder.
+1- Upload your files in an assets folder.
 
 2- Load them with A-Frame **a-assets** tag.
   ```html
@@ -1483,8 +1726,67 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_07-obj.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit here :
-https://replit.com/@b2renger/07AFRAME3DModels00obj-mtl#index.html
+
+<summary>
+<details>Code</details>
+```html
+<!-- 3D model by Chaïnèze D'Almeida
+https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+
+
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;"  vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best"  detectionMode= 'color_and_matrix' changeMatrixMode= "modelViewMatrix" smooth="true"
+    smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth= "800" sourceHeight= "600"
+    displayWidth= "1280"  displayHeight="720" shadow="autoUpdate: true; enabled: true; type:pcf"
+    light="defaultLightsEnabled: true">
+
+    <a-assets>
+      <a-asset-item
+        id="scene-obj"
+        src="./assets/scene.obj"
+      ></a-asset-item>
+      <a-asset-item
+        id="scene-mtl"
+        src="./assets/scene.mtl"
+      ></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="kanji">
+      <a-entity obj-model="obj: #scene-obj; mtl: #scene-mtl"></a-entity>
+    </a-marker>
+
+
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+
+</body>
+
+</html>
+```
+</summary>
+
 
 
 #### GLB
@@ -1503,7 +1805,7 @@ In A-Frame to play the animation you'll need to include a new library in the hea
 
 This will allow us to add a property called **animation-mixer** to the entities supporting animations.
 
-So now basically we just have to upload our glb file to replit in the asset folder (as usual) and import it in our scene.
+So now basically we just have to upload our glb file in the asset folder (as usual) and import it in our scene.
 
 ```html
 <a-assets>
@@ -1531,8 +1833,55 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-You can find the code on replit here :
-https://replit.com/@b2renger/07AFRAME3DModels01glb#index.html
+<summary>
+<details>Code</details>
+```html
+<!-- 3D model by Chaïnèze D'Almeida
+https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+</head>
+
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best" detectionMode='color_and_matrix' changeMatrixMode="modelViewMatrix" smooth="true"
+    smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600" displayWidth="1280"
+    displayHeight="720" shadow="autoUpdate: true; enabled: true; type:pcf" light="defaultLightsEnabled: true"
+    gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.129.0/examples/js/libs/draco/gltf/;">
+    <a-assets>
+      <a-asset-item id="glbTest" src="./assets/satanim3.glb"></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="kanji">
+      <a-entity scale=".1 .1 .1" gltf-model="#glbTest" animation-mixer></a-entity>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+
+</body>
+
+</html>
+```
+</summary>
 
 Note : you'll need 3D models. You have a few examples of good 3D models inside the realease part of the github.
 
@@ -1802,11 +2151,357 @@ Nota bene, the "greenscreen" component for videos is made with a shader :)
 
 **todoc later**
 
-if you already know about shaders here are some links to get started
+if you already know about shaders here is some code you can look at to play a video and apply a displacement vertex shader
 
-https://replit.com/@b2renger/16AFrameARShadersbasic
+<summary>
+<details>Code</details>
 
-https://replit.com/@b2renger/16AFrameARShadersvertexnfrag
+```html
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="./script.js"></script>
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene mindar-image="imageTargetSrc:assets/loom.mind;" color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <video src="./assets/ComfyUI_00091_.mp4#t=0.1" muted="true" loop="true" controls="false" playsinline webkit-playsinline
+        type='video/mp4' id="vid"></video>
+      <!-- Audio asset -->
+      <audio id="audio" src="./assets/649064__peter1955__220807-1507-weefgetouw-geldrop-nl-def-3.mp3" preload="auto" crossorigin="anonymous"></audio>
+    </a-assets>
+
+    <a-entity mindar-image-target="targetIndex: 0" play-sound-and-displace play-on-click
+      material="shader: chromakey; src: #vid; chroma: true; color: 0. 0.8 1.; displacement: true;"
+      geometry="primitive: plane; width:  1; height:  1.6; segments-width: 50; segments-height: 100"
+      position="0  0  0" rotation="270  0  0" side="double">
+    </a-entity>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+
+```js
+// https://github.com/nikolaiwarner/aframe-chromakey-material
+// think about : https://github.com/b2renger/p5js-shaders/tree/master/AF-shader-vertex-displacement
+AFRAME.registerShader('chromakey', {
+    schema: {
+        src: { type: 'map' },
+        color: { default: { x: 0.0, y: 1.0, z: 0.0 }, type: 'vec3', is: 'uniform' },
+        chroma: { type: 'bool', is: 'uniform' },
+        transparent: { default: true, is: 'uniform' },
+        // New properties for displacement
+        displacement: { type: 'bool', default: false, is: 'uniform' },
+        damplitude: { type: 'float', default: 0.0, is: 'uniform' }
+    },
+
+    init: function (data) {
+
+        var videoTexture = new THREE.VideoTexture(data.src)
+        videoTexture.minFilter = THREE.LinearFilter
+        this.material = new THREE.ShaderMaterial({
+            uniforms: {
+                chroma: {
+                    type: 'b',
+                    value: data.chroma
+                },
+                color: {
+                    type: 'c',
+                    value: data.color
+                },
+                myTexture: {
+                    type: 't',
+                    value: videoTexture
+                },
+                // New uniforms for displacement
+                displacement: {
+                    type: 'b',
+                    value: data.displacement
+                },
+                damplitude: {
+                    type: 'f',
+                    value: data.damplitude
+                },
+                // A-Frame provides time uniform automatically
+            },
+            vertexShader:
+                `
+              #ifdef GL_ES
+              precision mediump float;
+              #endif
+  
+              // A-Frame provides these built-in attributes and uniforms automatically
+              // attribute vec3 position;
+              // attribute vec2 uv;
+              // attribute vec3 normal;
+              // uniform mat4 modelViewMatrix;
+              // uniform mat4 projectionMatrix;
+              // uniform float time; // A-Frame time uniform (milliseconds) - Removed as not needed for displacement strength
+  
+              // Existing uniform for video texture
+              uniform sampler2D myTexture;
+  
+              // New uniforms
+              uniform bool displacement;
+              uniform float damplitude;
+  
+              // Varying to pass texture coordinates to the fragment shader
+              varying vec2 vUv;
+  
+              void main(void) {
+                vUv = uv; // Pass the original texture coordinates
+  
+                vec3 displacedPosition = position; // Start with original position
+  
+                if (displacement) {
+                  // Sample the video texture using UV coordinates for displacement
+                  // Use a different UV for sampling the video texture if needed, 
+                  // but for now, using the geometry's UV for displacement texture lookup
+                  vec4 noise = texture2D(myTexture, fract(uv));
+  
+                  // Calculate a single float noise value from the RGB channels, centered around 0
+                  float noiseValue = dot(noise.rgb, vec3(0.333)) - 1.4; // Value between -0.5 and 0.5
+  
+                  // Apply displacement along the Y axis, scaled by the damplitude uniform
+                  displacedPosition.z -= noiseValue * damplitude;
+                }
+  
+                // Calculate final position in clip space using the displaced position
+                vec4 mvPosition = modelViewMatrix * vec4(displacedPosition, 1.0);
+                gl_Position = projectionMatrix * mvPosition;
+              }
+            `
+            ,
+            fragmentShader:
+                `
+              #ifdef GL_ES
+              precision mediump float;
+              #endif
+  
+              uniform sampler2D myTexture; // The video texture
+              uniform vec3 color;         // Chromakey color
+              uniform bool chroma;        // Chromakey enabled flag
+  
+              varying vec2 vUv;           // Texture coordinates from the vertex shader
+  
+              void main(void) {
+                vec3 tColor = texture2D(myTexture, vUv).rgb; // Sample the video texture
+                float a; // Alpha value
+  
+                if (chroma) {
+                  // Chromakey calculation
+                  a = (length(tColor - color) - 0.5) * 7.0;
+                } else {
+                  a = 1.0;
+                }
+  
+                // Clamp alpha between 0.0 and 1.0
+                a = clamp(a, 0.0, 1.0);
+  
+                // Output the color with the calculated alpha
+                gl_FragColor = vec4(tColor, a);
+              }
+              `
+        })
+    },
+
+    update: function (data) {
+        this.material.color = data.color;
+        this.material.src = data.src;
+        this.material.transparent = data.transparent;
+        // Update new uniforms
+        this.material.uniforms.displacement.value = data.displacement;
+        this.material.uniforms.damplitude.value = data.damplitude;
+    },
+
+})
+
+
+AFRAME.registerComponent('play-sound-and-displace', {
+    init: function () {
+        this.soundEl = document.querySelector('#audio'); // Get the audio element
+        this.material = null; // Will be set when the mesh is available
+        this.analyser = null;
+        this.dataArray = null;
+        this.frameId = null;
+        this.audioContext = null; // Store AudioContext
+
+        const self = this; // Keep a reference to the component
+
+        this.el.addEventListener('targetFound', event => {
+            console.log("target found");
+
+            // Get the material after the mesh is created
+            if (!this.material) {
+                this.material = this.el.getObject3D('mesh').material;
+            }
+
+            var videoEl = this.el.getAttribute('material').src;
+            if (!videoEl) { return; }
+            this.el.object3D.visible = true;
+
+            // Check if video is already playing before attempting to play
+            if (videoEl.paused) {
+                videoEl.play();
+            }
+
+            // Play the audio, loop, and set up analyser
+            if (this.soundEl) {
+                // Create and resume AudioContext on user gesture (targetFound)
+                if (!this.audioContext) {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const source = this.audioContext.createMediaElementSource(this.soundEl);
+                    this.analyser = this.audioContext.createAnalyser();
+                    source.connect(this.analyser);
+                    this.analyser.connect(this.audioContext.destination);
+                    this.analyser.fftSize = 256; // or higher for more detail
+                    const bufferLength = this.analyser.frequencyBinCount;
+                    this.dataArray = new Uint8Array(bufferLength);
+                }
+
+                // Resume context if suspended
+                if (this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+
+                this.soundEl.play();
+                this.soundEl.loop = true;
+
+                // Start updating displacement based on sound
+                this.updateDisplacement();
+            }
+
+        });
+
+        this.el.addEventListener('targetLost', event => {
+            console.log("target lost");
+            var videoEl = this.el.getAttribute('material').src;
+            if (!videoEl) { return; }
+            this.el.object3D.visible = false;
+            // Pause only if video is playing
+            if (!videoEl.paused) {
+                videoEl.pause();
+            }
+
+            // Pause and rewind audio, stop updating displacement
+            if (this.soundEl) {
+                this.soundEl.pause();
+                this.soundEl.currentTime = 0;
+                this.soundEl.loop = false;
+                if (this.frameId) {
+                    cancelAnimationFrame(this.frameId);
+                    this.frameId = null;
+                }
+                // Reset displacement amplitude
+                if (this.material && this.material.uniforms.damplitude) {
+                    this.material.uniforms.damplitude.value = 0;
+                }
+            }
+        });
+    },
+
+    updateDisplacement: function () {
+        if (!this.analyser || !this.dataArray || !this.material || !this.material.uniforms.damplitude) {
+            this.frameId = requestAnimationFrame(this.updateDisplacement.bind(this));
+            return;
+        }
+
+        this.analyser.getByteFrequencyData(this.dataArray);
+
+        // Calculate a simple average amplitude
+        let sum = 0;
+        for (let i = 0; i < this.dataArray.length; i++) {
+            sum += this.dataArray[i];
+        }
+        const average = sum / this.dataArray.length;
+
+        // Map the average amplitude to a displacement value
+        // Adjust the multiplier and offset to control the range and intensity of displacement
+        // Example mapping: normalize average (0-255) to a range like 0 to 0.5 for damplitude
+        const displacementAmount = (average / 255.0) * 0.5; // Scale to a max damplitude of 0.5
+
+        // Update the shader uniform
+        this.material.uniforms.damplitude.value = displacementAmount;
+
+        // Request the next frame
+        this.frameId = requestAnimationFrame(this.updateDisplacement.bind(this));
+    },
+
+    play: function () { },
+    pause: function () { },
+    remove: function () {
+        // Clean up on component removal
+        if (this.frameId) {
+            cancelAnimationFrame(this.frameId);
+            this.frameId = null;
+        }
+        if (this.soundEl) {
+            this.soundEl.pause();
+            this.soundEl.currentTime = 0;
+            this.soundEl.loop = false;
+        }
+        if (this.audioContext && this.audioContext.state !== 'closed') {
+            this.audioContext.close();
+            this.audioContext = null;
+        }
+        // Reset displacement amplitude if material is still available
+        if (this.material && this.material.uniforms.damplitude) {
+            this.material.uniforms.damplitude.value = 0;
+        }
+    }
+});
+
+AFRAME.registerComponent('play-on-click', {
+    init: function () {
+      this.onClick = this.onClick.bind(this);
+
+      this.el.addEventListener('targetFound', event => {
+        console.log("target found");
+        var videoEl = this.el.getAttribute('material').src;
+        if (!videoEl) { return; }
+        this.el.object3D.visible = true;
+        videoEl.play();
+
+      });
+      this.el.addEventListener('targetLost', event => {
+        console.log("target found");
+        var videoEl = this.el.getAttribute('material').src;
+        if (!videoEl) { return; }
+        this.el.object3D.visible = false;
+        videoEl.pause();
+      });
+    },
+    play: function () {
+      window.addEventListener('click', this.onClick);
+    },
+    pause: function () {
+      window.removeEventListener('click', this.onClick);
+    },
+    onClick: function (evt) {
+      var videoEl = this.el.getAttribute('material').src;
+      if (!videoEl) { return; }
+      this.el.object3D.visible = true;
+      videoEl.play();
+    }
+  });
+```
+</summary>
 
 
 
@@ -1866,8 +2561,47 @@ or scan this qr code  and show it Kanji and Hiro!
 <img src="markers/hiro.png" width="250" height="250"/></br>
 
 
-You can find the code on replit here :
-https://replit.com/@b2renger/08AFRAMEHiroandKanji#index.html
+<summary>
+<details>Code</details>
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best" detectionMode='color_and_matrix' changeMatrixMode="modelViewMatrix" smooth="true"
+    smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600" displayWidth="1280"
+    displayHeight="720">
+
+    <a-marker preset="kanji" size: "0.08">
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#F66B0E' material='opacity: 1;'></a-box>
+    </a-marker>
+
+    <a-marker preset="hiro" size: "0.08">
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#205375' material='opacity: 1;'></a-box>
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+</summary>
 
 [**home**](#Contents)
 
@@ -1935,8 +2669,74 @@ You can also scan the qrcode below and show it the set of markers under:
 <img src="markers/barcodes_white_back.png" width="640" height="400"/>
 </br>
 
-You can check the code here
-https://replit.com/@b2renger/09AFRAMEBarcodes#index.html
+<summary>
+<details>Code</details>
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded
+    arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
+    vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600"
+    displayWidth="1280" displayHeight="720">
+
+    <a-marker type="barcode" value="0">
+      <a-box color="#143F6B" depth="1" height="1" width="1">
+      <a-text value="Marker 0" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+    <a-marker type="barcode" value="1">
+      <a-box color="#F55353" depth="1" height="1" width="1">
+        <a-text value="Marker 1" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+    <a-marker type="barcode" value="2">
+      <a-box color="#FEB139" depth="1" height="1" width="1">
+        <a-text value="Marker 2" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+    <a-marker type="barcode" value="3">
+      <a-box color="#F6F54D" depth="1" height="1" width="1">
+        <a-text value="Marker 3" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+    <a-marker type="barcode" value="4">
+      <a-box color="#56BBF1" depth="1" height="1" width="1">
+        <a-text value="Marker 4" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+    <a-marker type="barcode" value="5">
+      <a-box color="#99FFCD" depth="1" height="1" width="1">
+        <a-text value="Marker 5" side="double" position="0 1.1 0" rotation="270 0 0" align="center"></a-text>
+    </a-marker>
+
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+``` 
+
+</summary>
+
+If you want to check the value of a specific marker you can check this page
+https://ateliernum.github.io/superpositions/test.html
+
 
 #### White border markers
 
@@ -1990,12 +2790,6 @@ Just show it the marker with the id "0"
 <br></br>
 I didn't include the black constrating border here, because the back of the page is black and it should be enough to detect "the end" of the marker.
 
-
-That you can find on replit to fork and run : 
-https://replit.com/@b2renger/09AFRAMEBarcodeswhite#index.html
-
-
-
 [**home**](#Contents)
 
 ### Custom marker 
@@ -2038,8 +2832,51 @@ You can also scan the qrcode below and show it our beautiful custom marker :
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
 
-You can check the code here :
-https://replit.com/@b2renger/10AFRAMECustommarkers#index.html
+<summary>
+<details>Code</details>
+
+```html
+<!-- To build the necessary files to have custom markers
+https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded
+    arjs="sourceType: webcam; detectionMode :'color_and_matrix' trackingMethod: best ; changeMatrixMode: modelViewMatrix;"
+    vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    smooth=" true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" sourceWidth="800" sourceHeight="600"
+    displayWidth="1280" displayHeight="720">
+
+    <a-marker type="pattern" url="assets/custom_marker.patt">
+      <a-box color="#99FFCD" depth="1" height="1" width="1" opacity="0.4">
+    </a-marker>
+
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+
+</summary>
 
 [**home**](#Contents)
 
