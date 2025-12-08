@@ -2951,9 +2951,8 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
 </br>
 
-You can check the code here on replit:
-https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
-
+<summary>
+<details>Code</details>
 
 ```html
 <!-- https://hiukim.github.io/mind-ar-js-doc/tools/compile/ -->
@@ -2986,10 +2985,14 @@ https://replit.com/@b2renger/11AFRAMEmindarjsnatural-image#index.html
 
 </html>
 ```
+</summary>
+
 
 Another example to play a video :
 Note that for some reasons related to apple, on iphones the live test on projectIdX (or firebase studio) doesn't work : you'll need to push to github-pages and test from the deployed version.
 
+<summary>
+<details>Code</details>
 
 ```html
 <!doctype html>
@@ -3141,6 +3144,7 @@ Note that for some reasons related to apple, on iphones the live test on project
 </html>
 
 ```
+</summary>
 
 
 [**home**](#Contents)
@@ -3158,7 +3162,52 @@ https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
-basic example to get started : https://replit.com/@b2renger/AFRAMEGPS
+
+```html
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar-nft.js"></script>
+
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+
+
+
+  <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    
+
+
+
+    <a-text value="Hello" look-at="[gps-camera]" scale="10 10 10" color="red"
+      gps-entity-place="latitude: 47.204268; longitude: -1.5635;"></a-text>
+
+
+    <a-box scale="1 1 1" color="green" gps-entity-place="latitude: 47.204268; longitude: -1.5635;"></a-box>
+
+    <a-camera gps-camera="minDistance: 0; maxDistance: 10; gpsMinDistance: 0; accelerationToMove:1.0;"
+      arjs-look-controls='smoothingFactor: 0.1'>
+    </a-camera>
+    <!--
+    <script>
+      const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
+      console.log(distanceMsg);   // "890 meters"
+    </script>-->
+  </a-scene>
+</body>
+
+</html>
+
+```
 
 [**home**](#Contents)
 
@@ -3203,8 +3252,6 @@ And you can test the experience following this qr code (you'll need to be on a m
 </br>
 
 
-You can checkout the replit code here : https://replit.com/@b2renger/ARmodelViewer
-
 #### ... with A-Frame
 
 This feature is directly supported by A-Frame in version 1.3.0 and up.
@@ -3212,10 +3259,111 @@ This feature is directly supported by A-Frame in version 1.3.0 and up.
 https://aframe.io/docs/1.3.0/components/webxr.html#sidebar
 
 A first simplified implementation is available here : 
-https://replit.com/@b2renger/15AFramesurfaces#index.html
+
+```html
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js">
+  </script>
+
+</head>
 
 
-A wip implementation is avaible here : https://replit.com/@b2renger/15AFrameModelonsurfaceandshadows#index.html
+
+<body style="margin : 0px; overflow: hidden;">
+  <script>
+    AFRAME.registerComponent("hide-on-hit-test-start", {
+      init: function () {
+        var self = this;
+        self.el.object3D.visible = false;
+        this.el.sceneEl.addEventListener("ar-hit-test-start", function () {
+          self.el.object3D.visible = false;
+        });
+        this.el.sceneEl.addEventListener("exit-vr", function () {
+          self.el.object3D.visible = false;
+        });
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", function () {
+      const sceneEl = document.querySelector("a-scene");
+      const message = document.getElementById("dom-overlay-message");
+
+      // If the user taps on any buttons or interactive elements we may add then prevent
+      // Any WebXR select events from firing
+      message.addEventListener("beforexrselect", e => {
+        e.preventDefault();
+      });
+
+      sceneEl.addEventListener("enter-vr", function () {
+        if (this.is("ar-mode")) {
+          // Entered AR
+          message.textContent = "";
+
+          // Hit testing is available
+          this.addEventListener(
+            "ar-hit-test-start",
+            function () {
+              message.innerHTML = `Scanning environment, finding surface.`;
+            },
+            {once: true}
+          );
+
+          // Has managed to start doing hit testing
+          this.addEventListener(
+            "ar-hit-test-achieved",
+            function () {
+              message.innerHTML = `Select the location to place<br />By tapping on the screen or selecting with your controller.`;
+            },
+            {once: true}
+          );
+
+          // User has placed an object
+          this.addEventListener(
+            "ar-hit-test-select",
+            function () {
+              message.textContent = "";
+            },
+            {once: true}
+          );
+        }
+      });
+
+      sceneEl.addEventListener("exit-vr", function () {
+        message.textContent = "Exited Immersive Mode";
+      });
+    });
+
+  </script>
+
+  <a-scene webxr="overlayElement:#dom-overlay; requiredFeatures: hit-test,local-floor;
+                " background="color:skyblue;" ar-hit-test="target:#my-objects;type:footprint;footprintDepth:0.2;"
+    raycaster="objects: #my-objects *">
+
+    <!-- This is hidden when the user first enters ar but becomes visible when the user can place it -->
+    <a-entity hide-on-hit-test-start id="my-objects" scale="0.2 0.2 0.2" position="0.2 0 -0.4">
+
+      <a-box position="-1 0.5 0" rotation="0 45 0" color="#4CC3D9" material="roughness: 0.1; metalness: 0.2;"></a-box>
+      <a-sphere position="1 0 0" radius="1.25" color="#FFFFFF" material="roughness: 0; metalness: 0;"></a-sphere>
+
+    </a-entity>
+
+    <a-marker preset="kanji" size="0.08">
+
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
+
+    </a-marker>
+  </a-scene>
+  <div id="dom-overlay">
+    <div id="dom-overlay-message">Enter AR to start.</div>
+  </div>
+</body>
+
+</html>
+```
 
 Sadly it will not work on iphones due to apple not supporting webxr api on iOS for now
 This app might help though : https://apps.apple.com/fr/app/webxr-viewer/id1295998056
@@ -3264,7 +3412,54 @@ You can also scan the qrcode below and show it our good old kanji:
 
 
 You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsabasic#index.html
+
+<summary>
+<details>Code</details>
+
+```html
+
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+    <a-marker preset="kanji" size="0.08">
+
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material="opacity: 1"
+        animation="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: true; easing: easeInOutElastic; dur: 2000; dir:alternate; delay:2000;">
+      </a-box>
+
+
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+</summary>
+
 
 ### Several Animations
 
@@ -3306,8 +3501,58 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationsbstackedanimations
+<summary>
+<details>Code </details
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5"   
+    smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+    <a-marker preset="kanji" size="0.08">
+
+      <!-- complex animations on a box
+
+      -->
+      <a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material="opacity: 1"
+        animation="property: rotation; to: 180 360 0; loop: true; dur: 4000;"
+        animation__2="property: material.color; from:#FD5D3B ; to: #541690; easing: easeInOutElastic; loop: true; dur: 4000; dir: alternate;"
+        animation__3="property: scale;from: 0.5 0.5 0.5; to: 1 1 1; loop: true; easing: easeInOutElastic; dur: 2000; dir:alternate; delay:2000;">
+      </a-box>
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+
+
+```
+
+</summary>
 
 ### Orbiting animation
 
@@ -3355,8 +3600,64 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-You can check the code here :
-https://replit.com/@b2renger/12AFRAMEAnimationscadvanced
+<summary>
+<details>Code</details>
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5"   
+    smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+    <a-marker preset="kanji" size="0.08">
+
+      
+
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000 ;easing: linear">
+        <a-sphere position="0.75 0 0" scale="0.2 0.2 0.2" color="mediumseagreen">
+          <a-entity rotation="0 0 0"
+            animation="property: rotation;from:0 0 0; to: 360 0 0; loop: true; dur: 7500; easing: linear;"
+            animation__2="property: rotation;from:0 0 0; to: 0 360 0; loop: true; dur: 2500; easing: linear"
+            animation__2="property: rotation;from:0 0 0; to: 0 0 360; loop: true; dur: 5000; easing: linear">
+            <a-sphere position="1.5 0 0" scale="0.1 0.1 0.1" color="blue"></a-sphere>
+          </a-entity>
+
+        </a-sphere>
+
+
+      </a-entity>
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+
+```
+
+</summary>
 
 ### Sequencing animations
 
@@ -3530,6 +3831,66 @@ You can also scan the qrcode below and show it our good old kanji :
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
+<summary>
+<details>Code</details>
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5"   
+    smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+    <a-marker preset="kanji" size="0.08">
+
+      
+
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000 ;easing: linear">
+        <a-sphere position="0.75 0 0" scale="0.2 0.2 0.2" color="mediumseagreen">
+          <a-entity rotation="0 0 0"
+            animation="property: rotation;from:0 0 0; to: 360 0 0; loop: true; dur: 7500; easing: linear;"
+            animation__2="property: rotation;from:0 0 0; to: 0 360 0; loop: true; dur: 2500; easing: linear"
+            animation__2="property: rotation;from:0 0 0; to: 0 0 360; loop: true; dur: 5000; easing: linear">
+            <a-sphere position="1.5 0 0" scale="0.1 0.1 0.1" color="blue"></a-sphere>
+          </a-entity>
+
+        </a-sphere>
+
+
+      </a-entity>
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+
+</summary>
+
+
+
 [**home**](#Contents)
 
 ## Interactivity
@@ -3550,6 +3911,7 @@ The heavy work will be done inside the "a-camera" tag. Inside this tag we will a
 ```
 
 Notice the *cursor* attribute on our entity !
+
 ```
 cursor="fuse: true; fuseTimeout: 1500"
 ```
@@ -3691,8 +4053,61 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-You can check the code here :
-https://replit.com/@b2renger/13AFrametestgaze#index.html
+<summary>
+<details>Code</details>
+```html
+<!doctype html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+
+  </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene embedded arjs="sourceType: webcam;" vr-mode-ui="enabled: false"
+    renderer="sortObjects: true; antialias: true; colorManagement: true; physicallyCorrectLights; logarithmicDepthBuffer: true;"
+    arjs="trackingMethod: best;
+    detectionMode :'color_and_matrix' 
+    changeMatrixMode: 'modelViewMatrix'; " smooth="true" smoothCount="5"   
+    smoothTolerance=".05" smoothThreshold="5"
+    sourceWidth="800" sourceHeight="600" displayWidth="1280" displayHeight="720">
+
+    <a-marker preset="kanji" size="0.08">
+
+      
+
+      <a-entity rotation="0 0 0" animation="property: rotation; to: 360 360 0; loop: true; dur: 10000 ;easing: linear">
+        <a-sphere position="0.75 0 0" scale="0.2 0.2 0.2" color="mediumseagreen">
+          <a-entity rotation="0 0 0"
+            animation="property: rotation;from:0 0 0; to: 360 0 0; loop: true; dur: 7500; easing: linear;"
+            animation__2="property: rotation;from:0 0 0; to: 0 360 0; loop: true; dur: 2500; easing: linear"
+            animation__2="property: rotation;from:0 0 0; to: 0 0 360; loop: true; dur: 5000; easing: linear">
+            <a-sphere position="1.5 0 0" scale="0.1 0.1 0.1" color="blue"></a-sphere>
+          </a-entity>
+
+        </a-sphere>
+
+
+      </a-entity>
+
+    </a-marker>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  </a-scene>
+
+</body>
+
+</html>
+```
+</summary>
 
 ## Extra
 
