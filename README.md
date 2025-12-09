@@ -1197,7 +1197,9 @@ or scan this qr code and show it kanji ! (if nothing happens click on the screen
 You can have a look at the whole example here :
 <details>
 <summary>Code</summary>
+
 ```html
+
 <!doctype html>
 <html>
 
@@ -1310,8 +1312,10 @@ You can have a look at the whole example here :
 </body>
 
 </html>
+
 ```
-</detals>
+
+</details>
 
 
 You want to export mp4 files with h264 codec and a
@@ -1321,7 +1325,9 @@ If you want to play audio with the video, you'll need to have a video (mp4) and 
 
 <details>
 <summary>Code</summary>
+
 ```html
+
 <!doctype html>
 <html>
 
@@ -1478,7 +1484,7 @@ If you want to play audio with the video, you'll need to have a video (mp4) and 
 
 </html>
 ```
-</summary>
+</details>
 
 
 [**home**](#Contents)
@@ -1595,8 +1601,9 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_05.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
+
 ```html
 <!doctype html>
 <html>
@@ -1658,7 +1665,7 @@ or scan this qr code  and show it kanji !
 
 </html>
 ``` 
-</summary>
+</details>
 
 Note :
 If you actually want your text to be in 3D (ie having depth) you can have a look over here : https://github.com/supermedium/superframe/tree/master/components/text-geometry
@@ -1727,8 +1734,9 @@ or scan this qr code  and show it kanji !
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
+
 ```html
 <!-- 3D model by Chaïnèze D'Almeida
 https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
@@ -1785,7 +1793,7 @@ https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
 
 </html>
 ```
-</summary>
+</details>
 
 
 
@@ -1833,8 +1841,9 @@ or scan this qr code  and show it kanji !
 <img src="qrcodes/qr_07-glb.png" width="250" height="250"/>
 <img src="markers/kanji.png" width="250" height="250"/></br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
+
 ```html
 <!-- 3D model by Chaïnèze D'Almeida
 https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
@@ -1881,7 +1890,7 @@ https://www.linkedin.com/in/chainezedalmeida/?originalSubdomain=fr
 
 </html>
 ```
-</summary>
+</details>
 
 Note : you'll need 3D models. You have a few examples of good 3D models inside the realease part of the github.
 
@@ -2031,6 +2040,7 @@ or scan this qr code  and show it kanji !
 <details>
 
 <summary> Complete code </summary>
+
 ```html
 <!doctype html>
 <html>
@@ -2153,10 +2163,11 @@ Nota bene, the "greenscreen" component for videos is made with a shader :)
 
 if you already know about shaders here is some code you can look at to play a video and apply a displacement vertex shader
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
+
 <!doctype html>
 <html>
 
@@ -2501,7 +2512,7 @@ AFRAME.registerComponent('play-on-click', {
     }
   });
 ```
-</summary>
+</details>
 
 
 
@@ -2561,8 +2572,9 @@ or scan this qr code  and show it Kanji and Hiro!
 <img src="markers/hiro.png" width="250" height="250"/></br>
 
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
+
 ```html
 <!doctype html>
 <html>
@@ -2601,7 +2613,7 @@ or scan this qr code  and show it Kanji and Hiro!
 
 </html>
 ```
-</summary>
+</details>
 
 [**home**](#Contents)
 
@@ -2669,8 +2681,8 @@ You can also scan the qrcode below and show it the set of markers under:
 <img src="markers/barcodes_white_back.png" width="640" height="400"/>
 </br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!doctype html>
@@ -2732,7 +2744,7 @@ You can also scan the qrcode below and show it the set of markers under:
 </html>
 ``` 
 
-</summary>
+</details>
 
 If you want to check the value of a specific marker you can check this page
 https://ateliernum.github.io/superpositions/test.html
@@ -2832,8 +2844,8 @@ You can also scan the qrcode below and show it our beautiful custom marker :
 <img src="markers/custom_marker.png" width="250" height="250"/>
 </br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!-- To build the necessary files to have custom markers
@@ -2876,7 +2888,7 @@ https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples
 </html>
 ```
 
-</summary>
+</details>
 
 [**home**](#Contents)
 
@@ -2951,8 +2963,8 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 <img src="markers/MarietteCropCropCrop.jpg" width="250" height="250"/>
 </br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!-- https://hiukim.github.io/mind-ar-js-doc/tools/compile/ -->
@@ -2985,14 +2997,14 @@ You can also scan the qrcode below and show it our beautiful custom markers :
 
 </html>
 ```
-</summary>
+</details>
 
 
 Another example to play a video :
 Note that for some reasons related to apple, on iphones the live test on projectIdX (or firebase studio) doesn't work : you'll need to push to github-pages and test from the deployed version.
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!doctype html>
@@ -3144,7 +3156,7 @@ Note that for some reasons related to apple, on iphones the live test on project
 </html>
 
 ```
-</summary>
+</details>
 
 
 [**home**](#Contents)
@@ -3162,6 +3174,8 @@ https://hiukim.github.io/mind-ar-js-doc/face-tracking-quick-start/overview
 
 https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/avoid-shaking/index.html
 
+<details>
+<summary> example code </summary>
 
 ```html
 
@@ -3208,6 +3222,7 @@ https://github.com/AR-js-org/AR.js/blob/master/aframe/examples/location-based/av
 </html>
 
 ```
+</details>
 
 [**home**](#Contents)
 
@@ -3259,6 +3274,9 @@ This feature is directly supported by A-Frame in version 1.3.0 and up.
 https://aframe.io/docs/1.3.0/components/webxr.html#sidebar
 
 A first simplified implementation is available here : 
+
+<details>
+<summary> Code </summray>
 
 ```html
 
@@ -3364,6 +3382,7 @@ A first simplified implementation is available here :
 
 </html>
 ```
+</details<
 
 Sadly it will not work on iphones due to apple not supporting webxr api on iOS for now
 This app might help though : https://apps.apple.com/fr/app/webxr-viewer/id1295998056
@@ -3413,8 +3432,8 @@ You can also scan the qrcode below and show it our good old kanji:
 
 You can check the code here :
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 
@@ -3458,7 +3477,7 @@ You can check the code here :
 
 </html>
 ```
-</summary>
+</details>
 
 
 ### Several Animations
@@ -3501,8 +3520,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-<summary>
-<details>Code </details
+<details>
+<summary>Code </summary>
 
 ```html
 <!doctype html>
@@ -3549,10 +3568,9 @@ You can also scan the qrcode below and show it our good old kanji :
 
 </html>
 
-
 ```
 
-</summary>
+</details>
 
 ### Orbiting animation
 
@@ -3600,8 +3618,8 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!doctype html>
@@ -3657,7 +3675,7 @@ You can also scan the qrcode below and show it our good old kanji :
 
 ```
 
-</summary>
+</details>
 
 ### Sequencing animations
 
@@ -3831,8 +3849,8 @@ You can also scan the qrcode below and show it our good old kanji :
 You can check the code here :
 https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
 
 ```html
 <!doctype html>
@@ -3887,7 +3905,7 @@ https://replit.com/@b2renger/12AFRAMEAnimationsdtimeline#index.html
 </html>
 ```
 
-</summary>
+</details>
 
 
 
@@ -4053,8 +4071,9 @@ You can also scan the qrcode below and show it our good old kanji :
 <img src="markers/kanji.png" width="250" height="250"/>
 </br>
 
-<summary>
-<details>Code</details>
+<details>
+<summary>Code</summary>
+
 ```html
 <!doctype html>
 <html>
@@ -4107,7 +4126,7 @@ You can also scan the qrcode below and show it our good old kanji :
 
 </html>
 ```
-</summary>
+</details>
 
 ## Extra
 
